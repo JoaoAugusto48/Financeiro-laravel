@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('account_holder', function (Blueprint $table) {
+        Schema::create('account_holders', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->string("name");
             $table->boolean("linkAccount");
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('account_holder');
+        Schema::dropIfExists('account_holders');
     }
 };

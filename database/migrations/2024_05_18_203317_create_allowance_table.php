@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('allowance', function (Blueprint $table) {
+        Schema::create('allowances', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->string("title");
             $table->unsignedBigInteger("account_id");
@@ -21,8 +21,8 @@ return new class extends Migration
             $table->unsignedBigInteger("relatedHolder_id")->nullable();
             $table->timestamps();
 
-            $table->foreign("account_id")->references("id")->on("account");
-            $table->foreign("relatedHolder_id")->references("id")->on("account_holder");
+            $table->foreign("account_id")->references("id")->on("accounts");
+            $table->foreign("relatedHolder_id")->references("id")->on("account_holders");
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('allowance');
+        Schema::dropIfExists('allowances');
     }
 };

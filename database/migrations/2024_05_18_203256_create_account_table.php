@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('account', function (Blueprint $table) {
+        Schema::create('accounts', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->unsignedBigInteger("bank_id");
             $table->unsignedBigInteger("accountHolder_id");
@@ -19,8 +19,8 @@ return new class extends Migration
             $table->float("balance");
             $table->timestamps();
 
-            $table->foreign("bank_id")->references("id")->on("bank");
-            $table->foreign("accountHolder_id")->references("id")->on("account_holder");
+            $table->foreign("bank_id")->references("id")->on("banks");
+            $table->foreign("accountHolder_id")->references("id")->on("account_holders");
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('account');
+        Schema::dropIfExists('accounts');
     }
 };

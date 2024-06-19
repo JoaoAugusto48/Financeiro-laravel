@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transaction', function (Blueprint $table) {
+        Schema::create('transactions', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->unsignedBigInteger("account_id");
             $table->float("value");
@@ -20,8 +20,8 @@ return new class extends Migration
             $table->unsignedBigInteger("relatedHolder_id")->nullable();
             $table->timestamps();
 
-            $table->foreign("account_id")->references("id")->on("account");
-            $table->foreign("relatedHolder_id")->references("id")->on("account_holder");
+            $table->foreign("account_id")->references("id")->on("accounts");
+            $table->foreign("relatedHolder_id")->references("id")->on("account_holders");
         });
     }
 
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('transaction');
+        Schema::dropIfExists('transactions');
     }
 };
