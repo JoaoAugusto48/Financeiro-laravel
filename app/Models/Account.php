@@ -12,12 +12,12 @@ class Account extends Model
 
     public function bank()
     {
-        return $this->belongsTo(Bank::class);
+        return $this->hasOne(Bank::class, 'id');
     }
 
     public function accountHolder()
     {
-        return $this->belongsTo(AccountHolder::class);
+        return $this->hasOne(AccountHolder::class, 'id');
     }
 
     public function deposit(float $value): void

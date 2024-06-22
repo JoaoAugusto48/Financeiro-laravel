@@ -3,19 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\Bank;
+use App\Models\AccountHolder;
 use Illuminate\Http\Request;
 
-class BankController extends Controller
+class AccountHolderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Bank $bank)
+    public function index(AccountHolder $accountHolder)
     {
-        $banks = Bank::all();
-        return view('bank.index')
-                ->with('banks', $banks);
+        $accountHolders = AccountHolder::all();
+        return view('holder.index')
+                ->with('accountHolders', $accountHolders);
     }
 
     /**

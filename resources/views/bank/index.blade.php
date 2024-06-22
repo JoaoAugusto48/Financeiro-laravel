@@ -1,3 +1,5 @@
 <x-layout title="Bank">
-    Hi, that's your 1st page
+    @foreach ($banks as $bank)
+        <p class="m-0">{{ $bank->number }} {{ $bank->name }} - {{ $bank->abbreviation }}</p>
+    @endforeach
 </x-layout>
