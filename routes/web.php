@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
-Route::get('/', [AccountController::class, 'index']);
+Route::get('/', [AccountController::class, 'index'])->name('home');
 
 Route::resources([
     'accounts' => AccountController::class,
