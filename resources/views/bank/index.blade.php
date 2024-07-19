@@ -1,8 +1,9 @@
 <x-layout title="Bank">
 
-    <div class="clearfix">
-        <p class="h1 float-start">Bank</p>
-        <button type="button" class="btn btn-info btn float-end">Create</button>
+    <div class="row">
+        <div class="col">
+            <x-buttons.create :href="route('banks.create')" />
+        </div>
     </div>
 
     <div class="row justify-content-center">
@@ -18,12 +19,12 @@
                             <td>
                                 <div class="hstack gap-2">
                                     <div class="ms-auto">
-                                        <button type="button" class="btn btn-info btn-sm">About</button>
+                                        <x-buttons.show :href="route('banks.show', $bank->id)"/>
                                     </div>
                                     <div class="vr"></div>
-                                    <div class="">
-                                        <button type="button" class="btn btn-danger btn-sm">Remove</button>
-                                    </div>
+                                    <x-buttons.edit :href="route('banks.edit', $bank->id)"/>
+                                    <div class="vr"></div>
+                                    <x-buttons.delete/>
                                 </div>
                             </td>
                         </tr>

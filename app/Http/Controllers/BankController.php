@@ -23,7 +23,7 @@ class BankController extends Controller
      */
     public function create()
     {
-        //
+        return view('bank.create');
     }
 
     /**
@@ -37,17 +37,17 @@ class BankController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Bank $bank)
     {
-        //
+        return view('bank.show')->with('bank', $bank);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Bank $bank)
     {
-        //
+        return view('bank.edit')->with('bank', $bank);
     }
 
     /**

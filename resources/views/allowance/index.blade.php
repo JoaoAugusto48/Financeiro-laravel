@@ -1,5 +1,11 @@
 <x-layout title="Allowance">
 
+    <div class="row mb-2">
+        <div class="col">
+            <x-buttons.create href="#" />
+        </div>
+    </div>
+
     <div class="row row-cols-4">
         @foreach ($allowances as $allowance)
             <div class="row m-1">
