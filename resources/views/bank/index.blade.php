@@ -19,12 +19,12 @@
                             <td>
                                 <div class="hstack gap-2">
                                     <div class="ms-auto">
-                                        <x-buttons.show :href="route('banks.show', $bank->id)"/>
+                                        <x-buttons.table.show :href="route('banks.show', $bank->id)"/>
                                     </div>
                                     <div class="vr"></div>
-                                    <x-buttons.edit :href="route('banks.edit', $bank->id)"/>
+                                    <x-buttons.table.edit :href="route('banks.edit', $bank->id)"/>
                                     <div class="vr"></div>
-                                    <x-buttons.delete/>
+                                    <x-buttons.table.delete/>
                                 </div>
                             </td>
                         </tr>

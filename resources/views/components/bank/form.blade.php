@@ -26,7 +26,7 @@
                             placeholder="ex: 004" 
                             autocomplete="off"
                             autofocus
-                            max="3"
+                            maxlength="3"
                             onblur="formatNumero()"
                             @isset($bank->number) value="{{ $bank->number }}" @endisset
                             @empty($bank) value="{{ old('numero') }}" @endempty>
@@ -41,7 +41,7 @@
                             id="sigla" 
                             placeholder="ex: BB" 
                             autocomplete="off"
-                            max="4"
+                            maxlength   ="4"
                             @isset($bank->abbreviation) value="{{ $bank->abbreviation }}" @endisset
                             @empty($bank) value="{{ old('sigla') }}" @endempty>
                 </div>

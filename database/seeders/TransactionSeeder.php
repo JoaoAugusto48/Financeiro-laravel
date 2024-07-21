@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -20,6 +21,7 @@ class TransactionSeeder extends Seeder
                 'value' => 15.99,
                 'kindTransaction' => 'withdraw',
                 'description' => 'Bolo de Chocolate',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s')
             ])
         );
     }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +22,8 @@ class AllowanceSeeder extends Seeder
                 'value' => 240,
                 'kindTransaction' => 'withdraw',
                 'descriptionReason' => 'Pagamento mensal de Inglês',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'id' => 2,
@@ -29,6 +32,8 @@ class AllowanceSeeder extends Seeder
                 'value' => 2100,
                 'kindTransaction' => 'deposit',
                 'descriptionReason' => '',
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ])
         );
     }

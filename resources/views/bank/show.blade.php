@@ -1,3 +1,5 @@
 <x-layout title="{{ $bank->name }}">
-    <x-buttons.return :href="route('banks.index')"/>
+    <x-bank.show 
+        :goBack="route('banks.index')" 
+        :bank="$bank"/>
 </x-layout>
