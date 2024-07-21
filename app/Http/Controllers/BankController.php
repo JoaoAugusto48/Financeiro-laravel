@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\BankFormRequest;
 use App\Models\Bank;
 use Illuminate\Http\Request;
 
@@ -29,9 +30,17 @@ class BankController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(BankFormRequest $request)
     {
-        //
+        $bank = new Bank();
+        $bank->number = $request->numero;
+        $bank->name = $request->nome;
+        $bank-> abbreviation = strtoupper($request->sigla);
+        
+        $bank->save();
+
+        return to_route('banks.index')
+                    ->with('mensagem.sucesso', "Banco '{$bank->name}' criado com sucesso");
     }
 
     /**
@@ -53,9 +62,17 @@ class BankController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BankFormRequest $request, string $id)
     {
-        //
+        $bank = Bank::find($id);
+        $bank->number = $request->numero;
+        $bank->name = $request->nome;
+        $bank->abbreviation = strtoupper($request->sigla);
+        
+        $bank->save();
+        
+        return to_route('banks.index')
+                    ->with('mensagem.sucesso', "Banco '{$bank->name}' atualizado com sucesso");
     }
 
     /**

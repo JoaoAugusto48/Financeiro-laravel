@@ -9,7 +9,7 @@
             <div class="hstack gap-2">
                 <x-buttons.return :href="$goBack" />
                 <div class="vr"></div>
-                <x-buttons.store />
+                <x-buttons.save />
             </div>
         </div>
     </div>
@@ -23,9 +23,13 @@
                             name="numero" 
                             class="form-control" 
                             id="numero" 
-                            placeholder="004" 
+                            placeholder="ex: 004" 
                             autocomplete="off"
-                            @isset($bank->number) value="{{ $bank->number }}" @endisset>
+                            autofocus
+                            max="3"
+                            onblur="formatNumero()"
+                            @isset($bank->number) value="{{ $bank->number }}" @endisset
+                            @empty($bank) value="{{ old('numero') }}" @endempty>
                 </div>
             </div>
             <div class="col-3">
@@ -35,9 +39,11 @@
                             name="sigla"
                             class="form-control" 
                             id="sigla" 
-                            placeholder="BB" 
+                            placeholder="ex: BB" 
                             autocomplete="off"
-                            @isset($bank->abbreviation) value="{{ $bank->abbreviation }}" @endisset>
+                            max="4"
+                            @isset($bank->abbreviation) value="{{ $bank->abbreviation }}" @endisset
+                            @empty($bank) value="{{ old('sigla') }}" @endempty>
                 </div>
             </div>
         </div>
@@ -49,9 +55,10 @@
                             name="nome"    
                             class="form-control" 
                             id="nome" 
-                            placeholder="Banco do Brasil"
+                            placeholder="ex: Banco do Brasil"
                             autocomplete="off"
-                            @isset($bank->name) value="{{ $bank->name }}" @endisset>
+                            @isset($bank->name) value="{{ $bank->name }}" @endisset
+                            @empty($bank) value="{{ old('nome') }}" @endempty>
                 </div>
             </div>
         </div>
@@ -59,7 +66,14 @@
 
     <div class="row">
         <div class="col">
-            <x-buttons.store />
+            <x-buttons.save />
         </div>
     </div>
 </form>
+
+<script>
+    function formatNumero() {
+        let element = document.getElementById('numero')
+        element.value = String(element.value).padStart(3, '0');
+    }
+</script>

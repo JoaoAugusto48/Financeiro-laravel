@@ -1,4 +1,4 @@
-<x-layout title="{{ $bank->name }}">
+<x-layout title="Atualizar '{{ $bank->name }}'">
     <x-bank.form
         :action="route('banks.update', $bank->id)" 
         :bank="$bank"
