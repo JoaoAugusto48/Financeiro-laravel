@@ -1,3 +1,3 @@
-<a @isset($href) href="{{ $href }}" @endisset class="btn btn-info btn-sm">
+<x-buttons.button href="{{ $href }}" class="btn btn-info btn-sm">
     <i class="bi bi-info-circle"></i>
-</a>
+</x-buttons.button>
