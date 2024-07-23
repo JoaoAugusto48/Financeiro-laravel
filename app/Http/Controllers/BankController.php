@@ -14,11 +14,10 @@ class BankController extends Controller
      */
     public function index(Bank $bank)
     {
-        $perPage = 10;
-        $banks = Bank::paginate($perPage);
+        $banks = Bank::paginate(20);
+
         return view('bank.index')
-                ->with('banks', $banks)
-                ->with('perPage', $perPage);
+                ->with('banks', $banks);
     }
 
     /**
