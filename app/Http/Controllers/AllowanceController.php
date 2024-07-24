@@ -14,7 +14,7 @@ class AllowanceController extends Controller
     public function index(Allowance $allowance)
     {
         $allowances = Allowance::all();
-        return view('allowance.index')
+        return view('allowances.index')
                 ->with('allowances', $allowances);
     }
 

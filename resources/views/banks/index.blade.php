@@ -6,14 +6,11 @@
         </div>
     </div>
 
-    <div class="row justify-content-center m-2">
+    {{-- <div class="row justify-content-center m-2">
         <div class="col-md-6">
-            <form class="d-flex mt-3" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+            <x-banks.search :action="route('banks.search')" />
         </div>
-    </div>
+    </div> --}}
 
     <div class="row">
         {{ $banks->links() }}

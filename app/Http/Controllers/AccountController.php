@@ -15,7 +15,7 @@ class AccountController extends Controller
     {
         $accounts = Account::all();
         // dd($accounts);
-        return view('account.index')
+        return view('accounts.index')
                 ->with('accounts', $accounts);
     }
 

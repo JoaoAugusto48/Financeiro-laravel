@@ -16,7 +16,7 @@ class BankController extends Controller
     {
         $banks = Bank::paginate(20);
 
-        return view('bank.index')
+        return view('banks.index')
                 ->with('banks', $banks);
     }
 
@@ -25,7 +25,7 @@ class BankController extends Controller
      */
     public function create()
     {
-        return view('bank.create');
+        return view('banks.create');
     }
 
     /**
@@ -57,7 +57,7 @@ class BankController extends Controller
      */
     public function edit(Bank $bank)
     {
-        return view('bank.edit')->with('bank', $bank);
+        return view('banks.edit')->with('bank', $bank);
     }
 
     /**
@@ -82,5 +82,13 @@ class BankController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function search(Request $request) 
+    {
+        $search = $request->input('search');
+        $banks = Bank::whereAny(['name', 'number', 'abbreviation'], 'LIKE', "%$search%")->paginate(20);
+        
+        return view('banks.index', ['banks' => $banks, 'search' => $search]);
     }
 }

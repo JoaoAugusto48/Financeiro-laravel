@@ -7,10 +7,10 @@ use App\Http\Controllers\BankController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-Route::get('/', [AccountController::class, 'index'])->name('home');
+Route::get('/', function () {
+    return view('index');
+})->name('home');
+// Route::get('/', [AccountController::class, 'index'])->name('home');
 
 Route::resources([
     'accounts' => AccountController::class,
@@ -19,3 +19,7 @@ Route::resources([
     'banks' => BankController::class,
     'transactions' => TransactionController::class,
 ]);
+
+Route::prefix('banks')->group(function () {
+    Route::post('search', [BankController::class, 'search'])->name('banks.search');
+});

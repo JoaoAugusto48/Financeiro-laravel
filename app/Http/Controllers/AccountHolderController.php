@@ -14,7 +14,7 @@ class AccountHolderController extends Controller
     public function index(AccountHolder $accountHolder)
     {
         $accountHolders = AccountHolder::all();
-        return view('holder.index')
+        return view('holders.index')
                 ->with('accountHolders', $accountHolders);
     }
 
