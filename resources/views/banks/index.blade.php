@@ -1,5 +1,16 @@
 <x-layout title="Bank">
 
+    @isset($success)
+        <div class="alert alert-success mb-2">
+            {{ $success }}
+        </div>
+    @endisset
+    @isset($error)
+        <div class="alert alert-danger mb-2">
+            {{ $error }}
+        </div>
+    @endisset
+
     <div class="row">
         <div class="col">
             <x-buttons.create :href="route('banks.create')" />
@@ -16,7 +27,7 @@
         {{ $banks->links() }}
     </div>
     
-    <div class="row justify-content-center">
+    <div class="row justify-content-center mt-2">
         <div class="col-10">
             <table class="table table-hover align-middle">
                 <caption>List of Banks</caption>
@@ -34,7 +45,7 @@
                                     <div class="vr"></div>
                                     <x-buttons.table.edit :href="route('banks.edit', $bank->id)"/>
                                     <div class="vr"></div>
-                                    <x-buttons.table.delete href=""/>
+                                    <x-buttons.table.delete :action="route('banks.destroy', $bank->id)" />
                                 </div>
                             </td>
                         </tr>

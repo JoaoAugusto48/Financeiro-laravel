@@ -26,11 +26,16 @@
                     </ul>
                 </div>
             @endif
-            @isset($mensagemSucesso)
+            {{-- @isset($success)
                 <div class="alert alert-success">
-                    {{ $mensagemSucesso }}
+                    {{ $success }}
                 </div>
             @endisset
+            @isset($error)
+                <div class="alert alert-danger">
+                    {{ $error }}
+                </div>
+            @endisset --}}
 
             {{ $slot }}
         </div>

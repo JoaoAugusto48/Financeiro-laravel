@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BankFormRequest;
+use App\Models\Account;
 use App\Models\Bank;
+use Exception;
 use Illuminate\Http\Request;
 
 class BankController extends Controller
@@ -15,9 +17,13 @@ class BankController extends Controller
     public function index(Bank $bank)
     {
         $banks = Bank::paginate(20);
+        $success = session('mensagem.success');
+        $error = session('mensagem.error');
 
         return view('banks.index')
-                ->with('banks', $banks);
+                ->with('banks', $banks)
+                ->with('success', $success)
+                ->with('error', $error);
     }
 
     /**
@@ -41,7 +47,7 @@ class BankController extends Controller
         $bank->save();
 
         return to_route('banks.index')
-                    ->with('mensagem.sucesso', "Banco '{$bank->name}' criado com sucesso");
+                    ->with('mensagem.success', "Banco '{$bank->name}' criado com sucesso");
     }
 
     /**
@@ -49,7 +55,7 @@ class BankController extends Controller
      */
     public function show(Bank $bank)
     {
-        return view('bank.show')->with('bank', $bank);
+        return view('banks.show')->with('bank', $bank);
     }
 
     /**
@@ -73,15 +79,27 @@ class BankController extends Controller
         $bank->save();
         
         return to_route('banks.index')
-                    ->with('mensagem.sucesso', "Banco '{$bank->name}' atualizado com sucesso");
+                    ->with('mensagem.success', "Banco '{$bank->name}' atualizado com sucesso");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Bank $bank, Request $request)
     {
-        //
+        try {
+            $account = Account::find($bank->id);
+            if(!is_null($account)){
+                throw new Exception();
+            }
+            $bank->delete();
+
+            return to_route('banks.index')
+                    ->with('mensagem.success', "Banco '{$bank->name}' removido com sucesso.");
+        } catch (\Throwable $th) {
+            return to_route('banks.index')
+                    ->with('mensagem.error', "O banco '{$bank->name}' não pode ser excluido, há informações cadastradas em outros lugares.");
+        }
     }
 
     public function search(Request $request) 
