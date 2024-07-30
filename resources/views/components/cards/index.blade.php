@@ -1,4 +1,4 @@
-<div class="mb-3 mb-sm-0">
+<div class="mb-3 mb-sm-1">
     <div class="card h-100 mb-1" >
         <div class="card-body">
             <h5 class="card-title">{{ $title }}</h5>

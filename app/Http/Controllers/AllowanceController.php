@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Enums\TransactionEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AllowanceFormRequest;
+use App\Models\AccountHolder;
 use App\Models\Allowance;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AllowanceController extends Controller
@@ -30,9 +32,12 @@ class AllowanceController extends Controller
      */
     public function create()
     {
+        $accountHolders = AccountHolder::all();
         $transactions = TransactionEnum::cases();
+        
         return view('allowances.create')
-                    ->with('transactions', $transactions);
+                    ->with('transactions', $transactions)
+                    ->with('accountHolders', $accountHolders);
     }
 
     /**
@@ -40,8 +45,19 @@ class AllowanceController extends Controller
      */
     public function store(AllowanceFormRequest $request)
     {
-        dd($request);
-        //
+        $allowance = new Allowance();
+        $allowance->title = $request->titulo;
+        $allowance->value = $request->valor;
+        $allowance->kindTransaction = $request->tipoTransacao;
+        $allowance->descriptionReason = $request->descricao;
+        $allowance->account_id = User::first()->get('id');
+        $allowance->accountHolder_id = $request->contaRelacionada;
+
+        $allowance->save();
+
+
+        return to_route('allowances.index')
+                ->with('mensagem.success', "Mensalidade '$allowance->title' criada com sucesso");
     }
 
     /**

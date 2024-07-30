@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Enums\TransactionEnum;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
@@ -22,8 +23,8 @@ class AllowanceFormRequest extends FormRequest
     {
         $rules = [
             'titulo' => ['required'],
-            'valor' => ['required'],
-            'tipoTransacao' => ['required'],
+            'valor' => ['required', 'numeric', 'gt:0'],
+            'tipoTransacao' => ['required', Rule::enum(TransactionEnum::class)],
             'descricao' => [''],
         ];
         

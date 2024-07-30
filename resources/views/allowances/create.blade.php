@@ -1,5 +1,6 @@
 <x-layout title="Nova Mensalidade">
     <x-allowances.form action="{{ route('allowances.store') }}" 
                 goBack="{{ route('allowances.index') }}"
-                :transactions="$transactions"/>
+                :transactions="$transactions"
+                :accountHolders="$accountHolders"/>
 </x-layout>
