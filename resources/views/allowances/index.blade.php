@@ -1,8 +1,11 @@
 <x-layout title="Allowance">
 
+    <x-alerts.danger :error="$error"/>
+    <x-alerts.success :success="$success"/>
+
     <div class="row mb-2">
         <div class="col">
-            <x-buttons.create href="#" />
+            <x-buttons.create :href="route('allowances.create')" />
         </div>
     </div>
 
@@ -16,9 +19,9 @@
                         </h6>
                         <p class="card-text">{{ $allowance->kindTransaction }} - {{ $allowance->value }}</p>
                         <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <button type="button" class="btn btn-info"><i class="bi bi-eye"></i></button>
-                            <button type="button" class="btn btn-warning"><i class="bi bi-pencil-square"></i></button>
-                            <button type="button" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+                            <x-buttons.table.show href="{{ route('allowances.show', $allowance->id) }}" />
+                            <x-buttons.table.edit href="{{ route('allowances.edit', $allowance->id) }}" />
+                            <x-buttons.table.delete action="{{ route('allowances.destroy', $allowance->id) }}" />
                         </div>
                     </div>
                 </div>

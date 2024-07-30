@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\TransactionEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AllowanceFormRequest;
 use App\Models\Allowance;
 use Illuminate\Http\Request;
 
@@ -14,8 +16,13 @@ class AllowanceController extends Controller
     public function index(Allowance $allowance)
     {
         $allowances = Allowance::all();
+        $success = session('mensagem.success');
+        $error = session('mensagem.error');
+
         return view('allowances.index')
-                ->with('allowances', $allowances);
+                ->with('allowances', $allowances)
+                ->with('success', $success)
+                ->with('error', $error);
     }
 
     /**
@@ -23,14 +30,17 @@ class AllowanceController extends Controller
      */
     public function create()
     {
-        //
+        $transactions = TransactionEnum::cases();
+        return view('allowances.create')
+                    ->with('transactions', $transactions);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AllowanceFormRequest $request)
     {
+        dd($request);
         //
     }
 
@@ -53,7 +63,7 @@ class AllowanceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AllowanceFormRequest $request, string $id)
     {
         //
     }

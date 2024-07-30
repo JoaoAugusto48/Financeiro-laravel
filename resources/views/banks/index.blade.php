@@ -1,15 +1,7 @@
 <x-layout title="Bank">
 
-    @isset($success)
-        <div class="alert alert-success mb-2">
-            {{ $success }}
-        </div>
-    @endisset
-    @isset($error)
-        <div class="alert alert-danger mb-2">
-            {{ $error }}
-        </div>
-    @endisset
+    <x-alerts.danger :error="$error"/>
+    <x-alerts.success :success="$success"/>
 
     <div class="row">
         <div class="col">
