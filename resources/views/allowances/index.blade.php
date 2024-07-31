@@ -18,7 +18,7 @@
                         <h6 class="card-subtitle mb-2 text-body-secondary">{{ $allowance->account->accountHolder->name }}
                         </h6>
                         <p class="card-text">{{ $allowance->kindTransaction }} - {{ $allowance->value }}</p>
-                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                        <div class="btn-group" role="group" aria-label="Ativities">
                             <x-buttons.table.show href="{{ route('allowances.show', $allowance->id) }}" />
                             <x-buttons.table.edit href="{{ route('allowances.edit', $allowance->id) }}" />
                             <x-buttons.table.delete action="{{ route('allowances.destroy', $allowance->id) }}" />

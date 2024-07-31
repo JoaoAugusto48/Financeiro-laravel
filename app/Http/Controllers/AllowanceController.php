@@ -50,7 +50,7 @@ class AllowanceController extends Controller
         $allowance->value = $request->valor;
         $allowance->kindTransaction = $request->tipoTransacao;
         $allowance->descriptionReason = $request->descricao;
-        $allowance->account_id = User::first()->get('id');
+        $allowance->account_id = User::first()->id;
         $allowance->accountHolder_id = $request->contaRelacionada;
 
         $allowance->save();

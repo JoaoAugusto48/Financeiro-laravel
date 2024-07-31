@@ -22,6 +22,9 @@
                         <a class="nav-link" href="{{ route('accounts.index') }}">Accounts</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('holders.index') }}">Account Holders</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('allowances.index') }}">Allowances</a>
                     </li>
                     <li class="nav-item">
