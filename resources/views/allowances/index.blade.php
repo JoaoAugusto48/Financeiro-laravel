@@ -1,4 +1,4 @@
-<x-layout title="Allowance">
+<x-layout title="Allowance" pageName="Allowance">
 
     <x-alerts.danger :error="$error"/>
     <x-alerts.success :success="$success"/>

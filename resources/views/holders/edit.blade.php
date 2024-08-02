@@ -1,4 +1,4 @@
-<x-layout title="Atualizar '{{ $accountHolder->name }}'">
+<x-layout title="Atualizar '{{ $accountHolder->name }}'" pageName="Holder">
     <x-holders.form 
         :action="route('holders.update', $accountHolder->id)"
         :accountHolder="$accountHolder"

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>@isset($title) {{ $title }} | @endisset Financeiro</title>
+    <title>@isset($pageName) {{ $pageName }} | @endisset {{ __('messages.system_name') }}</title>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.2/font/bootstrap-icons.min.css">
 </head>
@@ -16,7 +16,9 @@
         <p class="h1">{{ $title }}</p>
         @endisset
         
+
         <div class="row">
+            {{-- Validation Errors --}}
             @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul class="mb-0">
@@ -26,17 +28,6 @@
                     </ul>
                 </div>
             @endif
-            {{-- @isset($success)
-                <div class="alert alert-success">
-                    {{ $success }}
-                </div>
-            @endisset
-            @isset($error)
-                <div class="alert alert-danger">
-                    {{ $error }}
-                </div>
-            @endisset --}}
-
             {{ $slot }}
         </div>
     </div>
