@@ -42,13 +42,13 @@
                 </div>
             </div>
             <div class="col-3">
-                <label for="Conta" class="form-label">Conta relacionada</label>
-                <select class="form-select" id="conta" name="contaRelacionada" aria-label="Default select example">
-                    <option selected>Open this select menu</option>
+                <label for="titular" class="form-label">Titular</label>
+                <select class="form-select" id="titular" name="titular" aria-label="Default select example">
+                    <option value="" selected>Open this select menu</option>
                     @foreach ($accountHolders as $holder)
-                        <option value="{{ $holder->id }}">{{ $holder->name }}</option>
+                        <option value="{{ $holder->id }}" @if ($holder->id == old('titular')) selected @endif>{{ $holder->name }}</option>
                     @endforeach
-                  </select>
+                </select>
             </div>
         </div>
         <div class="row mt-2">
@@ -71,6 +71,15 @@
                     </label>
                 </div>
                 @endforeach
+            </div>
+            <div class="col-3">
+                <label for="Conta" class="form-label">Conta relacionada</label>
+                <select class="form-select" id="conta" name="contaRelacionada" aria-label="Default select example">
+                    <option value="" selected>Open this select menu</option>
+                    @foreach ($relatedAccounts as $relatedAccount)
+                        <option value="{{ $relatedAccount->id }}" @if ($relatedAccount->id == old('contaRelacionada')) selected @endif>{{ $relatedAccount->name }}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
     </div>

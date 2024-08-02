@@ -88,7 +88,7 @@ class BankController extends Controller
     public function destroy(Bank $bank, Request $request)
     {
         try {
-            $account = Account::find($bank->id);
+            $account = Account::where('bank_id', $bank->id)->first();
             if(!is_null($account)){
                 throw new Exception();
             }

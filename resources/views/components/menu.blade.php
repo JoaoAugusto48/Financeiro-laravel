@@ -1,4 +1,4 @@
-<nav class="navbar navbar-dark bg-dark sticky-top">
+<nav class="navbar navbar-dark bg-dark sticky-top border-bottom">
     <div class="container-fluid">
         <a class="navbar-brand" href="{{ route('home') }}">Finanças</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"

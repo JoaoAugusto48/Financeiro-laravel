@@ -8,16 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Account extends Model
 {
     use HasFactory;
-    protected $fillable = ['accountNumber', 'balance'];
+    protected $fillable = ['accountNumber', 'bank_id', 'accountHolder_id'];
 
     public function bank()
     {
-        return $this->hasOne(Bank::class, 'id');
+        return $this->belongsTo(Bank::class, 'bank_id');
     }
 
     public function accountHolder()
     {
-        return $this->hasOne(AccountHolder::class, 'id');
+        return $this->belongsTo(AccountHolder::class, 'accountHolder_id');
     }
 
     public function deposit(float $value): void

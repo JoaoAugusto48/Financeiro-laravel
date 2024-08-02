@@ -2,9 +2,7 @@
 
 namespace App\Http\Requests;
 
-use App\Enums\TransactionEnum;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rule;
 
 class AccountHolderFormRequest extends FormRequest
 {

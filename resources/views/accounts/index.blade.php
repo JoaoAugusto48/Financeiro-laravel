@@ -1,5 +1,16 @@
 <x-layout title="Account">
-    @foreach ($accounts as $account)
-        <p class="m-0">{{ $account->accountNumber }} {{ $account->accountHolder->name }} - {{ $account->balance }} - {{ $account->bank->name }}</p>
-    @endforeach
+    
+    <x-alerts.danger :error="$error"/>
+    <x-alerts.success :success="$success"/>
+
+    <div class="row mb-2">
+        <div class="col">
+            <x-buttons.create :href="route('accounts.create')" />
+        </div>
+    </div>
+    <div class="row row-cols-4">
+        @foreach ($accounts as $account)
+            <x-cards.accounts :account="$account"/>
+        @endforeach
+    </div>
 </x-layout>

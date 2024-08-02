@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AccountHolderFormRequest;
+use App\Models\Account;
 use App\Models\AccountHolder;
+use App\Models\Allowance;
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -46,7 +49,7 @@ class AccountHolderController extends Controller
         $accountHolder->save();
 
         return to_route('holders.index')
-                ->with('mensagem.success', "Account Holder '$accountHolder->name' criado com sucesso");
+                ->with('mensagem.success', "Account Holder '{$accountHolder->name}' criado com sucesso");
     }
 
     /**
@@ -82,8 +85,23 @@ class AccountHolderController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(AccountHolder $holder, Request $request)
     {
-        //
+        try {
+            $transactions = Transaction::where('relatedHolder_id', $holder->id)->first();
+            $allowances = Allowance::where('relatedHolder_id', $holder->id)->first();
+            $account = Account::where('accountHolder_id', $holder->id)->first();
+    
+            if(!is_null($transactions) || !is_null($allowances) || !is_null($account)) {
+                throw new \Exception();
+            }
+            $holder->delete();
+
+            return to_route('holders.index')
+                    ->with('mensagem.success', "Holder '{$holder->name}' removido com sucesso.");
+        } catch (\Throwable $th) {
+            return to_route('holders.index')
+                    ->with('mensagem.error', "Holder '{$holder->name}' não pode ser removido, pois há relações cadastradas em outro locais.");
+        }
     }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger("bank_id");
             $table->unsignedBigInteger("accountHolder_id");
             $table->string("accountNumber");
-            $table->float("balance");
+            $table->decimal("balance", 20, 2);
             $table->timestamps();
 
             $table->foreign("bank_id")->references("id")->on("banks");

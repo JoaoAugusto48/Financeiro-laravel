@@ -9,4 +9,9 @@ class Bank extends Model
 {
     use HasFactory;
     protected $fillable = ['number', 'name', 'abbreviation'];
+    
+    public function account()
+    {
+        return $this->hasMany(Account::class, 'id');
+    }
 }

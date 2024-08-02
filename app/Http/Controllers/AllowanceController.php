@@ -32,11 +32,13 @@ class AllowanceController extends Controller
      */
     public function create()
     {
-        $accountHolders = AccountHolder::all();
+        $accountHolders = AccountHolder::where('linkAccount', true)->get();
+        $relatedAccounts = AccountHolder::where('linkAccount', false)->get();
         $transactions = TransactionEnum::cases();
         
         return view('allowances.create')
                     ->with('transactions', $transactions)
+                    ->with('relatedAccounts', $relatedAccounts)
                     ->with('accountHolders', $accountHolders);
     }
 
@@ -48,10 +50,10 @@ class AllowanceController extends Controller
         $allowance = new Allowance();
         $allowance->title = $request->titulo;
         $allowance->value = $request->valor;
-        $allowance->kindTransaction = $request->tipoTransacao;
+        $allowance->kindTransaction = TransactionEnum::from($request->tipoTransacao)->name;
         $allowance->descriptionReason = $request->descricao;
-        $allowance->account_id = User::first()->id;
-        $allowance->accountHolder_id = $request->contaRelacionada;
+        $allowance->account_id = $request->titular;
+        $allowance->relatedHolder_id = $request->contaRelacionada;
 
         $allowance->save();
 
@@ -87,8 +89,16 @@ class AllowanceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Allowance $allowance, Request $request)
     {
-        //
+        try {
+            $allowance->delete();
+
+            return to_route('allowances.index')
+                    ->with('mensagem.success', "Mensalidade '{$allowance->title}' removida com sucesso.");
+        } catch (\Throwable $th) {
+            return to_route('allowances.index')
+                    ->with('mensagem.error', "Mensalidade '{$allowance->title}' não pode ser excluida.");
+        }
     }
 }

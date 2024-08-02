@@ -15,9 +15,9 @@ return new class extends Migration
             $table->bigIncrements("id");
             $table->string("title");
             $table->unsignedBigInteger("account_id");
-            $table->float("value");
+            $table->decimal("value", 10, 2);
             $table->string("kindTransaction");
-            $table->string("descriptionReason");
+            $table->string("descriptionReason")->nullable();
             $table->unsignedBigInteger("relatedHolder_id")->nullable();
             $table->timestamps();
 
