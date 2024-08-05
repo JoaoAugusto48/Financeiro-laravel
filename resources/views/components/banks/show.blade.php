@@ -14,19 +14,13 @@
         <div class="col-3">
             <div class="mb-3">
                 <label for="numero" class="form-label">Número</label>
-                <input type="text"
-                        class="form-control" 
-                        value="{{ $bank->number }}"
-                        disabled readonly>
+                <x-inputs.input-show :value="$bank->number"/>
             </div>
         </div>
         <div class="col-3">
             <div class="mb-3">
                 <label for="sigla" class="form-label">Sigla</label>
-                <input type="text" 
-                        class="form-control" 
-                        value="{{ $bank->abbreviation }}"
-                        disabled readonly>
+                <x-inputs.input-show :value="$bank->abbreviation"/>
             </div>
         </div>
     </div>
@@ -34,31 +28,12 @@
         <div class="col-6">
             <div class="mb-3">
                 <label for="nome" class="form-label">Nome</label>
-                <input type="text" 
-                        class="form-control" 
-                        value="{{ $bank->name }}"
-                        disabled readonly>
+                <x-inputs.input-show :value="$bank->name"/>
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-3">
-            <div class="mb-3">
-                <label for="criado" class="form-label">Criado em</label>
-                <input type="text" 
-                        class="form-control" 
-                        value="{{ $bank->created_at->format('d/m/Y H:i') }}"
-                        disabled readonly>
-            </div>
-        </div>
-        <div class="col-3">
-            <div class="mb-3">
-                <label for="criado" class="form-label">Atualizado em</label>
-                <input type="text" 
-                        class="form-control" 
-                        value="{{ $bank->updated_at->format('d/m/Y H:i') }}"
-                        disabled readonly>
-            </div>
-        </div>
-    </div>
+    
+    <x-inputs.timestamps-show 
+        :createdAt="$bank->created_at"
+        :updatedAt="$bank->updated_at"/>
 </div>

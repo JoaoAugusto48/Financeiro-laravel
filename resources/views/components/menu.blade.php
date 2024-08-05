@@ -18,20 +18,41 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{{ route('home') }}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('accounts.index') }}">Accounts</a>
+                    <li class="nav-item dropdown">
+                        {{-- <a class="nav-link" href="{{ route('accounts.index') }}">Accounts</a> --}}
+                        <x-menus.dropdowns.dropdown-title>Accounts</x-menus.dropdowns.dropdown-title>
+                        <x-menus.dropdowns.dropdown-menu
+                            :view="route('accounts.index')"
+                            :create="route('accounts.create')"
+                        />
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('holders.index') }}">Account Holders</a>
+                    <li class="nav-item dropdown">
+                        <x-menus.dropdowns.dropdown-title>Account Holders</x-menus.dropdowns.dropdown-title>
+                        <x-menus.dropdowns.dropdown-menu
+                            :view="route('holders.index')"
+                            :create="route('holders.create')"
+                        />
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('allowances.index') }}">Allowances</a>
+                    <li class="nav-item dropdown">
+                        <x-menus.dropdowns.dropdown-title>Allowances</x-menus.dropdowns.dropdown-title>
+                        <x-menus.dropdowns.dropdown-menu
+                            :view="route('allowances.index')"
+                            :create="route('allowances.create')"
+                        />
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('banks.index') }}">Banks</a>
+                    <li class="nav-item dropdown">
+                        <x-menus.dropdowns.dropdown-title>Banks</x-menus.dropdowns.dropdown-title>
+                        <x-menus.dropdowns.dropdown-menu
+                            :view="route('banks.index')"
+                            :create="route('banks.create')"
+                        />
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('transactions.index') }}">Transactions</a>
+                    <li class="nav-item dropdown">
+                        <x-menus.dropdowns.dropdown-title>Transactions</x-menus.dropdowns.dropdown-title>
+                        <x-menus.dropdowns.dropdown-menu
+                            :view="route('transactions.index')"
+                            :create="route('transactions.create')"
+                        />
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"

@@ -65,17 +65,26 @@ class AllowanceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Allowance $allowance)
     {
-        //
+        return view('allowances.show')
+                ->with('allowance', $allowance);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Allowance $allowance)
     {
-        //
+        $accountHolders = AccountHolder::where('linkAccount', true)->get();
+        $relatedAccounts = AccountHolder::where('linkAccount', false)->get();
+        $transactions = TransactionEnum::cases();
+        
+        return view('allowances.edit')
+                    ->with('allowance', $allowance)
+                    ->with('transactions', $transactions)
+                    ->with('relatedAccounts', $relatedAccounts)
+                    ->with('accountHolders', $accountHolders);
     }
 
     /**
@@ -83,7 +92,19 @@ class AllowanceController extends Controller
      */
     public function update(AllowanceFormRequest $request, string $id)
     {
-        //
+        $allowance = Allowance::find($id);
+        $allowance->title = $request->titulo;
+        $allowance->value = $request->valor;
+        $allowance->kindTransaction = TransactionEnum::from($request->tipoTransacao)->name;
+        $allowance->descriptionReason = $request->descricao;
+        $allowance->account_id = $request->titular;
+        $allowance->relatedHolder_id = $request->contaRelacionada;
+
+        $allowance->save();
+
+
+        return to_route('allowances.index')
+                ->with('mensagem.success', "Mensalidade '$allowance->title' criada com sucesso");
     }
 
     /**

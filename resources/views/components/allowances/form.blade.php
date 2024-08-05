@@ -25,7 +25,8 @@
                             placeholder="ex: Conta de água" 
                             autocomplete="off"
                             autofocus
-                            value="{{ old('titulo') }}"/>
+                            @isset($allowance->title) value="{{ $allowance->title }}" @endisset
+                            @empty($allowance->title) value="{{ old('titulo') }}" @endempty />
             </div>
             <div class="col-3">
                 <label for="Valor" class="form-label">Valor</label>
@@ -38,7 +39,8 @@
                             id="valor" 
                             placeholder="ex: 200,00" 
                             autocomplete="off"
-                            value="{{ old('valor' , '0.00') }}"/>
+                            @isset($allowance->value) value="{{ $allowance->value }}" @endisset
+                            @empty($allowance->value) value="{{ old('valor' , '0.00') }}" @endempty/>
                 </div>
             </div>
             <div class="col-3">
@@ -46,7 +48,16 @@
                 <select class="form-select" id="titular" name="titular" aria-label="Default select example">
                     <option value="" selected>Open this select menu</option>
                     @foreach ($accountHolders as $holder)
-                        <option value="{{ $holder->id }}" @if ($holder->id == old('titular')) selected @endif>{{ $holder->name }}</option>
+                        <option value="{{ $holder->id }}"
+                            @isset($allowance->account_id)
+                                @if ($allowance->account_id == $holder->id) @selected(true) @endif
+                            @endisset 
+                            @empty($allowance->account_id)
+                                @if ($holder->id == old('titular')) @selected(true) @endif
+                            @endempty
+                            >
+                            {{ $holder->name }}
+                        </option>
                     @endforeach
                 </select>
             </div>
@@ -54,7 +65,7 @@
         <div class="row mt-2">
             <div class="col-6">
                 <label for="textarea" class="form-label">Descrição</label>
-                <textarea class="form-control" name="descricao" id="textarea" rows="3">{{ old('descricao') }}</textarea>
+                <textarea class="form-control" name="descricao" id="textarea" rows="3">@isset($allowance->descriptionReason){{ $allowance->descriptionReason }}@endisset @empty($allowance->descriptionReason){{ old('descricao') }}@endempty</textarea>
             </div>
             <div class="col-3">
                 <label for="tipoTransacao" class="form-label">Tipo transação</label>
@@ -65,7 +76,13 @@
                             name="tipoTransacao" 
                             id="tipo{{ $transaction->value }}"
                             value="{{ $transaction->value }}"
-                            {{ old('tipoTransacao') == $transaction->value ? 'checked' : '' }}>
+                            @isset($allowance->kindTransaction)
+                                @if ($allowance->kindTransaction == $transaction->name) @checked(true) @endif    
+                            @endisset
+                            @empty($allowance->kindTransaction)
+                                @if (old('tipoTransacao') == $transaction->value) @checked(true) @endif
+                            @endempty
+                            >
                     <label class="form-check-label" for="tipo{{ $transaction->value }}">
                       {{ $transaction->value }}
                     </label>
@@ -77,7 +94,16 @@
                 <select class="form-select" id="conta" name="contaRelacionada" aria-label="Default select example">
                     <option value="" selected>Open this select menu</option>
                     @foreach ($relatedAccounts as $relatedAccount)
-                        <option value="{{ $relatedAccount->id }}" @if ($relatedAccount->id == old('contaRelacionada')) selected @endif>{{ $relatedAccount->name }}</option>
+                        <option value="{{ $relatedAccount->id }}" 
+                            @isset($allowance->relatedHolder_id)
+                                @if ($allowance->relatedHolder_id == $relatedAccount->id) @selected(true) @endif
+                            @endisset 
+                            @empty($allowance->account_id)
+                                @if ($relatedAccount->id == old('contaRelacionada')) @selected(true) @endif
+                            @endempty
+                            >
+                            {{ $relatedAccount->name }}
+                        </option>
                     @endforeach
                 </select>
             </div>
