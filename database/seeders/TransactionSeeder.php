@@ -19,6 +19,7 @@ class TransactionSeeder extends Seeder
                 'id' => 1,
                 'account_id' => 1,
                 'value' => 15.99,
+                'dateTransaction' => Carbon::now()->format('Y-m-d'),
                 'kindTransaction' => 'withdraw',
                 'description' => 'Bolo de Chocolate',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s')

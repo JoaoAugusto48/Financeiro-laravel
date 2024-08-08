@@ -41,7 +41,7 @@
                             id="sigla" 
                             placeholder="ex: BB" 
                             autocomplete="off"
-                            maxlength   ="4"
+                            maxlength="4"
                             @isset($bank->abbreviation) value="{{ $bank->abbreviation }}" @endisset
                             @empty($bank) value="{{ old('sigla') }}" @endempty>
                 </div>

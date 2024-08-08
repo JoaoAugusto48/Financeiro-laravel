@@ -1,5 +1,20 @@
 <x-layout title="Transaction" pageName="Transaction">
-    @foreach ($transactions as $transaction)
-        <p class="m-0">{{ $transaction->account->accountHolder->name }} {{ $transaction->value }} - {{ $transaction->kindTransaction }} - {{ $transaction->descriptionReason }}</p>
-    @endforeach
+        
+    <x-alerts.danger :error="$error"/>
+    <x-alerts.success :success="$success"/>
+
+    <div class="row mb-2">
+        <div class="col">
+            <x-buttons.create :href="route('transactions.create')" />
+        </div>
+    </div>
+
+    <div class="row row-cols-4">
+        @foreach ($transactions as $transaction)
+            <x-cards.transactions 
+                :transaction="$transaction"
+                kindTransactions="{{ $kindTransactionsDeposit }}"    
+            />
+        @endforeach
+    </div>
 </x-layout>

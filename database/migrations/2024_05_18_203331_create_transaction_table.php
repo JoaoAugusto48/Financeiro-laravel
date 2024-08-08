@@ -16,6 +16,7 @@ return new class extends Migration
             $table->unsignedBigInteger("account_id");
             $table->float("value");
             $table->string("kindTransaction");
+            $table->date("dateTransaction");
             $table->string("description")->nullable();
             $table->unsignedBigInteger("relatedHolder_id")->nullable();
             $table->timestamps();

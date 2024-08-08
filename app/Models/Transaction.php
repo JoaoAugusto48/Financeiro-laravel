@@ -8,15 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
-    protected $fillable = ['value', 'kindTransaction', 'descriptionReason'];
+    protected $fillable = ['value', 'kindTransaction', 'description', 'dateTransaction', 'account_id', 'relatedHolder_id'];
 
     public function account()
     {
-        return $this->belongsTo(Account::class);
+        return $this->belongsTo(Account::class, 'account_id');
     }
 
-    public function accountHolder()
+    public function relatedHolder()
     {
-        return $this->belongsTo(AccountHolder::class);
+        return $this->belongsTo(AccountHolder::class, 'relatedHolder_id');
     }
 }
