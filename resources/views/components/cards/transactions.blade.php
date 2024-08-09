@@ -1,7 +1,6 @@
 @php
     $color = ($transaction->kindTransaction == $kindDeposit) ? 'success' : 'danger';
 @endphp
-
 <x-cards.card class="border-{{ $color }}">
     <h5 class="card-title"><span class="text-{{ $color }}">R$ {{ $transaction->value }}</span> - {{ $transaction->account->accountHolder->name }}</h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">

@@ -2,7 +2,7 @@
     <x-transactions.form action="{{ route('transactions.store') }}"
                 goBack="{{ route('transactions.index') }}"
                 :transactionsEnum="$transactionsEnum"
-                :accountHolders="$accountHolders"
+                :accounts="$accounts"
                 :relatedAccounts="$relatedAccounts"
                 :allowances="$allowances"
                 :today="$today"/>

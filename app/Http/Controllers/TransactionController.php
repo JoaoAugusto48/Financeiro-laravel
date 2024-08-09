@@ -20,7 +20,7 @@ class TransactionController extends Controller
     public function index(Transaction $transaction)
     {
         $transactions = Transaction::all();
-        $kindTransactions = ['deposit' => TransactionEnum::Deposit];
+        $kindTransactions = ['deposit' => TransactionEnum::Deposit->name];
         $success = session('mensagem.success');
         $error = session('mensagem.error');
 
@@ -36,7 +36,7 @@ class TransactionController extends Controller
      */
     public function create()
     {
-        $accountHolders = AccountHolder::where('linkAccount', true)->get();
+        $accounts = Account::all();
         $relatedAccounts = AccountHolder::where('linkAccount', false)->get();
         $transactionsEnum = TransactionEnum::cases();
         $allowances = Allowance::all();
@@ -45,7 +45,7 @@ class TransactionController extends Controller
         return view('transactions.create')
                 ->with('transactionsEnum', $transactionsEnum)
                 ->with('relatedAccounts', $relatedAccounts)
-                ->with('accountHolders', $accountHolders)
+                ->with('accounts', $accounts)
                 ->with('allowances', $allowances)
                 ->with('today', $today);
     }
