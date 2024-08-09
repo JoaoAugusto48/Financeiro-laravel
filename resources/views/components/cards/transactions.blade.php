@@ -1,5 +1,5 @@
 @php
-    $color = ($transaction->kindTransaction == $kindTransactions) ? 'success' : 'danger';
+    $color = ($transaction->kindTransaction == $kindDeposit) ? 'success' : 'danger';
 @endphp
 
 <x-cards.card class="border-{{ $color }}">
@@ -18,8 +18,9 @@
     @endisset
     <div class="col align-self-end">
         <div class="btn-group" role="group" aria-label="Ativities">
-            <x-buttons.table.show href="{{ route('transactions.show', $transaction->id) }}">Info</x-buttons.table.show>
-            <x-buttons.table.delete action="{{ route('transactions.destroy', $transaction->id) }}">Delete</x-buttons.table.delete>
+            <x-buttons.table.show href="{{ route('transactions.show', $transaction->id) }}"/>
+            <x-buttons.table.edit href="{{ route('transactions.edit', $transaction->id) }}"/>
+            <x-buttons.table.delete action="{{ route('transactions.destroy', $transaction->id) }}"/>
         </div>
     </div>
 </x-cards.card>

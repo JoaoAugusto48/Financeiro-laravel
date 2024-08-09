@@ -17,7 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger("account_id");
             $table->decimal("value", 10, 2);
             $table->string("kindTransaction");
-            $table->string("descriptionReason")->nullable();
+            $table->string("description")->nullable();
             $table->unsignedBigInteger("relatedHolder_id")->nullable();
             $table->timestamps();
 

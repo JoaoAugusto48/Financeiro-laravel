@@ -27,7 +27,7 @@
     <div class="row mt-2">
         <div class="col-6">
             <label for="textarea" class="form-label">Descrição</label>
-            <x-inputs.textarea-show>{{ $allowance->descriptionReason }}</x-inputs.textarea-show>
+            <x-inputs.textarea-show>{{ $allowance->description }}</x-inputs.textarea-show>
         </div>
         <div class="col-3">
             <label for="tipoTransacao" class="form-label">Tipo transação</label>

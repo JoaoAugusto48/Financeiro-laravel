@@ -42,7 +42,8 @@ class BankController extends Controller
         $bank = new Bank();
         $bank->number = $request->numero;
         $bank->name = $request->nome;
-        $bank-> abbreviation = strtoupper($request->sigla);
+        $bank->abbreviation = strtoupper($request->sigla);
+        $bank->deleteable = true;
         
         $bank->save();
 
@@ -89,7 +90,7 @@ class BankController extends Controller
     {
         try {
             $account = Account::where('bank_id', $bank->id)->first();
-            if(!is_null($account)){
+            if(!is_null($account) || !$bank->deleteable){
                 throw new Exception();
             }
             $bank->delete();

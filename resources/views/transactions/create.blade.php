@@ -3,5 +3,7 @@
                 goBack="{{ route('transactions.index') }}"
                 :transactionsEnum="$transactionsEnum"
                 :accountHolders="$accountHolders"
-                :relatedAccounts="$relatedAccounts"/>
+                :relatedAccounts="$relatedAccounts"
+                :allowances="$allowances"
+                :today="$today"/>
 </x-layout>

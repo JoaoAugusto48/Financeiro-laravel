@@ -9,14 +9,43 @@
             <div class="hstack gap-2">
                 <x-buttons.return :href="$goBack" />
                 <div class="vr"></div>
-                <x-buttons.save />
+                <x-buttons.save/>
             </div>
         </div>
     </div>
 
     <div class="mt-2">
-        <div class="row">
+        <div class="row mb-2">
             <div class="col-6">
+                <label for="allowance" class="form-label">Mensalidade</label>
+                <select class="form-select" id="allowance" aria-label="Default select example">
+                    <option value="" selected>Atalho de preenchimento</option>
+                    @foreach ($allowances as $allowance)
+                        <option>
+                            {{ $allowance->title }} - R$ {{ $allowance->value }} - {{ $allowance->kindTransaction }} - {{ $allowance->account->accountHolder->name }}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-3">
+                <label for="titular" class="form-label">Titular</label>
+                <select class="form-select" id="titular" name="titular" aria-label="Default select example" autofocus>
+                    <option value="" selected>Open this select menu</option>
+                    @foreach ($accountHolders as $holder)
+                        <option value="{{ $holder->id }}"
+                            @isset($transaction->account_id)
+                                @if ($transaction->account_id == $holder->id) @selected(true) @endif
+                            @endisset 
+                            @empty($transaction->account_id)
+                                @if ($holder->id == old('titular')) @selected(true) @endif
+                            @endempty
+                            >
+                            {{ $holder->name }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
             <div class="col-3">
                 <label for="Valor" class="form-label">Valor</label>
@@ -34,29 +63,35 @@
                 </div>
             </div>
             <div class="col-3">
-                <label for="titular" class="form-label">Titular</label>
-                <select class="form-select" id="titular" name="titular" aria-label="Default select example">
+                <label for="conta" class="form-label">Conta relacionada</label>
+                <select class="form-select" id="conta" name="contaRelacionada" aria-label="Default select example">
                     <option value="" selected>Open this select menu</option>
-                    @foreach ($accountHolders as $holder)
-                        <option value="{{ $holder->id }}"
-                            @isset($transaction->account_id)
-                                @if ($transaction->account_id == $holder->id) @selected(true) @endif
+                    @foreach ($relatedAccounts as $relatedAccount)
+                        <option value="{{ $relatedAccount->id }}" 
+                            @isset($transaction->relatedHolder_id)
+                                @if ($transaction->relatedHolder_id == $relatedAccount->id) @selected(true) @endif
                             @endisset 
                             @empty($transaction->account_id)
-                                @if ($holder->id == old('titular')) @selected(true) @endif
+                                @if ($relatedAccount->id == old('contaRelacionada')) @selected(true) @endif
                             @endempty
                             >
-                            {{ $holder->name }}
+                            {{ $relatedAccount->name }}
                         </option>
                     @endforeach
                 </select>
             </div>
+            <div class="col-3">
+                <label for="data" class="form-label">Data da Transação</label>
+                <input class="form-control"
+                        type="date"
+                        name="data" 
+                        id="data"
+                        max="{{ $today->format('Y-m-d') }}"
+                        @isset($transaction->dateTransaction) value="{{ $transaction->dateTransaction }}" @endisset
+                        @empty($transaction->dateTransaction) value="{{ old('data', $today->format('Y-m-d')) }}" @endempty>
+            </div>
         </div>
         <div class="row mt-2">
-            <div class="col-6">
-                <label for="textarea" class="form-label">Descrição</label>
-                <textarea class="form-control" name="descricao" id="textarea" rows="3">@isset($transaction->description){{ $transaction->description }}@endisset @empty($allowance->description){{ old('descricao') }}@endempty</textarea>
-            </div>
             <div class="col-3">
                 <label for="tipoTransacao" class="form-label">Tipo transação</label>
                 @foreach ($transactionsEnum as $transactionEnum)
@@ -79,23 +114,9 @@
                 </div>
                 @endforeach
             </div>
-            <div class="col-3">
-                <label for="Conta" class="form-label">Conta relacionada</label>
-                <select class="form-select" id="conta" name="contaRelacionada" aria-label="Default select example">
-                    <option value="" selected>Open this select menu</option>
-                    @foreach ($relatedAccounts as $relatedAccount)
-                        <option value="{{ $relatedAccount->id }}" 
-                            @isset($transaction->relatedHolder_id)
-                                @if ($transaction->relatedHolder_id == $relatedAccount->id) @selected(true) @endif
-                            @endisset 
-                            @empty($transaction->account_id)
-                                @if ($relatedAccount->id == old('contaRelacionada')) @selected(true) @endif
-                            @endempty
-                            >
-                            {{ $relatedAccount->name }}
-                        </option>
-                    @endforeach
-                </select>
+            <div class="col-6">
+                <label for="textarea" class="form-label">Descrição</label>
+                <textarea class="form-control" name="descricao" id="textarea" rows="3">@isset($transaction->description){{ $transaction->description }}@endisset @empty($allowance->description){{ old('descricao') }}@endempty</textarea>
             </div>
         </div>
     </div>
@@ -125,4 +146,5 @@
 
         event.target.value = value;
     });
+
 </script>

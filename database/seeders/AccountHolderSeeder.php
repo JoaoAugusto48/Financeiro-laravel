@@ -22,6 +22,14 @@ class AccountHolderSeeder extends Seeder
                 'user_id' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2,
+                'name' => 'José Renato',
+                'linkAccount' => false,
+                'user_id' => 1,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ])
         );
     }

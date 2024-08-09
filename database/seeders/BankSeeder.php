@@ -17,17 +17,37 @@ class BankSeeder extends Seeder
         DB::table('banks')->insert(
             array([
                 'id' => 1,
-                'number' => '001',
-                'name' => 'Bando do Brasil',
-                'abbreviation' => 'BB',
+                'number' => '000',
+                'name' => 'Dinheiro',
+                'abbreviation' => 'DIN',
+                'deleteable' => 0,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
             [
                 'id' => 2,
+                'number' => '001',
+                'name' => 'Bando do Brasil',
+                'abbreviation' => 'BB',
+                'deleteable' => 0,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 3,
                 'number' => '002',
+                'name' => 'Caixa Federal',
+                'abbreviation' => 'CX',
+                'deleteable' => 0,
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 4,
+                'number' => '003',
                 'name' => 'Nubank',
                 'abbreviation' => 'NU',
+                'deleteable' => 0,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ])

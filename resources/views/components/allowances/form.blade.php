@@ -65,7 +65,7 @@
         <div class="row mt-2">
             <div class="col-6">
                 <label for="textarea" class="form-label">Descrição</label>
-                <textarea class="form-control" name="descricao" id="textarea" rows="3">@isset($allowance->descriptionReason){{ $allowance->descriptionReason }}@endisset @empty($allowance->descriptionReason){{ old('descricao') }}@endempty</textarea>
+                <textarea class="form-control" name="descricao" id="textarea" rows="3">@isset($allowance->description){{ $allowance->description }}@endisset @empty($allowance->description){{ old('descricao') }}@endempty</textarea>
             </div>
             <div class="col-3">
                 <label for="tipoTransacao" class="form-label">Tipo transação</label>

@@ -51,7 +51,7 @@ class AllowanceController extends Controller
         $allowance->title = $request->titulo;
         $allowance->value = $request->valor;
         $allowance->kindTransaction = TransactionEnum::from($request->tipoTransacao)->name;
-        $allowance->descriptionReason = $request->descricao;
+        $allowance->description = $request->descricao;
         $allowance->account_id = $request->titular;
         $allowance->relatedHolder_id = $request->contaRelacionada;
 
@@ -96,7 +96,7 @@ class AllowanceController extends Controller
         $allowance->title = $request->titulo;
         $allowance->value = $request->valor;
         $allowance->kindTransaction = TransactionEnum::from($request->tipoTransacao)->name;
-        $allowance->descriptionReason = $request->descricao;
+        $allowance->description = $request->descricao;
         $allowance->account_id = $request->titular;
         $allowance->relatedHolder_id = $request->contaRelacionada;
 

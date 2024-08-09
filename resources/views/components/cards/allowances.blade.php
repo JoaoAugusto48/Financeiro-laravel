@@ -6,8 +6,8 @@
             - {{ $allowance->relatedHolder->name }}
         @endisset
     </p>
-    @isset($allowance->descriptionReason)
-        <p class="card-text">{{ $allowance->descriptionReason }}</p>
+    @isset($allowance->description)
+        <p class="card-text">{{ $allowance->description }}</p>
     @endisset
     <div class="col align-self-end">
         <div class="btn-group" role="group" aria-label="Ativities">

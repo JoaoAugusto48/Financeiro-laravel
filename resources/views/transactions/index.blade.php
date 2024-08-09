@@ -13,7 +13,7 @@
         @foreach ($transactions as $transaction)
             <x-cards.transactions 
                 :transaction="$transaction"
-                kindTransactions="{{ $kindTransactionsDeposit }}"    
+                kindDeposit="{{ $kindTransactions['deposit'] }}"    
             />
         @endforeach
     </div>

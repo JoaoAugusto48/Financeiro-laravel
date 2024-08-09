@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("number", 3);
             $table->string("name");
             $table->string("abbreviation");
+            $table->boolean("deleteable");
             $table->timestamps();
         });
     }
