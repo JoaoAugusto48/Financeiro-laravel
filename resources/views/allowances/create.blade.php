@@ -2,6 +2,6 @@
     <x-allowances.form action="{{ route('allowances.store') }}" 
                 goBack="{{ route('allowances.index') }}"
                 :transactions="$transactions"
-                :accountHolders="$accountHolders"
+                :accounts="$accounts"
                 :relatedAccounts="$relatedAccounts"/>
 </x-layout>

@@ -17,7 +17,7 @@ class AccountSeeder extends Seeder
         DB::table('accounts')->insert(
             array([
                 'id' => 1,
-                'bank_id' => 1,
+                'bank_id' => 2,
                 'accountHolder_id' => 1,
                 'accountNumber' => '1519',
                 'balance' => 0,

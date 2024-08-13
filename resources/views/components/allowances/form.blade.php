@@ -47,16 +47,16 @@
                 <label for="titular" class="form-label">Titular</label>
                 <select class="form-select" id="titular" name="titular" aria-label="Default select example">
                     <option value="" selected>Open this select menu</option>
-                    @foreach ($accountHolders as $holder)
-                        <option value="{{ $holder->id }}"
+                    @foreach ($accounts as $account)
+                        <option value="{{ $account->id }}"
                             @isset($allowance->account_id)
-                                @if ($allowance->account_id == $holder->id) @selected(true) @endif
+                                @if ($account->accountHolder_id == $holder->id) @selected(true) @endif
                             @endisset 
                             @empty($allowance->account_id)
-                                @if ($holder->id == old('titular')) @selected(true) @endif
+                                @if ($account->accountHolder_id == old('titular')) @selected(true) @endif
                             @endempty
                             >
-                            {{ $holder->name }}
+                            {{ $account->accountNumber }} | {{ $account->accountHolder->name }} - {{ $account->bank->abbreviation }} 
                         </option>
                     @endforeach
                 </select>

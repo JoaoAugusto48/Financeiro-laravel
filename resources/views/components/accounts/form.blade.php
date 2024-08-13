@@ -27,10 +27,7 @@
                     </select>
                 @endisset
                 @empty($banks)
-                    <input type="text"
-                        class="form-control" 
-                        value="{{ $account->bank->number }} | {{ $account->bank->name }} - {{ $account->bank->abbreviation }}"
-                        disabled readonly>
+                    <x-inputs.input-show value="{{ $account->bank->number }} | {{ $account->bank->name }} - {{ $account->bank->abbreviation }}"/>
                 @endempty
             </div>
             <div class="col-4">
@@ -44,10 +41,7 @@
                     </select>
                 @endisset
                 @empty($accountHolders)
-                    <input type="text"
-                        class="form-control" 
-                        value="{{ $account->accountHolder->name }}"
-                        disabled readonly>
+                    <x-inputs.input-show value="{{ $account->accountHolder->name }}"/>
                 @endempty
             </div>
         </div>
@@ -70,9 +64,9 @@
             </div>
             <div class="col-4">
                 <label for="saldoAtual" class="form-label">Saldo atual</label>
+                @empty($account)
                 <div class="input-group">
                     <span class="input-group-text">R$</span>
-                    @empty($account)
                     <input type="text"
                             inputmode="numeric"
                             name="saldoAtual" 
@@ -81,14 +75,11 @@
                             placeholder="ex: 200,00" 
                             autocomplete="off"
                             value="{{ old('saldoAtual' , '0.00') }}"/>
-                    @endempty
-                    @isset($account)
-                    <input type="text"
-                        class="form-control" 
-                        value="{{ $account->balance }}"
-                        disabled readonly>
-                    @endisset
                 </div>
+                @endempty
+                @isset($account)
+                    <x-inputs.input-group-show value="{{ $account->balance }}">R$</x-inputs.input-group-show>
+                @endisset
             </div>
         </div>
     </div>

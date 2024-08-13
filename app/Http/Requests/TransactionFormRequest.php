@@ -29,6 +29,12 @@ class TransactionFormRequest extends FormRequest
             'descricao' => [''],
             'contaRelacionada' => [''],
         ];
+
+        if(request()->isMethod('put')){
+            $rules['valor'] = [''];
+            $rules['tipoTransacao'] = [''];
+            $rules['titular'] = [''];
+        }
         
         return $rules;
     }

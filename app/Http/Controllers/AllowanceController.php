@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Enums\TransactionEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\AllowanceFormRequest;
+use App\Models\Account;
 use App\Models\AccountHolder;
 use App\Models\Allowance;
 use App\Models\User;
@@ -32,14 +33,14 @@ class AllowanceController extends Controller
      */
     public function create()
     {
-        $accountHolders = AccountHolder::where('linkAccount', true)->get();
+        $accounts = Account::all();
         $relatedAccounts = AccountHolder::where('linkAccount', false)->get();
         $transactions = TransactionEnum::cases();
         
         return view('allowances.create')
                     ->with('transactions', $transactions)
                     ->with('relatedAccounts', $relatedAccounts)
-                    ->with('accountHolders', $accountHolders);
+                    ->with('accounts', $accounts);
     }
 
     /**

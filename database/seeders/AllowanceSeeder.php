@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\TransactionEnum;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,7 +21,7 @@ class AllowanceSeeder extends Seeder
                 'title' => 'Inglês',
                 'account_id' => 1,
                 'value' => 240,
-                'kindTransaction' => 'withdraw',
+                'kindTransaction' => TransactionEnum::Withdraw->name,
                 'description' => 'Pagamento mensal de Inglês',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -30,7 +31,7 @@ class AllowanceSeeder extends Seeder
                 'title' => 'Salário',
                 'account_id' => 1,
                 'value' => 2100,
-                'kindTransaction' => 'deposit',
+                'kindTransaction' => TransactionEnum::Deposit->name,
                 'description' => '',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')

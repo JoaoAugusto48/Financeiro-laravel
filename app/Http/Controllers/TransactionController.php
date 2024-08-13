@@ -57,63 +57,106 @@ class TransactionController extends Controller
     {
         try {
             $transaction = new Transaction();
-        $transaction->value = $request->valor;
-        $transaction->kindTransaction = TransactionEnum::from($request->tipoTransacao)->name;
-        $transaction->description = $request->descricao;
-        $transaction->dateTransaction = $request->data;
-        $transaction->account_id = $request->titular;
-        $transaction->relatedHolder_id = $request->contaRelacionada;
+            $transaction->value = $request->valor;
+            $transaction->kindTransaction = TransactionEnum::from($request->tipoTransacao)->name;
+            $transaction->description = $request->descricao;
+            $transaction->dateTransaction = $request->data;
+            $transaction->account_id = $request->titular;
+            $transaction->relatedHolder_id = $request->contaRelacionada;
 
-        $account = Account::find($transaction->account_id);
+            $account = Account::find($transaction->account_id);
 
-        if($transaction->kindTransaction == TransactionEnum::Deposit->name) {
-            $account->deposit($transaction->value);            
-        } elseif ($transaction->kindTransaction == TransactionEnum::Withdraw->name) {
-            $account->withdraw($transaction->value);
-        } else {
-            throw new \Exception();
-        }
+            if($transaction->kindTransaction == TransactionEnum::Deposit->name) {
+                $account->deposit($transaction->value);            
+            } elseif ($transaction->kindTransaction == TransactionEnum::Withdraw->name) {
+                $account->withdraw($transaction->value);
+            } else {
+                throw new \Exception();
+            }
 
-        $transaction->save();
-        $account->save();
+            $transaction->save();
+            $account->save();
 
-        return to_route('transactions.index')
-                ->with('mensagem.success', "Transação '$transaction->value' criada com sucesso");
+            return to_route('transactions.index')
+                ->with('mensagem.success', "Transação '{$transaction->dateTransaction} - {$transaction->value}' criada com sucesso");
         } catch (\Throwable $th) {
-            //throw $th;
-            dd($th);
+            return to_route('transactions.index')
+                ->with('mensagem.error', "Transação não pode ser criada.");
         }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Transaction $transaction)
     {
-        //
+        return view('transactions.show')
+                ->with('transaction', $transaction);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Transaction $transaction)
     {
-        //
+        $accounts = Account::all();
+        $relatedAccounts = AccountHolder::where('linkAccount', false)->get();
+        $transactionsEnum = TransactionEnum::cases();
+        $allowances = Allowance::all();
+        $today = Carbon::today();
+
+        return view('transactions.edit')
+                ->with('transaction', $transaction)
+                ->with('transactionsEnum', $transactionsEnum)
+                ->with('relatedAccounts', $relatedAccounts)
+                ->with('accounts', $accounts)
+                ->with('allowances', $allowances)
+                ->with('today', $today);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(TransactionFormRequest $request, string $id)
     {
-        //
+        $transaction = Transaction::find($id);
+        $transaction->description = $request->descricao;
+        $transaction->dateTransaction = $request->data;
+        $transaction->relatedHolder_id = $request->contaRelacionada;
+        
+        $transaction->save();
+
+        return to_route('transactions.index')
+                ->with('mensagem.success', "Transação '{$transaction->dateTransaction} - {$transaction->value}' atualizada com sucesso");
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Transaction $transaction)
     {
-        //
+        try {
+            $transactionDelete = Transaction::find($transaction->id);
+            
+            $account = Account::find($transaction->account_id);
+
+            // with different order to delete
+            if($transaction->kindTransaction == TransactionEnum::Deposit->name) {
+                $account->withdraw($transaction->value);
+            } elseif ($transaction->kindTransaction == TransactionEnum::Withdraw->name) {
+                $account->deposit($transaction->value);
+            } else {
+                throw new \Exception();
+            }
+
+            $account->save();
+            $transactionDelete->delete();
+
+            return to_route('transactions.index')
+                    ->with('mensagem.success', "Transação '{$transaction->dateTransaction} - {$transaction->value}' removida com sucesso.");
+        } catch (\Throwable $th) {
+            return to_route('transactions.index')
+                    ->with('mensagem.error', "Transação '{$transaction->dateTransaction} - {$transaction->value}' não pode ser removida.");
+        }
     }
 }

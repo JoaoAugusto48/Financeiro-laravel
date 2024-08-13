@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\TransactionEnum;
 use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -20,9 +21,10 @@ class TransactionSeeder extends Seeder
                 'account_id' => 1,
                 'value' => 15.99,
                 'dateTransaction' => Carbon::now()->format('Y-m-d'),
-                'kindTransaction' => 'Withdraw',
+                'kindTransaction' => TransactionEnum::Withdraw->name,
                 'description' => 'Bolo de Chocolate',
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s')
+                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
             ])
         );
     }
