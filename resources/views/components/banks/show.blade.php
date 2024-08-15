@@ -12,28 +12,20 @@
 <div class="mt-2">
     <div class="row">
         <div class="col-3">
-            <div class="mb-3">
-                <label for="numero" class="form-label">Número</label>
-                <x-inputs.input-show :value="$bank->number"/>
-            </div>
+            <x-form.input-show label="Número" value="{{ $bank->number }}"/>
         </div>
         <div class="col-3">
-            <div class="mb-3">
-                <label for="sigla" class="form-label">Sigla</label>
-                <x-inputs.input-show :value="$bank->abbreviation"/>
-            </div>
+            <x-form.input-show label="Sigla" value="{{ $bank->abbreviation }}"/>
         </div>
     </div>
     <div class="row">
         <div class="col-6">
-            <div class="mb-3">
-                <label for="nome" class="form-label">Nome</label>
-                <x-inputs.input-show :value="$bank->name"/>
-            </div>
+            <x-form.input-show label="Nome" value="{{ $bank->name }}"/>
         </div>
     </div>
     
-    <x-inputs.timestamps-show 
-        :createdAt="$bank->created_at"
-        :updatedAt="$bank->updated_at"/>
+    <x-form.timestamps 
+        createdAt="{{ $bank->created_at }}"
+        updatedAt="{{ $bank->updated_at }}"
+        format="d/m/Y H:i"/>
 </div>

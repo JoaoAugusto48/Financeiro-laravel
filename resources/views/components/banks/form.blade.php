@@ -18,47 +18,39 @@
         <div class="row">
             <div class="col-3">
                 <div class="mb-3">
-                    <label for="numero" class="form-label">Número</label>
-                    <input type="text"
-                            name="numero" 
-                            class="form-control" 
-                            id="numero" 
-                            placeholder="ex: 004" 
-                            autocomplete="off"
-                            autofocus
-                            maxlength="3"
-                            onblur="formatNumero()"
-                            @isset($bank->number) value="{{ $bank->number }}" @endisset
-                            @empty($bank) value="{{ old('numero') }}" @endempty>
+                    <x-form.input type="text" 
+                        label="Número" 
+                        name="numero" 
+                        placeholder="ex: 004" 
+                        value="{{ $bank->number ?? old('numero') }}"
+                        maxlength="3"
+                        required autofocus
+                        onblur="formatNumero()"/>
                 </div>
             </div>
             <div class="col-3">
                 <div class="mb-3">
-                    <label for="sigla" class="form-label">Sigla</label>
-                    <input type="text" 
-                            name="sigla"
-                            class="form-control" 
-                            id="sigla" 
-                            placeholder="ex: BB" 
-                            autocomplete="off"
-                            maxlength="4"
-                            @isset($bank->abbreviation) value="{{ $bank->abbreviation }}" @endisset
-                            @empty($bank) value="{{ old('sigla') }}" @endempty>
+                    <x-form.input type="text" 
+                        label="Sigla" 
+                        name="sigla" 
+                        placeholder="ex: BB" 
+                        value="{{ $bank->abbreviation ?? old('sigla') }}"
+                        autocomplete="off"
+                        maxlength="4"
+                        required/>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="col-6">
                 <div class="mb-3">
-                    <label for="nome" class="form-label">Nome</label>
-                    <input type="text" 
-                            name="nome"    
-                            class="form-control" 
-                            id="nome" 
-                            placeholder="ex: Banco do Brasil"
-                            autocomplete="off"
-                            @isset($bank->name) value="{{ $bank->name }}" @endisset
-                            @empty($bank) value="{{ old('nome') }}" @endempty>
+                    <x-form.input type="text" 
+                        label="Nome" 
+                        name="nome" 
+                        placeholder="ex: Banco do Brasil" 
+                        value="{{ $bank->name ?? old('nome') }}"
+                        autocomplete="off"
+                        required/>
                 </div>
             </div>
         </div>

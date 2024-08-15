@@ -12,16 +12,13 @@
 <div class="mt-2">
     <div class="row">
         <div class="col-6">
-            <label for="titulo" class="form-label">Título</label>
-            <x-inputs.input-show :value="$allowance->title"/>
+            <x-form.input-show label="Título" value="{{ $allowance->title }}"/>
         </div>
         <div class="col-3">
-            <label for="Valor" class="form-label">Valor</label>
-            <x-inputs.input-group-show :value="$allowance->value">R$</x-inputs.input-group-show>
+            <x-form.input-group-show label="Valor" value="{{ $allowance->value}}"/>
         </div>
         <div class="col-3">
-            <label for="titular" class="form-label">Titular</label>
-            <x-inputs.input-show :value="$allowance->account->accountHolder->name"/>
+            <x-form.input-show label="Titular" value="{{ $allowance?->account->accountHolder->name }}"/>
         </div>
     </div>
     <div class="row mt-2">
@@ -30,23 +27,16 @@
             <x-inputs.textarea-show>{{ $allowance->description }}</x-inputs.textarea-show>
         </div>
         <div class="col-3">
-            <label for="tipoTransacao" class="form-label">Tipo transação</label>
-            <x-inputs.input-show :value="$allowance->kindTransaction"/>
+            <x-form.input-show label="Tipo transação" value="{{ $allowance->kindTransaction }}"/>
         </div>
         <div class="col-3">
-            <label for="Conta" class="form-label">Conta relacionada</label>
-            @isset($allowance->relatedHolder->name)
-                <x-inputs.input-show :value="$allowance->relatedHolder->name"/>
-            @endisset
-            @empty($allowance->relatedHolder->name)   
-                <x-inputs.input-show/>
-            @endempty
+            <x-form.input-show label="Conta relacionada" value="{{ $allowance->relatedHolder?->name }}"/>
         </div>
     </div>
 
-    <div class="mt-2">
-        <x-inputs.timestamps-show 
-        :createdAt="$allowance->created_at"
-        :updatedAt="$allowance->updated_at"/>
-    </div>
+    <x-form.timestamps 
+        class="col-4"
+        createdAt="{{ $allowance->created_at }}"
+        updatedAt="{{ $allowance->updated_at }}"
+        format="d/m/Y H:i"/>
 </div>
