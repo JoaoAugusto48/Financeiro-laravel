@@ -3,6 +3,6 @@
                 goBack="{{ route('allowances.index') }}"
                 :allowance="$allowance"
                 :transactions="$transactions"
-                :accountHolders="$accountHolders"
+                :accounts="$accounts"
                 :relatedAccounts="$relatedAccounts"/>
 </x-layout>

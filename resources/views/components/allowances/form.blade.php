@@ -50,7 +50,7 @@
                     @foreach ($accounts as $account)
                         <option value="{{ $account->id }}"
                             @isset($allowance->account_id)
-                                @if ($account->accountHolder_id == $holder->id) @selected(true) @endif
+                                @if ($allowance->account_id == $account->accountHolder_id) @selected(true) @endif
                             @endisset 
                             @empty($allowance->account_id)
                                 @if ($account->accountHolder_id == old('titular')) @selected(true) @endif

@@ -77,7 +77,7 @@ class AllowanceController extends Controller
      */
     public function edit(Allowance $allowance)
     {
-        $accountHolders = AccountHolder::where('linkAccount', true)->get();
+        $accounts = Account::all();
         $relatedAccounts = AccountHolder::where('linkAccount', false)->get();
         $transactions = TransactionEnum::cases();
         
@@ -85,7 +85,7 @@ class AllowanceController extends Controller
                     ->with('allowance', $allowance)
                     ->with('transactions', $transactions)
                     ->with('relatedAccounts', $relatedAccounts)
-                    ->with('accountHolders', $accountHolders);
+                    ->with('accounts', $accounts);
     }
 
     /**
