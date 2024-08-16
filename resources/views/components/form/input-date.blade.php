@@ -6,7 +6,7 @@
             name="{{ $name }}" 
             id="{{ $name }}" 
             class="form-control"
-            value="{{ old($name, $value) }}" 
+            value="{{ old($name, $formattedValue) }}" 
             placeholder="{{ $placeholder }}"
             @if($required) required @endif 
             {{ $attributes }}>

@@ -11,35 +11,30 @@
     <div class="mt-2">
         <div class="row">
             <div class="col-3">
-                <label for="titular" class="form-label">Titular</label>
-                <x-inputs.input-show value="{{ $transaction->account->accountNumber }} | {{ $transaction->account->accountHolder->name }} - {{ $transaction->account->bank->abbreviation }}"/>
+                <x-form.input-show label="Titular" value="{{ $transaction->account->accountNumber }} | {{ $transaction->account->accountHolder->name }} - {{ $transaction->account->bank->abbreviation }}"/>
             </div>
             <div class="col-3">
-                <label for="Valor" class="form-label">Valor</label>
-                <x-inputs.input-group-show value="{{ $transaction->value }}">R$</x-inputs.input-group-show>
+                <x-form.input-group-show label="Valor" value="{{ $transaction->value }}" group="R$"/>
             </div>
             <div class="col-3">
-                <label for="conta" class="form-label">Conta relacionada</label>
-                <x-inputs.input-show value="{{ $transaction->relatedHolder?->name }}"/>
+                <x-form.input-show label="Conta relacionada" value="{{ $transaction->relatedHolder?->name }}"/>
             </div>
             <div class="col-3">
-                <label for="data" class="form-label">Data da Transação</label>
-                <x-inputs.input-show value="{{ $transaction->dateTransaction }}"/>
+                <x-form.input-date-show label="Data da Transação" value="{{ $transaction->dateTransaction }}" format="d/m/Y"/>
             </div>
         </div>
         <div class="row mt-2">
             <div class="col-3">
-                <label for="tipoTransacao" class="form-label">Tipo transação</label>
-                <x-inputs.input-show value="{{ $transaction->kindTransaction }}"/>
+                <x-form.input-show label="Tipo transação" value="{{ $transaction->kindTransaction }}"/>
             </div>
             <div class="col-6">
-                <label for="textarea" class="form-label">Descrição</label>
-                <x-inputs.textarea-show>{{ $transaction->description }}</x-inputs.textarea-show>
+                <x-form.input-show label="Descrição" value="{{ $transaction->description }}"/>
             </div>
         </div>
 
-        <x-inputs.timestamps-show class="col-3"
-            :createdAt="$transaction->created_at"
-            :updatedAt="$transaction->updated_at"/>
+        <x-form.timestamps 
+            createdAt="{{ $transaction->created_at }}"
+            updatedAt="{{ $transaction->updated_at }}"
+            format="d/m/Y H:i"/>
     </div>
 </div>

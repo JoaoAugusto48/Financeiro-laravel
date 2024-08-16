@@ -17,36 +17,43 @@
     <div class="mt-2">
         <div class="row">
             <div class="col-4">
-                <label for="banco" class="form-label">Banco</label>
-                @isset($banks)
-                    <select class="form-select" id="banco" name="banco" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        @foreach ($banks as $bank)
-                            <option value="{{ $bank->id }}">{{ $bank->number }} | {{ $bank->name }} - {{ $bank->abbreviation }}</option>
-                        @endforeach
-                    </select>
-                @endisset
-                @empty($banks)
-                    <x-inputs.input-show value="{{ $account->bank->number }} | {{ $account->bank->name }} - {{ $account->bank->abbreviation }}"/>
+                @empty ($account)
+                    <x-form.select.bank-select 
+                        label="Banco" 
+                        name="banco" 
+                        :options="$banks" 
+                        required
+                        autofocus/>
                 @endempty
+                @isset($account)
+                    <x-form.input-show label="Banco" value="{{ $account->bank->number }} | {{ $account->bank->name }} - {{ $account->bank->abbreviation }}" />
+                @endisset
             </div>
             <div class="col-4">
-                <label for="titular" class="form-label">Titular da conta</label>
-                @isset($accountHolders)
-                    <select class="form-select" id="titular" name="titular" aria-label="Default select example">
-                        <option selected>Open this select menu</option>
-                        @foreach ($accountHolders as $holder)
-                            <option value="{{ $holder->id }}">{{ $holder->name }}</option>
-                        @endforeach
-                    </select>
-                @endisset
-                @empty($accountHolders)
-                    <x-inputs.input-show value="{{ $account->accountHolder->name }}"/>
+                @empty ($account)
+                    <x-form.select.account-holder-select 
+                        label="Titular da conta" 
+                        name="titular" 
+                        :options="$accountHolders"
+                        required/>
                 @endempty
+                @isset($account)
+                    <x-form.input-show label="Titular da conta" value="{{ $account->accountHolder->name }}"/>
+                @endisset
             </div>
         </div>
         <div class="row">
             <div class="col-4">
+                <x-form.input type="text" 
+                        label="Número da Conta" 
+                        name="numeroConta"  
+                        placeholder="ex: 123"
+                        value="{{ $account->accountNumber ?? '' }}"
+                        autocomplete="off"
+                        maxlength="10"
+                        @isset($account) 
+                            autofocus 
+                        @endisset/>
                 <div class="mb-3">
                     <label for="numeroConta" class="form-label">Número da Conta</label>
                     <input type="text"
@@ -63,22 +70,17 @@
                 </div>
             </div>
             <div class="col-4">
-                <label for="saldoAtual" class="form-label">Saldo atual</label>
                 @empty($account)
-                <div class="input-group">
-                    <span class="input-group-text">R$</span>
-                    <input type="text"
-                            inputmode="numeric"
-                            name="saldoAtual" 
-                            class="form-control" 
-                            id="saldoAtual" 
-                            placeholder="ex: 200,00" 
-                            autocomplete="off"
-                            value="{{ old('saldoAtual' , '0.00') }}"/>
-                </div>
+                <x-form.input-group type="text" 
+                        label="Saldo atual" 
+                        name="saldoAtual"  
+                        placeholder="ex: 200,00"
+                        value="{{ old('saldoAtual' , '0.00') }}"
+                        inputmode="numeric"
+                        autocomplete="off"/>
                 @endempty
                 @isset($account)
-                    <x-inputs.input-group-show value="{{ $account->balance }}">R$</x-inputs.input-group-show>
+                    <x-form.input-group-show label="Saldo atual" value="{{ $account->balance }}" group="R$"/>
                 @endisset
             </div>
         </div>

@@ -1,3 +1,9 @@
-<div>
-    <!-- Act only according to that maxim whereby you can, at the same time, will that it should become a universal law. - Immanuel Kant -->
+<div class="mb-3">
+    @if ($label)
+        <label for="{{ $name }}" class="form-label">{{ $label }}</label>
+    @endif
+    <textarea name="{{ $name }}" id="{{ $name }}" class="{{ $class }}" rows="{{ $rows }}" placeholder="{{ $placeholder }}">{{ old($name, $value) }}</textarea>
+    @error($name)
+        <div class="text-danger">{{ $message }}</div>
+    @enderror
 </div>

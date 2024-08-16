@@ -17,17 +17,14 @@
     <div class="mt-2">
         <div class="row">
             <div class="col-6">
-                <label for="nome" class="form-label">Nome</label>
-                <input type="text" 
-                    class="form-control" 
-                    id="nome" 
-                    name="nome"
-                    placeholder="ex: José Reinaldo"
+                <x-form.input type="text" 
+                    label="Nome" 
+                    name="nome" 
+                    placeholder="ex: José Reinaldo" 
+                    value="{{ $accountHolder->name ?? old('nome') }}"
                     autocomplete="off"
-                    autofocus
-                    required
-                    @isset($accountHolder->name) value="{{ $accountHolder->name }}" @endisset
-                    @empty($accountHolder) value="{{ old('nome') }}" @endempty>
+                    maxlength="3"
+                    required autofocus/>
             </div>
         </div>
     </div>

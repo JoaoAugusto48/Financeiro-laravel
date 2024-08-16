@@ -12,11 +12,11 @@ class InputShow extends Component
     public string $value;
     public string $class;
 
-    public function __construct($value = '', $label = '', $class = 'form-control')
+    public function __construct($value = '', $label = '', $class = '')
     {
         $this->label = $label;
         $this->value = $value;
-        $this->class = $class;
+        $this->class = 'form-control ' . $class;
     }
     
     /**

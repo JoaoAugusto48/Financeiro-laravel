@@ -23,8 +23,7 @@
     </div>
     <div class="row mt-2">
         <div class="col-6">
-            <label for="textarea" class="form-label">Descrição</label>
-            <x-inputs.textarea-show>{{ $allowance->description }}</x-inputs.textarea-show>
+            <x-form.text-area-show label="Descrição" value="{{ $allowance->description }}"/>
         </div>
         <div class="col-3">
             <x-form.input-show label="Tipo transação" value="{{ $allowance->kindTransaction }}"/>

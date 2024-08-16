@@ -1,4 +1,4 @@
-<div>
+<div class="mb-3">
     <div class="form-check mb-3">
         <input type="checkbox" name="{{ $name }}" id="{{ $name }}" class="form-check-input" value="{{ $value }}"
                {{ old($name, $checked) ? 'checked' : '' }}>

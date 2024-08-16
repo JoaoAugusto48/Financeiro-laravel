@@ -10,9 +10,9 @@ class InputGroupShow extends InputShow
 {
     public string $group;
     
-    public function __construct($value = '', $label = '', $group = 'R$', $class = 'form-control')
+    public function __construct($value = '', $label = '', $group = 'R$', $class = '')
     {
-        parent::__construct($value,$label,$class);
+        parent::__construct($value,$label,'form-control' . $class);
         $this->group = $group;
     }
 
