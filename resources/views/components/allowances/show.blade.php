@@ -12,28 +12,28 @@
 <div class="mt-2">
     <div class="row">
         <div class="col-6">
-            <x-form.input-show label="Título" value="{{ $allowance->title }}"/>
+            <x-form.input.input-show label="Título" value="{{ $allowance->title }}"/>
         </div>
         <div class="col-3">
-            <x-form.input-group-show label="Valor" value="{{ $allowance->value}}"/>
+            <x-form.input.input-group-show label="Valor" value="{{ $allowance->value}}"/>
         </div>
         <div class="col-3">
-            <x-form.input-show label="Titular" value="{{ $allowance?->account->accountHolder->name }}"/>
+            <x-form.input.input-show label="Titular" value="{{ $allowance?->account->accountHolder->name }}"/>
         </div>
     </div>
     <div class="row mt-2">
         <div class="col-6">
-            <x-form.text-area-show label="Descrição" value="{{ $allowance->description }}"/>
+            <x-form.input.text-area-show label="Descrição" value="{{ $allowance->description }}"/>
         </div>
         <div class="col-3">
-            <x-form.input-show label="Tipo transação" value="{{ $allowance->kindTransaction }}"/>
+            <x-form.input.input-show label="Tipo transação" value="{{ $allowance->kindTransaction }}"/>
         </div>
         <div class="col-3">
-            <x-form.input-show label="Conta relacionada" value="{{ $allowance->relatedHolder?->name }}"/>
+            <x-form.input.input-show label="Conta relacionada" value="{{ $allowance->relatedHolder?->name }}"/>
         </div>
     </div>
 
-    <x-form.timestamps 
+    <x-form.input.timestamps 
         class="col-4"
         createdAt="{{ $allowance->created_at }}"
         updatedAt="{{ $allowance->updated_at }}"

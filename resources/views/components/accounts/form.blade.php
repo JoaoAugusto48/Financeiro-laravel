@@ -22,11 +22,10 @@
                         label="Banco" 
                         name="banco" 
                         :options="$banks" 
-                        required
-                        autofocus/>
+                        required/>
                 @endempty
                 @isset($account)
-                    <x-form.input-show label="Banco" value="{{ $account->bank->number }} | {{ $account->bank->name }} - {{ $account->bank->abbreviation }}" />
+                    <x-form.input.input-show label="Banco" value="{{ $account->bank->number }} | {{ $account->bank->name }} - {{ $account->bank->abbreviation }}" />
                 @endisset
             </div>
             <div class="col-4">
@@ -38,7 +37,7 @@
                         required/>
                 @endempty
                 @isset($account)
-                    <x-form.input-show label="Titular da conta" value="{{ $account->accountHolder->name }}"/>
+                    <x-form.input.input-show label="Titular da conta" value="{{ $account->accountHolder->name }}"/>
                 @endisset
             </div>
         </div>
@@ -48,30 +47,14 @@
                         label="Número da Conta" 
                         name="numeroConta"  
                         placeholder="ex: 123"
-                        value="{{ $account->accountNumber ?? '' }}"
                         autocomplete="off"
                         maxlength="10"
-                        @isset($account) 
-                            autofocus 
-                        @endisset/>
-                <div class="mb-3">
-                    <label for="numeroConta" class="form-label">Número da Conta</label>
-                    <input type="text"
-                            name="numeroConta" 
-                            class="form-control" 
-                            id="numeroConta" 
-                            placeholder="ex: 123" 
-                            autocomplete="off"
-                            maxlength="10"
-                            @isset($account) 
-                                value="{{ $account->accountNumber }}"
-                                autofocus 
-                            @endisset>
-                </div>
+                        value="{{ $account->accountNumber ?? '' }}"
+                        required/>
             </div>
             <div class="col-4">
                 @empty($account)
-                <x-form.input-group type="text" 
+                <x-form.input.input-group type="text" 
                         label="Saldo atual" 
                         name="saldoAtual"  
                         placeholder="ex: 200,00"
@@ -80,7 +63,7 @@
                         autocomplete="off"/>
                 @endempty
                 @isset($account)
-                    <x-form.input-group-show label="Saldo atual" value="{{ $account->balance }}" group="R$"/>
+                    <x-form.input.input-group-show label="Saldo atual" value="{{ $account->balance }}" group="R$"/>
                 @endisset
             </div>
         </div>

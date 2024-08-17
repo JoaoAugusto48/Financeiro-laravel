@@ -11,13 +11,13 @@
     <div class="mt-2">
         <div class="row">
             <div class="col-3">
-                <x-form.input-show label="Titular" value="{{ $transaction->account->accountNumber }} | {{ $transaction->account->accountHolder->name }} - {{ $transaction->account->bank->abbreviation }}"/>
+                <x-form.input.input-show label="Titular" value="{{ $transaction->account->accountNumber }} | {{ $transaction->account->accountHolder->name }} - {{ $transaction->account->bank->abbreviation }}"/>
             </div>
             <div class="col-3">
-                <x-form.input-group-show label="Valor" value="{{ $transaction->value }}" group="R$"/>
+                <x-form.input.input-group-show label="Valor" value="{{ $transaction->value }}" group="R$"/>
             </div>
             <div class="col-3">
-                <x-form.input-show label="Conta relacionada" value="{{ $transaction->relatedHolder?->name }}"/>
+                <x-form.input.input-show label="Conta relacionada" value="{{ $transaction->relatedHolder?->name }}"/>
             </div>
             <div class="col-3">
                 <x-form.input-date-show label="Data da Transação" value="{{ $transaction->dateTransaction }}" format="d/m/Y"/>
@@ -25,14 +25,14 @@
         </div>
         <div class="row mt-2">
             <div class="col-3">
-                <x-form.input-show label="Tipo transação" value="{{ $transaction->kindTransaction }}"/>
+                <x-form.input.input-show label="Tipo transação" value="{{ $transaction->kindTransaction }}"/>
             </div>
             <div class="col-6">
-                <x-form.input-show label="Descrição" value="{{ $transaction->description }}"/>
+                <x-form.input.input-show label="Descrição" value="{{ $transaction->description }}"/>
             </div>
         </div>
 
-        <x-form.timestamps 
+        <x-form.input.timestamps 
             createdAt="{{ $transaction->created_at }}"
             updatedAt="{{ $transaction->updated_at }}"
             format="d/m/Y H:i"/>

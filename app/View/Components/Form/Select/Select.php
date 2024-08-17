@@ -12,7 +12,7 @@ class Select extends Component
     public string $name;
     public string $label;
     public string $selected;
-    public string $required;
+    public bool $required;
 
     public function __construct($name, $label = '', $selected = '', $required = false)
     {
@@ -27,6 +27,6 @@ class Select extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.select.select');
+        return view('components.form.select');
     }
 }

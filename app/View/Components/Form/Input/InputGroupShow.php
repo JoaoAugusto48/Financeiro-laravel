@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Form;
+namespace App\View\Components\Form\Input;
 
 use Closure;
 use Illuminate\View\Component;
@@ -10,7 +10,7 @@ class InputGroupShow extends InputShow
 {
     public string $group;
     
-    public function __construct($value = '', $label = '', $group = 'R$', $class = '')
+    public function __construct($value = '', $label = '', $group = '-', $class = '')
     {
         parent::__construct($value,$label,'form-control' . $class);
         $this->group = $group;
@@ -21,6 +21,6 @@ class InputGroupShow extends InputShow
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.input-group-show');
+        return view('components.form.input.input-group-show');
     }
 }

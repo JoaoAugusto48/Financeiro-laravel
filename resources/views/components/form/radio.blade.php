@@ -1,14 +1,8 @@
 <div class="mb-3">
     @if ($label)
-        <label class="form-label">{{ $label }}</label>
+        <label class="form-label">{{ $label }}@if($required)*@endif</label>
     @endif
-    @foreach ($options as $key => $option)
-        <div class="form-check">
-            <input type="radio" name="{{ $name }}" id="{{ $name . '_' . $key }}" class="form-check-input"
-                   value="{{ $key }}" {{ old($name, $value) == $key ? 'checked' : '' }}>
-            <label class="form-check-label" for="{{ $name . '_' . $key }}">{{ $option }}</label>
-        </div>
-    @endforeach
+    {{ $slot }}
     @error($name)
         <div class="text-danger">{{ $message }}</div>
     @enderror

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Form;
+namespace App\View\Components\Form\Textarea;
 
 use Closure;
 use Illuminate\View\Component;
@@ -26,6 +26,6 @@ class TextareaShow extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.textarea-show');
+        return view('components.form.textarea.textarea-show');
     }
 }

@@ -11,14 +11,13 @@ use Illuminate\Database\Eloquent\Collection;
 class BankSelect extends Select
 {
     /**
-     * Summary of accounts
      * @var Bank[]
      */
     public Collection $banks;
 
     public function __construct($name = '', $label = '', $selected = '', $options = [], $required = false)
     {
-        parent::__construct($name,$label,$selected,$options,$required);
+        parent::__construct($name,$label,$selected,$required);
         $this->banks = $options;
     }
 

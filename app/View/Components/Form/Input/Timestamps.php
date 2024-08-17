@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Form;
+namespace App\View\Components\Form\Input;
 
 use Carbon\Carbon;
 use Closure;
@@ -37,6 +37,6 @@ class Timestamps extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.timestamps');
+        return view('components.form.input.timestamps');
     }
 }

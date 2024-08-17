@@ -1,25 +1,27 @@
 <?php
 
-namespace App\View\Components\Form;
+namespace App\View\Components\Form\Input;
 
 use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class Radio extends Component
+class Input extends Component
 {
+    public ?string $type;
     public string $name;
     public string $label;
     public string $value;
-    public string $options;
+    public string $placeholder;
     public bool $required;
 
-    public function __construct($name, $label = '', $value = '', $options = [], $required = false)
+    public function __construct($name, $label = '', $value = '', $placeholder = '', $type = 'text', $required = false)
     {
+        $this->type = $type;
         $this->name = $name;
         $this->label = $label;
         $this->value = $value;
-        $this->options = $options;
+        $this->placeholder = $placeholder;
         $this->required = $required;
     }
 
@@ -28,6 +30,6 @@ class Radio extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.radio');
+        return view('components.form.input');
     }
 }

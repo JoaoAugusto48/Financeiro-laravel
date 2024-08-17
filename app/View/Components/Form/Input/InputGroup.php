@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Form;
+namespace App\View\Components\Form\Input;
 
 use Closure;
 use Illuminate\View\Component;
@@ -12,7 +12,7 @@ class InputGroup extends Input
     /**
      * Create a new component instance.
      */
-    public function __construct($name, $label = '', $value = '', $placeholder = '', $type = 'text', $group = 'R$', $required = false)
+    public function __construct($name, $label = '', $value = '', $placeholder = '', $type = 'text', $group = '-', $required = false)
     {
         parent::__construct($name,$label,$value,$placeholder,$type,$required);
         $this->group = $group;
@@ -23,6 +23,6 @@ class InputGroup extends Input
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.input-group');
+        return view('components.form.input.input-group');
     }
 }

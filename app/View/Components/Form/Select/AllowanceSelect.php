@@ -18,7 +18,7 @@ class AllowanceSelect extends Select
 
     public function __construct($name = '', $label = '', $selected = '', $options = [], $required = false)
     {
-        parent::__construct($name,$label,$selected,$options,$required);
+        parent::__construct($name,$label,$selected,$required);
         $this->allowancens = $options;
     }
 

@@ -1,23 +1,22 @@
 <?php
 
-namespace App\View\Components\Form;
+namespace App\View\Components\Form\Input;
 
 use Carbon\Carbon;
 use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class InputDate extends Input
+class InputDateShow extends InputShow
 {
-    
     public string $format;
-
-    public function __construct($name, $label = '', $value = '', $required = false, $format = 'Y-m-d')
+    
+    public function __construct($value = '', $label = '', $class = '', $format = 'Y-m-d')
     {
-        parent::__construct($name,$label,$value,'','date',$required);
+        parent::__construct($value,$label,$class);
         $this->format = $format;
     }
-    
+
     public function formattedValue(): string
     {
         return Carbon::parse($this->value)->format($this->format);
@@ -28,6 +27,6 @@ class InputDate extends Input
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.input-date');
+        return view('components.form.input.input-date-show');
     }
 }

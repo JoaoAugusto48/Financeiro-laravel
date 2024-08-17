@@ -1,24 +1,24 @@
 <?php
 
-namespace App\View\Components\Form;
+namespace App\View\Components\Form\Radio;
 
 use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class Checkbox extends Component
+class Radio extends Component
 {
     public string $name;
     public string $label;
-    public string $value;
-    public bool $checked;
+    public string $checked;
+    public bool $required;
 
-    public function __construct($name, $label = '', $value = '', $checked = false)
+    public function __construct($name, $label = '', $checked = '', $required = false)
     {
         $this->name = $name;
         $this->label = $label;
-        $this->value = $value;
         $this->checked = $checked;
+        $this->required = $required;
     }
 
     /**
@@ -26,6 +26,6 @@ class Checkbox extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.checkbox');
+        return view('components.form.radio');
     }
 }

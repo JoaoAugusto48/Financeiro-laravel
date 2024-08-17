@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Form;
+namespace App\View\Components\Form\Input;
 
 use Closure;
 use Illuminate\View\Component;
@@ -24,6 +24,6 @@ class InputShow extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.input-show');
+        return view('components.form.input.input-show');
     }
 }
