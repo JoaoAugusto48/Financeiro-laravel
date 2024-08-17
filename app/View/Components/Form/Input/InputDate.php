@@ -11,16 +11,23 @@ class InputDate extends Input
 {
     
     public string $format;
+    public string $max;
 
-    public function __construct($name, $label = '', $value = '', $required = false, $format = 'Y-m-d')
+    public function __construct($name, $label = '', $value = '', $max = '', $required = false, $format = 'Y-m-d')
     {
         parent::__construct($name,$label,$value,'','date',$required);
         $this->format = $format;
+        $this->max = $max;
     }
     
     public function formattedValue(): string
     {
         return Carbon::parse($this->value)->format($this->format);
+    }
+
+    public function formattedMax(): string
+    {
+        return Carbon::parse($this->max)->format($this->format);
     }
 
     /**

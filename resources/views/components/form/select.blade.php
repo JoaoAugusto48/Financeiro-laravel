@@ -5,10 +5,9 @@
     <select class="form-select" 
             name="{{ $name }}" 
             id="{{ $name }}" 
-            aria-label="Select" 
-            @if($required) required @endif 
-            {{ $attributes }}>
-        <option selected>Open this select menu</option>
+            @if($required) required @endif
+            aria-label="Select">
+        <option value="" selected>Open this select menu</option>
         {{ $slot }}
     </select>
     @error($name)

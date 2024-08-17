@@ -2,12 +2,12 @@
     @if ($label)
         <label for="{{ $name }}" class="form-label">{{ $label }}@if($required)*@endif</label>
     @endif
-    <input type="{{ $type }}" 
+    <input type="date" 
             name="{{ $name }}" 
             id="{{ $name }}" 
             class="form-control"
-            value="{{ old($name, $formattedValue) }}" 
-            placeholder="{{ $placeholder }}"
+            value="{{ old($name, $formattedValue) }}"
+            @if ($max) max="{{ $formattedMax }}" @endif
             @if($required) required @endif 
             {{ $attributes }}>
     @error($name)

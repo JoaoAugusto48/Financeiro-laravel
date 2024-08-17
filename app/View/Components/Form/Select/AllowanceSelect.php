@@ -11,15 +11,14 @@ use Illuminate\Database\Eloquent\Collection;
 class AllowanceSelect extends Select
 {
     /**
-     * Summary of accounts
      * @var Allowance[]
      */
-    public Collection $allowancens;
+    public Collection $allowances;
 
     public function __construct($name = '', $label = '', $selected = '', $options = [], $required = false)
     {
         parent::__construct($name,$label,$selected,$required);
-        $this->allowancens = $options;
+        $this->allowances = $options;
     }
 
     /**

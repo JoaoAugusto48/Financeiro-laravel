@@ -21,7 +21,7 @@
                     label="Nome" 
                     name="nome" 
                     placeholder="ex: José Reinaldo" 
-                    value="{{ $accountHolder->name ?? old('nome') }}"
+                    value="{{ $accountHolder->name ?? old('nome', '') }}"
                     autocomplete="off"
                     maxlength="3"
                     required autofocus/>

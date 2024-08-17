@@ -18,121 +18,75 @@
         @empty($transaction)
         <div class="row mb-2">
             <div class="col-6">
-                <label for="allowance" class="form-label">Mensalidade</label>
-                <select class="form-select" id="allowance" aria-label="Default select example">
-                    <option value="" selected>Atalho de preenchimento</option>
-                    @foreach ($allowances as $allowance)
-                        <option value="{{ $allowance->id }}" 
-                            data-value="{{ $allowance->value }}" 
-                            data-kind="{{ $allowance->kindTransaction }}" 
-                            data-account="{{ $allowance->account->accountHolder->name }}">
-                            {{ $allowance->title }} - R$ {{ $allowance->value }} - {{ $allowance->kindTransaction }} - {{ $allowance->account->accountHolder->name }}
-                        </option>
-                    @endforeach
-                </select>
+                <x-form.select.allowance-select 
+                    label="Mensalidade" 
+                    name="allowance"
+                    :options="$allowances"/>
             </div>
         </div>
         @endempty
         <div class="row">
             <div class="col-3">
-                <label for="titular" class="form-label">Titular</label>
                 @empty($transaction)
-                <select class="form-select" id="titular" name="titular" aria-label="Default select example" autofocus>
-                    <option value="" selected>Open this select menu</option>
-                    @foreach ($accounts as $account)
-                        <option value="{{ $account->id }}"
-                            @isset($transaction->account_id)
-                                @if ($transaction->account_id == $account->id) @selected(true) @endif
-                            @endisset 
-                            @empty($transaction->account_id)
-                                @if ($account->id == old('titular')) @selected(true) @endif
-                            @endempty
-                            >
-                            {{ $account->accountNumber }} | {{ $account->accountHolder->name }} - {{ $account->bank->abbreviation }} 
-                        </option>
-                    @endforeach
-                </select>
+                <x-form.select.account-select 
+                        label="Titular" 
+                        name="titular" 
+                        :options="$accounts"
+                        selected="{{ $transaction->account_id ?? '' }}"
+                        required/>
                 @endempty
                 @isset($transaction)
-                <x-inputs.input-show value="{{ $transaction->account->accountNumber }} | {{ $transaction->account->accountHolder->name }} - {{ $transaction->account->bank->abbreviation }}"/>  
+                    <x-form.input.input-show label="Titular" value="{{ $transaction->account->accountNumber }} | {{ $transaction->account->accountHolder->name }} - {{ $transaction->account->bank->abbreviation }}"/>
                 @endisset
             </div>
             <div class="col-3">
-                <label for="Valor" class="form-label">Valor</label>
                 @empty($transaction)
-                <div class="input-group">
-                    <span class="input-group-text">R$</span>
-                    <input type="text"
-                            inputmode="numeric"
-                            name="valor" 
-                            class="form-control" 
-                            id="valor" 
-                            placeholder="ex: 200,00" 
-                            autocomplete="off"
-                            @isset($transaction->value) value="{{ $transaction->value }}" @endisset
-                            @empty($transaction->value) value="{{ old('valor' , '0.00') }}" @endempty/>
-                </div>
+                <x-form.input.input-group-money 
+                        label="Valor" 
+                        name="valor"  
+                        value="{{ $transaction->value ?? '' }}"
+                        required/>
                 @endempty
                 @isset($transaction)
-                    <x-inputs.input-group-show value="{{ $transaction->value }}">R$</x-inputs.input-group-show>
+                    <x-form.input.input-group-show label="Valor" value="{{ $transaction->value }}" group="R$"/>
                 @endisset
             </div>
             <div class="col-3">
-                <label for="conta" class="form-label">Conta relacionada</label>
-                <select class="form-select" id="conta" name="contaRelacionada" aria-label="Default select example">
-                    <option value="" selected>Open this select menu</option>
-                    @foreach ($relatedAccounts as $relatedAccount)
-                        <option value="{{ $relatedAccount->id }}" 
-                            @isset($transaction->relatedHolder_id)
-                                @if ($transaction->relatedHolder_id == $relatedAccount->id) @selected(true) @endif
-                            @endisset 
-                            @empty($transaction->account_id)
-                                @if ($relatedAccount->id == old('contaRelacionada')) @selected(true) @endif
-                            @endempty
-                            >
-                            {{ $relatedAccount->name }}
-                        </option>
-                    @endforeach
-                </select>
+                <x-form.select.account-holder-select 
+                        label="Conta relacionada" 
+                        name="contaRelacionada" 
+                        :options="$relatedAccounts"
+                        selected="{{ $transaction->relatedHolder_id ?? '' }}"/>
             </div>
             <div class="col-3">
-                <label for="data" class="form-label">Data da Transação</label>
-                <input class="form-control"
-                        type="date"
-                        name="data" 
-                        id="data"
-                        max="{{ $today->format('Y-m-d') }}"
-                        @isset($transaction->dateTransaction) value="{{ $transaction->dateTransaction }}" @endisset
-                        @empty($transaction->dateTransaction) value="{{ old('data', $today->format('Y-m-d')) }}" @endempty>
+                <x-form.input.input-date
+                    label="Data da Transação"
+                    name="data"
+                    value="{{ $transaction->dateTransaction ?? '' }}"
+                    max="{{ $today }}"
+                    required/>
             </div>
         </div>
         <div class="row mt-2">
             <div class="col-3">
-                <label for="tipoTransacao" class="form-label">Tipo transação</label>
-                @foreach ($transactionsEnum as $transactionEnum)
-                <div class="form-check">
-                    <input class="form-check-input" 
-                            type="radio" 
-                            name="tipoTransacao" 
-                            id="tipo{{ $transactionEnum->value }}"
-                            value="{{ $transactionEnum->value }}"
-                            @isset($transaction->kindTransaction)
-                                @if ($transaction->kindTransaction == $transactionEnum->name) @checked(true) @endif 
-                                @disabled(true) @readonly(true)   
-                            @endisset
-                            @empty($transaction->kindTransaction)
-                                @if (old('tipoTransacao') == $transactionEnum->value) @checked(true) @endif
-                            @endempty
-                            >
-                    <label class="form-check-label" for="tipo{{ $transactionEnum->value }}">
-                      {{ $transactionEnum->value }}
-                    </label>
-                </div>
-                @endforeach
+                @empty($transaction)
+                <x-form.radio.radio-transaction-enum
+                        label="Tipo transação"
+                        name="tipoTransacao"
+                        checked="{{ $transaction->kindTransaction ?? '' }}"
+                        :options="$transactionsEnum"
+                        required/>
+                @endempty
+                @isset($transaction)
+                    <x-form.radio.radio-transaction-enum-show label="Tipo transação" :options="$transactionsEnum" checked="{{ $transaction->kindTransaction }}"/>
+                @endisset
             </div>
             <div class="col-6">
-                <label for="textarea" class="form-label">Descrição</label>
-                <textarea class="form-control" name="descricao" id="textarea" rows="3">@isset($transaction->description){{ $transaction->description }}@endisset @empty($allowance->description){{ old('descricao') }}@endempty</textarea>
+                <x-form.textarea 
+                    label="Descrição"
+                    name="descricao"
+                    rows="3"
+                    value="{{ $transaction->description ?? '' }}"/>
             </div>
         </div>
     </div>
@@ -144,11 +98,13 @@
     </div>
 </form>
 
+@push('scripts')
 <script>
     const allowanceSelect = document.getElementById('allowance');
     const valueInput = document.getElementById('valor');
     const titularSelect = document.getElementById('titular');
     const transactionTypeRadios = document.getElementsByName('tipoTransacao');
+    const relatedHolderSelect = document.getElementById('contaRelacionada');
 
     const transactionMap = {
         'Deposit': 'Deposito',
@@ -160,6 +116,7 @@
         const value = selectedOption.getAttribute('data-value');
         const kind = selectedOption.getAttribute('data-kind');
         const account = selectedOption.getAttribute('data-account');
+        const relatedHolder = selectedOption.getAttribute('data-related-holder');
         
         if (value) {
             valueInput.value = value;
@@ -185,24 +142,14 @@
                 }
             }
         }
-    });
 
-    const moneyInput = document.getElementById('valor');
-
-    moneyInput.addEventListener('input', (event) => {
-        let value = event.target.value.replace(/\D/g, '').replace(/^0+/, '');
-
-        if (value.length === 0) {
-            value = '0.00';
-        } else if (value.length === 1) {
-            value = '0.0' + value;
-        } else if (value.length === 2) {
-            value = '0.' + value;
+        if (relatedHolder) {
+            const optionToSelect = Array.from(relatedHolderSelect.options).find(option => option.text.includes(relatedHolder));
+            relatedHolderSelect.value = optionToSelect ? optionToSelect.value : '';
         } else {
-            value = value.slice(0, -2) + '.' + value.slice(-2);
+            relatedHolderSelect.value = '';
         }
 
-        event.target.value = value;
     });
-
 </script>
+@endpush

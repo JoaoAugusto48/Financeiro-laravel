@@ -20,7 +20,7 @@
                 <x-form.input.input-show label="Conta relacionada" value="{{ $transaction->relatedHolder?->name }}"/>
             </div>
             <div class="col-3">
-                <x-form.input-date-show label="Data da Transação" value="{{ $transaction->dateTransaction }}" format="d/m/Y"/>
+                <x-form.input.input-date-show label="Data da Transação" value="{{ $transaction->dateTransaction }}" format="d/m/Y"/>
             </div>
         </div>
         <div class="row mt-2">
@@ -28,7 +28,7 @@
                 <x-form.input.input-show label="Tipo transação" value="{{ $transaction->kindTransaction }}"/>
             </div>
             <div class="col-6">
-                <x-form.input.input-show label="Descrição" value="{{ $transaction->description }}"/>
+                <x-form.textarea.textarea-show label="Descrição" value="{{ $transaction->description }}"/>
             </div>
         </div>
 
