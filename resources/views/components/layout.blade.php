@@ -16,7 +16,6 @@
         <p class="h1">{{ $title }}</p>
         @endisset
         
-
         <div class="row">
             {{-- Validation Errors --}}
             @if ($errors->any())

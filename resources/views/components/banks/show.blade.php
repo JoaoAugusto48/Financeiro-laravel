@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col">
         <div class="hstack gap-2">
-            <x-buttons.return :href="$goBack" />
+            <x-action.button.button-back url="{{ $goBack }}"/>
             <div class="vr"></div>
-            <x-buttons.create :href="route('banks.create')" />
-            <x-buttons.edit :href="route('banks.edit', $bank)" />
+            <x-action.button.button-create url="{{ route('banks.create') }}"/>
+            <x-action.button.button-edit url="{{ route('banks.edit', $bank) }}"/>
         </div>
     </div>
 </div>

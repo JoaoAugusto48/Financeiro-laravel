@@ -1,10 +1,10 @@
 <div class="row">
     <div class="col">
         <div class="hstack gap-2">
-            <x-buttons.return :href="$goBack" />
+            <x-action.button.button-back url="{{ $goBack }}"/>
             <div class="vr"></div>
-            <x-buttons.create :href="route('accounts.create')" />
-            <x-buttons.edit :href="route('accounts.edit', $account)" />
+            <x-action.button.button-create url="{{ route('accounts.create') }}" />
+            <x-action.button.button-edit url="{{ route('accounts.edit', $account) }}" />
         </div>
     </div>
 </div>
@@ -23,7 +23,7 @@
             <x-form.input.input-show label="Número da Conta" value="{{ $account->accountNumber }}"/>
         </div>
         <div class="col-4">
-            <x-form.input.input-group-show label="Saldo atual" value="{{ $account->balance}}"/>
+            <x-form.input.input-group-show label="Saldo atual" value="{{ $account->balance}}" group="R$"/>
         </div>
     </div>
 

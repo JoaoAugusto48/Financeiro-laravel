@@ -7,9 +7,9 @@
     <div class="row">
         <div class="col">
             <div class="hstack gap-2">
-                <x-buttons.return :href="$goBack" />
+                <x-action.button.button-back url="{{ $goBack }}"/>
                 <div class="vr"></div>
-                <x-buttons.save />
+                <x-action.button.button-save/>
             </div>
         </div>
     </div>
@@ -54,10 +54,9 @@
             </div>
             <div class="col-4">
                 @empty($account)
-                <x-form.input.input-group type="text" 
+                <x-form.input.input-group-money type="text" 
                         label="Saldo atual" 
                         name="saldoAtual"  
-                        placeholder="ex: 200,00"
                         value="{{ old('saldoAtual' , '0.00') }}"
                         inputmode="numeric"
                         autocomplete="off"/>
@@ -71,27 +70,7 @@
 
     <div class="row">
         <div class="col">
-            <x-buttons.save />
+            <x-action.button.button-save/>
         </div>
     </div>
 </form>
-
-<script>
-    const moneyInput = document.getElementById('saldoAtual');
-
-    moneyInput.addEventListener('input', (event) => {
-        let value = event.target.value.replace(/\D/g, '').replace(/^0+/, '');
-
-        if (value.length === 0) {
-            value = '0.00';
-        } else if (value.length === 1) {
-            value = '0.0' + value;
-        } else if (value.length === 2) {
-            value = '0.' + value;
-        } else {
-            value = value.slice(0, -2) + '.' + value.slice(-2);
-        }
-
-        event.target.value = value;
-    });
-</script>

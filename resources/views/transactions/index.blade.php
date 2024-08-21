@@ -5,13 +5,13 @@
 
     <div class="row mb-2">
         <div class="col">
-            <x-buttons.create :href="route('transactions.create')" />
+            <x-action.button.button-create url="{{ route('transactions.create') }}"/>
         </div>
     </div>
 
     <div class="row row-cols-4">
         @foreach ($transactions as $transaction)
-            <x-cards.transactions 
+            <x-cards.transaction-card 
                 :transaction="$transaction"
                 kindDeposit="{{ $kindTransactions['deposit'] }}"    
             />

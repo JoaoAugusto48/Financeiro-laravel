@@ -1,4 +1,6 @@
-<x-form.radio label="{{ $label }}" name="{{ $name }}" required="{{ $required }}">
+<x-form.radio name="{{ $name }}" required="{{ $required }}">
+    <x-slot:label>{{ $label }}</x-slot:label>
+    
     @foreach ($transactionEnum as $transaction)
         <div class="form-check">
             <input class="form-check-input" 

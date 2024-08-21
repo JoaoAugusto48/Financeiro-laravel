@@ -5,7 +5,7 @@
 
     <div class="row">
         <div class="col">
-            <x-buttons.create :href="route('banks.create')" />
+            <x-action.button.button-create url="{{ route('banks.create') }}"/>
         </div>
     </div>
 
