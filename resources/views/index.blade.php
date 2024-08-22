@@ -1,4 +1,4 @@
-<x-layout title="{{ __('messages.system_name') }}">
+<x-layout title="Home">
 
     <div class="row row-cols-4">
         <x-cards.index title="{{ __('messages.objects.accounts') }}" href="{{ route('accounts.index') }}">

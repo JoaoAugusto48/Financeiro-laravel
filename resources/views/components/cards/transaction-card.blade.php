@@ -2,12 +2,16 @@
     $color = ($transaction->kindTransaction == $kindDeposit) ? 'success' : 'danger';
 @endphp
 <x-cards.card class="border-{{ $color }}">
-    <h5 class="card-title"><span class="text-{{ $color }}">R$ {{ $transaction->value }}</span> - {{ $transaction->account->accountHolder->name }}</h5>
+    <h5 class="card-title">
+        <x-helper.currency-text-color value="{{ $transaction->kindTransaction }}">
+            <x-helper.currency-text :value="$transaction->value"/>
+        </x-helper.currency-text-color>
+        - {{ $transaction->account->accountHolder->name }}</h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">
-        {{ $transaction->dateTransaction }} - {{ $transaction->account->bank->name }}
+        <x-helper.date-text value="{{ $transaction->dateTransaction }}" format="d/m/Y"/> - {{ $transaction->account->bank->name }}
     </h6>
     <p class="card-text">
-        <span class="text-{{ $color }}">{{ $transaction->kindTransaction }}</span>
+        <x-helper.currency-text-color value="{{ $transaction->kindTransaction }}">{{ $transaction->kindTransaction }}</x-helper.currency-text-color>
         @isset($transaction->relatedHolder->name)
             - {{ $transaction->relatedHolder->name }}
         @endisset

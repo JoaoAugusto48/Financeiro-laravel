@@ -23,7 +23,6 @@
                     placeholder="ex: José Reinaldo" 
                     value="{{ $accountHolder->name ?? old('nome', '') }}"
                     autocomplete="off"
-                    maxlength="3"
                     required autofocus/>
             </div>
         </div>

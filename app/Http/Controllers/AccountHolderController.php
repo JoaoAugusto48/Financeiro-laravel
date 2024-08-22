@@ -57,7 +57,14 @@ class AccountHolderController extends Controller
      */
     public function show(AccountHolder $holder)
     {
-        return view('holders.show')->with('accountHolder', $holder);
+        $accounts = Account::where('accountHolder_id', '=', $holder->id)->get();
+        $allowances = Allowance::where('relatedHolder_id', '=', $holder->id)->get();
+        $transactions = Transaction::where('relatedHolder_id', '=', $holder->id)->get();
+        return view('holders.show')
+                ->with('accountHolder', $holder)
+                ->with('accounts', $accounts)
+                ->with('allowances', $allowances)
+                ->with('transactions', $transactions);
     }
 
     /**

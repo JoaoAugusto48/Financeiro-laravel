@@ -56,6 +56,7 @@ class TransactionController extends Controller
     public function store(TransactionFormRequest $request)
     {
         try {
+            dd($request);
             $transaction = new Transaction();
             $transaction->value = $request->valor;
             $transaction->kindTransaction = TransactionEnum::from($request->tipoTransacao)->name;

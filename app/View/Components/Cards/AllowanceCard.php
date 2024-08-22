@@ -13,27 +13,9 @@ class AllowanceCard extends Card
 {
     public Allowance $allowance;
     
-    public function __construct($allowance = [], $class = '')
+    public function __construct($allowance = [])
     {
-        parent::__construct($class);
         $this->allowance = $allowance;
-    }
-
-    public function formattedValue(): string
-    {
-        return Number::currency($this->allowance->value, in: 'BRL' , locale: 'BRL');
-    }
-
-    public function textClass(): string
-    {
-        $class = '';
-        if($this->allowance->kindTransaction == TransactionEnum::Deposit->name) {
-            $class = 'text-success';
-        } elseif ($this->allowance->kindTransaction == TransactionEnum::Withdraw->name) {
-            $class = 'text-danger';
-        }
-
-        return $class;
     }
 
     /**
