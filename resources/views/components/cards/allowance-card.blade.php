@@ -11,7 +11,7 @@
             <x-helper.currency-text :value="$allowance->value"/>
         </x-helper.currency-text-color>
         @isset($allowance->relatedHolder)
-            - {{ $allowance->relatedHolder->name }}
+            ({{ $allowance->relatedHolder->name }})
         @endisset
     </p>
     @isset($allowance->description)

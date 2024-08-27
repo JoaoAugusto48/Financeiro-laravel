@@ -18,7 +18,7 @@ class AllowanceController extends Controller
      */
     public function index(Allowance $allowance)
     {
-        $allowances = Allowance::all();
+        $allowances = Allowance::paginate(20);
         $success = session('mensagem.success');
         $error = session('mensagem.error');
 

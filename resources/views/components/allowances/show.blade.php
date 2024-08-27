@@ -15,7 +15,7 @@
             <x-form.input.input-show label="Título" value="{{ $allowance->title }}"/>
         </div>
         <div class="col-3">
-            <x-form.input.input-group-show label="Valor" value="{{ $allowance->value}}"/>
+            <x-form.input.input-group-show label="Valor" value="{{ $allowance->value}}" group="R$"/>
         </div>
         <div class="col-3">
             <x-form.input.input-show label="Titular" value="{{ $allowance?->account->accountHolder->name }}"/>
@@ -23,7 +23,7 @@
     </div>
     <div class="row mt-2">
         <div class="col-6">
-            <x-form.input.text-area-show label="Descrição" value="{{ $allowance->description }}"/>
+            <x-form.textarea.textarea-show label="Descrição" value="{{ $allowance->description }}"/>
         </div>
         <div class="col-3">
             <x-form.input.input-show label="Tipo transação" value="{{ $allowance->kindTransaction }}"/>

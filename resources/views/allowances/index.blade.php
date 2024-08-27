@@ -9,6 +9,10 @@
         </div>
     </div>
 
+    <div class="row">
+        {{ $allowances->links() }}
+    </div>
+
     <div class="row row-cols-4">
         @foreach ($allowances as $allowance)
             <x-cards.allowance-card :allowance="$allowance" />

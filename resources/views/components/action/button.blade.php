@@ -1,4 +1,4 @@
-@if ($isLink)
+@if ($isLink != 'false')
     <a href="{{ $url ?? '' }}" class="btn btn-{{ $class }}">
         {{ $label }}
     </a>

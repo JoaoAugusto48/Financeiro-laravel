@@ -1,7 +1,11 @@
 <x-cards.card>
     <h5 class="card-title">{{ $account->bank->name }} - {{ $account->accountNumber }}</h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">{{ $account->accountHolder->name }}</h6>
-    <p class="card-text">{{ $formattedBalance }}</p>
+    <p class="card-text">
+        <x-helper.currency-text-color value="{{ $account->balance }}">
+            {{ $formattedBalance }}
+        </x-helper.currency-text-color>
+    </p>
     <div class="col align-self-end">
         <div class="btn-group" role="group" aria-label="Ativities">
             <x-buttons.table.show href="{{ route('accounts.show', $account->id) }}" />

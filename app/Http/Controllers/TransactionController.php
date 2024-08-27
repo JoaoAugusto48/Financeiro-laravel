@@ -19,7 +19,7 @@ class TransactionController extends Controller
      */
     public function index(Transaction $transaction)
     {
-        $transactions = Transaction::all();
+        $transactions = Transaction::orderByDesc('dateTransaction')->paginate(20);
         $kindTransactions = ['deposit' => TransactionEnum::Deposit->name];
         $success = session('mensagem.success');
         $error = session('mensagem.error');
@@ -56,7 +56,6 @@ class TransactionController extends Controller
     public function store(TransactionFormRequest $request)
     {
         try {
-            dd($request);
             $transaction = new Transaction();
             $transaction->value = $request->valor;
             $transaction->kindTransaction = TransactionEnum::from($request->tipoTransacao)->name;

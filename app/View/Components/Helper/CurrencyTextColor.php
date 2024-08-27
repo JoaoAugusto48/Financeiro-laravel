@@ -24,6 +24,12 @@ class CurrencyTextColor extends Component
             $class = 'text-success';
         } elseif ($this->value == TransactionEnum::Withdraw->name) {
             $class = 'text-danger';
+        } else {
+            if($this->value > 0) {
+                $class = 'text-success';
+            } elseif ($this->value < 0) {
+                $class = 'text-danger';
+            }
         }
 
         return $class;

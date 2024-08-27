@@ -18,7 +18,7 @@ class AccountController extends Controller
      */
     public function index(Account $account)
     {
-        $accounts = Account::all();
+        $accounts = Account::paginate(20);
         $success = session('mensagem.success');
         $error = session('mensagem.error');
 

@@ -8,16 +8,16 @@
         </x-helper.currency-text-color>
         - {{ $transaction->account->accountHolder->name }}</h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">
-        <x-helper.date-text value="{{ $transaction->dateTransaction }}" format="d/m/Y"/> - {{ $transaction->account->bank->name }}
+        <x-helper.date-text value="{{ $transaction->dateTransaction }}" format="d/m/Y"/> ({{ $transaction->account->bank->name }})
     </h6>
     <p class="card-text">
         <x-helper.currency-text-color value="{{ $transaction->kindTransaction }}">{{ $transaction->kindTransaction }}</x-helper.currency-text-color>
         @isset($transaction->relatedHolder->name)
-            - {{ $transaction->relatedHolder->name }}
+            ({{ $transaction->relatedHolder->name }})
         @endisset
     </p>
     @isset($transaction->description)
-        <p class="card-text">{{ $transaction->description }}</p>
+        <p class="card-text">Note: {{ $transaction->description }}</p>
     @endisset
     <div class="col align-self-end">
         <div class="btn-group" role="group" aria-label="Ativities">

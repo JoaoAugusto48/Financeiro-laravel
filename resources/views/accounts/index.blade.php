@@ -8,6 +8,11 @@
             <x-action.button.button-create url="{{ route('accounts.create') }}"/>
         </div>
     </div>
+
+    <div class="row">
+        {{ $accounts->links() }}
+    </div>
+
     <div class="row row-cols-4">
         @foreach ($accounts as $account)
             <x-cards.account-card :account="$account"/>

@@ -18,7 +18,8 @@ class AccountHolderController extends Controller
      */
     public function index(AccountHolder $accountHolder)
     {
-        $accountHolders = AccountHolder::all();
+        $accountHolders = AccountHolder::paginate(20);
+
         $success = session('mensagem.success');
         $error = session('mensagem.error');
 

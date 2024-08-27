@@ -9,6 +9,10 @@
         </div>
     </div>
 
+    <div class="row">
+        {{ $transactions->links() }}
+    </div>
+
     <div class="row row-cols-4">
         @foreach ($transactions as $transaction)
             <x-cards.transaction-card 
