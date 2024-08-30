@@ -2,8 +2,10 @@
     <h5 class="card-title">{{ $title }}</h5>
     <p class="card-text">{{ $slot }}</p>
     <div class="col align-self-end">
-        <x-buttons.button href="{{ $href }}" class="btn btn-primary">
-            <i class="bi bi-box-arrow-up-left"></i> {{ __('buttons.access') }}
-        </x-buttons.button>
+        <x-action.button is-link="true" url="{{ $href }}" class="primary">
+            <x-slot:label>
+                <i class="bi bi-box-arrow-in-right"></i> {{ __('buttons.access') }}
+            </x-slot:label>
+        </x-action.button>
     </div>
 </x-cards.card>

@@ -7,6 +7,16 @@
         <div class="col">
             <x-action.button.button-create url="{{ route('accounts.create') }}"/>
         </div>
+        <div class="col ms-auto h3 text-end">
+            Amount: 
+            <x-helper.currency-text-color value="{{ $accountBalances }}">
+                <x-helper.currency-text :value="$accountBalances"/>
+            </x-helper.currency-text-color>
+        </div>
+    </div>
+
+    <div class="row ">
+        
     </div>
 
     <div class="row">

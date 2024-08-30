@@ -24,7 +24,7 @@ class BankFormRequest extends FormRequest
             'numero' => ['unique:banks,number', 'size:3'],
             'nome' => ['required', 'unique:banks,name'],
             'sigla' => ['required', 'min:2', 'max:4']
-        ];
+        ];        
         
         if(request()->isMethod('put')){
             $bank = $this->route()->parameter('bank');

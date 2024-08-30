@@ -1,7 +1,4 @@
-@php
-    $color = ($transaction->kindTransaction == $kindDeposit) ? 'success' : 'danger';
-@endphp
-<x-cards.card class="border-{{ $color }}">
+<x-cards.card class="{{ $borderColor }}">
     <h5 class="card-title">
         <x-helper.currency-text-color value="{{ $transaction->kindTransaction }}">
             <x-helper.currency-text :value="$transaction->value"/>

@@ -19,11 +19,13 @@ class AccountController extends Controller
     public function index(Account $account)
     {
         $accounts = Account::paginate(20);
+        $accountBalances = Account::sum('balance');
         $success = session('mensagem.success');
         $error = session('mensagem.error');
 
         return view('accounts.index')
                 ->with('accounts', $accounts)
+                ->with('accountBalances', $accountBalances)
                 ->with('success', $success)
                 ->with('error', $error);
     }

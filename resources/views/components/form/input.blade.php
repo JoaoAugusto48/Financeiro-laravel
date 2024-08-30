@@ -9,6 +9,7 @@
             value="{{ old($name, $value) }}" 
             placeholder="{{ $placeholder }}"
             @if($required) required @endif 
+            {{ $attributes }}
             />
     @error($name)
         <div class="text-danger">{{ $message }}</div>

@@ -18,6 +18,13 @@ class TransactionCard extends Card
         $this->kindDeposit = $kindDeposit;
     }
 
+    public function borderColor(){
+        if($this->transaction->kindTransaction == $this->kindDeposit){
+            return 'border-success';
+        }
+        return 'border-danger';
+    }
+
     /**
      * Get the view / contents that represent the component.
      */
