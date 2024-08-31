@@ -11,7 +11,7 @@ class ButtonEdit extends Button
     /**
      * Create a new component instance.
      */
-    public function __construct($label = 'Edit', $url = '#', $class = 'warning',)
+    public function __construct($label = 'Edit', $url = '#', $class = 'warning')
     {
         parent::__construct($label,$url,$class,true);
     }

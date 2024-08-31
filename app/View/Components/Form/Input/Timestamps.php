@@ -14,7 +14,7 @@ class Timestamps extends Component
     public string $format;
     public string $class;
 
-    public function __construct($createdAt = '', $updatedAt = '', $format = 'Y-m-d H:i:s', $class = 'col-3')
+    public function __construct($createdAt = '', $updatedAt = '', $format = 'Y-m-d H:i:s', $class = 'col-6')
     {
         $this->createdAt = $createdAt;
         $this->updatedAt = $updatedAt;

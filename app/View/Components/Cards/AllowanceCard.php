@@ -12,10 +12,19 @@ use Illuminate\Support\Number;
 class AllowanceCard extends Card
 {
     public Allowance $allowance;
+    public TransactionEnum $transactionType;
     
     public function __construct($allowance = [])
     {
         $this->allowance = $allowance;
+        $this->transactionType = TransactionEnum::Deposit;
+    }
+
+    public function borderColor(){
+        if($this->allowance->kindTransaction == $this->transactionType->name){
+            return 'border-success';
+        }
+        return 'border-danger';
     }
 
     /**

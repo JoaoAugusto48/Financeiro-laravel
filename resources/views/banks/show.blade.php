@@ -1,5 +1,5 @@
-<x-layout title="{{ $bank->name }}" pageName="Bank">
+<x-layout title="{{ $bank->name }}" page-name="Bank">
     <x-banks.show 
-        :goBack="route('banks.index')" 
+        :go-back="route('banks.index')" 
         :bank="$bank"/>
 </x-layout>

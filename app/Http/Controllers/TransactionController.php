@@ -20,13 +20,11 @@ class TransactionController extends Controller
     public function index(Transaction $transaction)
     {
         $transactions = Transaction::orderByDesc('dateTransaction')->paginate(20);
-        $kindTransactions = ['deposit' => TransactionEnum::Deposit->name];
         $success = session('mensagem.success');
         $error = session('mensagem.error');
 
         return view('transactions.index')
                 ->with('transactions', $transactions)
-                ->with('kindTransactions', $kindTransactions)
                 ->with('success', $success)
                 ->with('error', $error);
     }
@@ -101,13 +99,11 @@ class TransactionController extends Controller
     {
         $accounts = Account::all();
         $relatedAccounts = AccountHolder::where('linkAccount', false)->get();
-        $transactionsEnum = TransactionEnum::cases();
         $allowances = Allowance::all();
         $today = Carbon::today();
 
         return view('transactions.edit')
                 ->with('transaction', $transaction)
-                ->with('transactionsEnum', $transactionsEnum)
                 ->with('relatedAccounts', $relatedAccounts)
                 ->with('accounts', $accounts)
                 ->with('allowances', $allowances)

@@ -15,10 +15,10 @@ class RadioTransactionEnum extends Radio
      */
     public array $transactionEnum;
 
-    public function __construct($name, $label = '', $checked = '', $options = [], $required = false)
+    public function __construct($name, $label = '', $checked = '', $required = false)
     {
         parent::__construct($name,$label,$checked,$required);
-        $this->transactionEnum = $options;
+        $this->transactionEnum = TransactionEnum::cases();
     }
 
     /**

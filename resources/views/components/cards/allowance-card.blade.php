@@ -1,4 +1,4 @@
-<x-cards.card>
+<x-cards.card class="{{ $borderColor }}">
     <h5 class="card-title">{{ $allowance->title }}</h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">
         <x-helper.currency-text-color value="{{ $allowance->kindTransaction }}">
@@ -19,9 +19,9 @@
     @endisset
     <div class="col align-self-end">
         <div class="btn-group" role="group" aria-label="Ativities">
-            <x-buttons.table.show href="{{ route('allowances.show', $allowance->id) }}" />
-            <x-buttons.table.edit href="{{ route('allowances.edit', $allowance->id) }}" />
-            <x-buttons.table.delete action="{{ route('allowances.destroy', $allowance->id) }}" />
+            <x-action.button.group.button-show url="{{ route('allowances.show', $allowance->id) }}" />
+            <x-action.button.group.button-edit url="{{ route('allowances.edit', $allowance->id) }}" />
+            <x-action.button.group.button-delete action="{{ route('allowances.destroy', $allowance->id) }}" />
         </div>
     </div>
 </x-cards.card>

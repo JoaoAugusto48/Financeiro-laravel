@@ -27,7 +27,7 @@ class BankSeeder extends Seeder
             [
                 'id' => 2,
                 'number' => '001',
-                'name' => 'Bando do Brasil',
+                'name' => 'Banco do Brasil',
                 'abbreviation' => 'BB',
                 'deleteable' => 0,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),

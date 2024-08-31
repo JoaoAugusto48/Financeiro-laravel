@@ -1,6 +1,10 @@
-<x-layout title="Atualizar '{{ $allowance->title }}'" pageName="Allowance">
+<x-layout page-name="Allowance">
+    <x-slot:title>
+        Atualizar '{{ $allowance->title }}'
+    </x-slot:title>
+
     <x-allowances.form action="{{ route('allowances.update', $allowance->id) }}" 
-                goBack="{{ route('allowances.index') }}"
+                go-back="{{ route('allowances.index') }}"
                 :allowance="$allowance"
                 :transactions="$transactions"
                 :accounts="$accounts"

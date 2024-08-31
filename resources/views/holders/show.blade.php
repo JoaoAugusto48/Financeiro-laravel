@@ -1,4 +1,4 @@
-<x-layout title="{{ $accountHolder->name }}" pageName="Holder">
+<x-layout title="{{ $accountHolder->name }}" page-name="Holder">
 
     <div class="row mb-2">
         <div class="col">

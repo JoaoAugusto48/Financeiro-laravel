@@ -1,4 +1,4 @@
-<x-layout title="Novo Banco" pageName="Bank">
+<x-layout title="Novo Banco" page-name="Bank">
     <x-banks.form action="{{ route('banks.store') }}"
-                goBack="{{ route('banks.index') }}"/>
+                go-back="{{ route('banks.index') }}"/>
 </x-layout>

@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Cards;
 
+use App\Enums\TransactionEnum;
 use App\Models\Transaction;
 use Closure;
 use Illuminate\View\Component;
@@ -10,16 +11,16 @@ use Illuminate\Contracts\View\View;
 class TransactionCard extends Card
 {
     public Transaction $transaction;
-    public string $kindDeposit;
+    public TransactionEnum $transactionType;
     
-    public function __construct($transaction = [], $kindDeposit = '')
+    public function __construct($transaction = [])
     {
         $this->transaction = $transaction;
-        $this->kindDeposit = $kindDeposit;
+        $this->transactionType = TransactionEnum::Deposit;
     }
 
     public function borderColor(){
-        if($this->transaction->kindTransaction == $this->kindDeposit){
+        if($this->transaction->kindTransaction == $this->transactionType->name){
             return 'border-success';
         }
         return 'border-danger';

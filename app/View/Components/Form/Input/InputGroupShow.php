@@ -5,6 +5,7 @@ namespace App\View\Components\Form\Input;
 use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Number;
 
 class InputGroupShow extends InputShow
 {
@@ -12,8 +13,16 @@ class InputGroupShow extends InputShow
     
     public function __construct($value = '', $label = '', $group = '-', $class = '')
     {
-        parent::__construct($value,$label,'form-control' . $class);
+        parent::__construct($this->valueFormat($value),$label,'form-control' . $class);
         $this->group = $group;
+    }
+
+    private function valueFormat($value): int|string
+    {
+        if(is_numeric($value)) {
+            $value = Number::format($value, precision: 2, locale: 'BRL');
+        }
+        return $value;
     }
 
     /**

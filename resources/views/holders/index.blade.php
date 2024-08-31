@@ -1,11 +1,11 @@
-<x-layout title="Account Holder" pageName="Holder">
+<x-layout title="Account Holder" page-name="Holder">
     
     <x-alerts.danger :error="$error"/>
     <x-alerts.success :success="$success"/>
 
     <div class="row mb-2">
         <div class="col">
-            <x-action.button.button-create url="{{ route('holders.create') }}"/>
+            <x-action.button.button-create :url="route('holders.create')"/>
         </div>
     </div>
 

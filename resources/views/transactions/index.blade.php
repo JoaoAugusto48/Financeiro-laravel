@@ -1,4 +1,4 @@
-<x-layout title="Transaction" pageName="Transaction">
+<x-layout title="Transaction" page-name="Transaction">
         
     <x-alerts.danger :error="$error"/>
     <x-alerts.success :success="$success"/>
@@ -16,8 +16,7 @@
     <div class="row row-cols-4">
         @foreach ($transactions as $transaction)
             <x-cards.transaction-card 
-                :transaction="$transaction"
-                kindDeposit="{{ $kindTransactions['deposit'] }}"    
+                :transaction="$transaction"    
             />
         @endforeach
     </div>

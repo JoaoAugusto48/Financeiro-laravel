@@ -1,10 +1,13 @@
-<x-layout title="Atualizar Transaction" pageName="Transaction">
-    <x-transactions.form action="{{ route('transactions.update', $transaction->id) }}"
-                goBack="{{ route('transactions.index') }}"
+<x-layout page-name="Transaction">
+    <x-slot:title>
+        Atualizar - <x-helper.currency-text :value="$transaction->value"/> ({{ $transaction->account->accountHolder->name }})
+    </x-slot:title>
+
+    <x-transactions.form :action="route('transactions.update', $transaction->id)"
+                :go-back="route('transactions.index')"
                 :transaction="$transaction"
-                :transactionsEnum="$transactionsEnum"
                 :accounts="$accounts"
-                :relatedAccounts="$relatedAccounts"
+                :related-accounts="$relatedAccounts"
                 :allowances="$allowances"
                 :today="$today"/>
 </x-layout>

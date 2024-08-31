@@ -14,10 +14,10 @@ class RadioTransactionEnumShow extends RadioShow
      */
     public array $transactionEnum;
 
-    public function __construct($label = '', $checked = '', $options = [])
+    public function __construct($label = '', $checked = '')
     {
         parent::__construct($label,$checked);
-        $this->transactionEnum = $options;
+        $this->transactionEnum = TransactionEnum::cases();
     }
 
     /**

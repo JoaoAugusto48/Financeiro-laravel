@@ -1,6 +1,6 @@
-<x-layout title="Nova Conta" pageName="Account">
+<x-layout title="Nova Conta" page-name="Account">
     <x-accounts.form action="{{ route('accounts.store') }}"
-                goBack="{{ route('accounts.index') }}"
+                :go-back="route('accounts.index')"
                 :banks="$banks"
                 :accountHolders="$accountHolders"/>
 </x-layout>

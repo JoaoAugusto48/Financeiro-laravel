@@ -1,19 +1,19 @@
 <?php
 
-namespace App\View\Components\Action\Button;
+namespace App\View\Components\Cards\Form;
 
 use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class ButtonCreate extends Button
+class DeleteCard extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct($label = 'New', $url = '#', $class = 'primary')
+    public function __construct()
     {
-        parent::__construct($label,$url,$class,true);
+        //
     }
 
     /**
@@ -21,6 +21,6 @@ class ButtonCreate extends Button
      */
     public function render(): View|Closure|string
     {
-        return view('components.action.button.button-create');
+        return view('components.cards.form.delete-card');
     }
 }
