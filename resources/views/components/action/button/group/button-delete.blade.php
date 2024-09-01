@@ -1,11 +1,15 @@
-<x-action.button type="{{ $type }}" class="{{ $class }}" is-link="{{ $isLink }}">
+<x-action.button class="{{ $class }}" type="button" is-link="false" data-bs-toggle="modal" data-bs-target="#delete{{ $object->id }}">
     <x-slot:label>
         <i class="bi bi-trash3"></i> {{ $label }}
     </x-slot:label>
 </x-action.button>
 
-<form action="{{ $url }}" method="POST" class="d-inline" onsubmit="return confirm('{{ $confirmMessage ?? 'Are you sure?' }}');">
-    @csrf
-    @method('DELETE')
+@push('modals')
+@if ($typeObject == 'allowance')
+    <x-modal.delete.allowance-modal 
+        id="delete{{ $object->id }}" 
+        :allowance="$object"/>
+@else
     
-</form>
+@endif
+@endpush

@@ -2,19 +2,33 @@
 
 namespace App\View\Components\Action\Button\Group;
 
+use App\Models\Allowance;
 use App\View\Components\Action\Button\Button;
 use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
+use User;
 
 class ButtonDelete extends Button
 {
-    /**
-     * Create a new component instance.
-     */    
-    public function __construct($label = '', $url = '#', $class = 'danger btn-sm')
+    public object $object;
+    public string|bool $typeObject;
+    
+    public function __construct($label = '', $url = '#', $class = 'danger btn-sm', $object = '')
     {
         parent::__construct($label,$url,$class,type: 'submit');
+        $this->object = $object;
+
+        $this->typeObject = $this->findObject();
+    }
+
+    public function findObject(): string|bool
+    {
+        if($this->object instanceof Allowance) {
+            return 'allowance';
+        }
+
+        return false;
     }
 
     /**

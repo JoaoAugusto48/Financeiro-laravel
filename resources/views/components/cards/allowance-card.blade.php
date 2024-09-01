@@ -21,7 +21,7 @@
         <div class="btn-group" role="group" aria-label="Ativities">
             <x-action.button.group.button-show url="{{ route('allowances.show', $allowance->id) }}" />
             <x-action.button.group.button-edit url="{{ route('allowances.edit', $allowance->id) }}" />
-            <x-action.button.group.button-delete action="{{ route('allowances.destroy', $allowance->id) }}" />
+            <x-action.button.group.button-delete action="{{ route('allowances.destroy', $allowance->id) }}" :object="$allowance" />
         </div>
     </div>
 </x-cards.card>

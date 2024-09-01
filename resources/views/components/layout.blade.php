@@ -31,6 +31,7 @@
         </div>
     </div>
 
+    @stack('modals')
     @stack('scripts')
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
