@@ -18,9 +18,9 @@
     @endisset
     <div class="col align-self-end">
         <div class="btn-group" role="group" aria-label="Ativities">
-            <x-buttons.table.show href="{{ route('transactions.show', $transaction->id) }}"/>
-            <x-buttons.table.edit href="{{ route('transactions.edit', $transaction->id) }}"/>
-            <x-buttons.table.delete action="{{ route('transactions.destroy', $transaction->id) }}"/>
+            <x-action.button.group.button-show action="{{ route('transactions.show', $transaction->id) }}"/>
+            <x-action.button.group.button-edit action="{{ route('transactions.edit', $transaction->id) }}"/>
+            <x-action.button.group.button-delete action="{{ route('transactions.destroy', $transaction->id) }}" :object="$transaction"/>
         </div>
     </div>
 </x-cards.card>

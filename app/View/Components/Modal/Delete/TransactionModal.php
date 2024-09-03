@@ -2,18 +2,20 @@
 
 namespace App\View\Components\Modal\Delete;
 
+use App\Models\Transaction;
 use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
 class TransactionModal extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public string $id;
+    public Transaction $transaction;
+
+    public function __construct($id = '', $object = '')
     {
-        //
+        $this->id = $id;
+        $this->transaction = $object;
     }
 
     /**

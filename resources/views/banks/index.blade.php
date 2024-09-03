@@ -1,7 +1,7 @@
 <x-layout title="Bank" page-name="Bank">
 
-    <x-alerts.danger :error="$error"/>
-    <x-alerts.success :success="$success"/>
+    <x-helper.alert.danger :error="$error"/>
+    <x-helper.alert.success :success="$success"/>
 
     <div class="row">
         <div class="col">
@@ -32,12 +32,10 @@
                             <td>
                                 <div class="hstack gap-1">
                                     <div class="ms-auto">
-                                        <x-buttons.table.show :href="route('banks.show', $bank->id)"/>
+                                        <x-action.button.group.button-show :url="route('banks.show', $bank->id)"/>
                                     </div>
-                                    <div class="vr"></div>
-                                    <x-buttons.table.edit :href="route('banks.edit', $bank->id)"/>
-                                    <div class="vr"></div>
-                                    <x-buttons.table.delete :action="route('banks.destroy', $bank->id)" />
+                                    <x-action.button.group.button-edit :url="route('banks.edit', $bank->id)"/>
+                                    <x-action.button.group.button-delete :action="route('banks.destroy', $bank->id)" :object="$bank"/>
                                 </div>
                             </td>
                         </tr>

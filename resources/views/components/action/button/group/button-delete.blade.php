@@ -5,11 +5,9 @@
 </x-action.button>
 
 @push('modals')
-@if ($typeObject == 'allowance')
-    <x-modal.delete.allowance-modal 
-        id="delete{{ $object->id }}" 
-        :allowance="$object"/>
-@else
-    
-@endif
+    @if ($modalComponent)
+        <x-dynamic-component :component="$modalComponent" 
+            id="delete{{ $object->id }}" 
+            :object="$object"/>
+    @endif
 @endpush

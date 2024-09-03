@@ -7,9 +7,9 @@
     </p>
     <div class="col align-self-end">
         <div class="btn-group" role="group" aria-label="Ativities">
-            <x-buttons.table.show href="{{ route('holders.show', $accountHolder->id) }}"/>
-            <x-buttons.table.edit href="{{ route('holders.edit', $accountHolder->id) }}"/>
-            <x-buttons.table.delete action="{{ route('holders.destroy', $accountHolder->id) }}"/>
+            <x-action.button.group.button-show url="{{ route('holders.show', $accountHolder->id) }}"/>
+            <x-action.button.group.button-edit url="{{ route('holders.edit', $accountHolder->id) }}"/>
+            <x-action.button.group.button-delete action="{{ route('holders.destroy', $accountHolder->id) }}" :object="$accountHolder"/>
         </div>
     </div>
 </x-cards.card>

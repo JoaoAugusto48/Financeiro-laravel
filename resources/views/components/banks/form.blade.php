@@ -56,7 +56,7 @@
 
     <div class="row">
         <div class="col">
-            <x-buttons.save />
+            <x-action.button.button-save />
         </div>
     </div>
 </form>

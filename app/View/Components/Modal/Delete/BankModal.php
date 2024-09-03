@@ -2,18 +2,20 @@
 
 namespace App\View\Components\Modal\Delete;
 
+use App\Models\Bank;
 use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
 class BankModal extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public string $id;
+    public Bank $bank;
+
+    public function __construct($id = '', $object = '')
     {
-        //
+        $this->id = $id;
+        $this->bank = $object;
     }
 
     /**

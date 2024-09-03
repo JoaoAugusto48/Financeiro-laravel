@@ -73,7 +73,7 @@
 
     <div class="row mt-2">
         <div class="col">
-            <x-buttons.save/>
+            <x-action.button.button-save/>
         </div>
     </div>
 </form>

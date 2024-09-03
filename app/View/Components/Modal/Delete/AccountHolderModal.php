@@ -2,18 +2,20 @@
 
 namespace App\View\Components\Modal\Delete;
 
+use App\Models\AccountHolder;
 use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
 class AccountHolderModal extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public string $id;
+    public AccountHolder $accountHolder;
+
+    public function __construct($id = '', $object = '')
     {
-        //
+        $this->id = $id;
+        $this->accountHolder = $object;
     }
 
     /**

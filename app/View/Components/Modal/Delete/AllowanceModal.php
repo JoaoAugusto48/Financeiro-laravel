@@ -12,10 +12,10 @@ class AllowanceModal extends Component
     public string $id;
     public Allowance $allowance;
 
-    public function __construct($id = '', $allowance = '')
+    public function __construct($id = '', $object = '')
     {
         $this->id = $id;
-        $this->allowance = $allowance;
+        $this->allowance = $object;
     }
 
     /**

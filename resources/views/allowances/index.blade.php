@@ -1,7 +1,7 @@
 <x-layout title="Allowance" page-name="Allowance">
 
-    <x-alerts.danger :error="$error"/>
-    <x-alerts.success :success="$success"/>
+    <x-helper.alert.danger :error="$error"/>
+    <x-helper.alert.success :success="$success"/>
 
     <div class="row mb-2">
         <div class="col">
