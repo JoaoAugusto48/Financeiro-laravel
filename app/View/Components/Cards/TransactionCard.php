@@ -11,16 +11,15 @@ use Illuminate\Contracts\View\View;
 class TransactionCard extends Card
 {
     public Transaction $transaction;
-    public TransactionEnum $transactionType;
     
     public function __construct($transaction = [])
     {
         $this->transaction = $transaction;
-        $this->transactionType = TransactionEnum::Deposit;
     }
 
-    public function borderColor(){
-        if($this->transaction->kindTransaction == $this->transactionType->name){
+    public function borderColor()
+    {
+        if($this->transaction->kindTransaction == TransactionEnum::Deposit->name){
             return 'border-success';
         }
         return 'border-danger';

@@ -4,7 +4,7 @@
         <x-helper.currency-text-color value="{{ $allowance->kindTransaction }}">
             {{ $allowance->kindTransaction }}
         </x-helper.currency-text-color> 
-        - {{ $allowance->account->accountHolder->name }}
+        | {{ $allowance->account->accountHolder->name }}
     </h6>
     <p class="card-text">
         <x-helper.currency-text-color value="{{ $allowance->kindTransaction }}">

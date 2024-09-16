@@ -6,7 +6,7 @@
             data-account="{{ $allowance->account->accountHolder->name }}"
             data-related-holder="{{ $allowance->relatedHolder?->name }}"
             {{ ($selected == $allowance->id) ? 'selected' : ((old($name) == $allowance->id) ? 'selected' : '') }}>
-            {{ $allowance->title }} - R$ {{ $allowance->value }} - {{ $allowance->kindTransaction }} - {{ $allowance->account->accountHolder->name }} @isset($allowance->relatedHolder) - {{ $allowance->relatedHolder->name }} @endisset
+            <x-helper.text.allowance :allowance="$allowance"/>
         </option>
     @endforeach
 </x-form.select>

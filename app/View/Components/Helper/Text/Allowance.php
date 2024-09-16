@@ -1,29 +1,28 @@
 <?php
 
-namespace App\View\Components\Cards;
+namespace App\View\Components\Helper\Text;
 
 use App\Enums\TransactionEnum;
-use App\Models\Allowance;
+use App\Models\Allowance as ModelsAllowance;
 use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Number;
 
-class AllowanceCard extends Card
+class Allowance extends Component
 {
-    public Allowance $allowance;
+    public ModelsAllowance $allowance;
     
-    public function __construct($allowance = [])
+    public function __construct($allowance = '')
     {
         $this->allowance = $allowance;
     }
 
-    public function borderColor()
+    public function kindTransaction(): string
     {
         if($this->allowance->kindTransaction == TransactionEnum::Deposit->name){
-            return 'border-success';
+            return TransactionEnum::Deposit->value;
         }
-        return 'border-danger';
+        return TransactionEnum::Withdraw->value;
     }
 
     /**
@@ -31,6 +30,6 @@ class AllowanceCard extends Card
      */
     public function render(): View|Closure|string
     {
-        return view('components.cards.allowance-card');
+        return view('components.helper.text.allowance');
     }
 }

@@ -1,0 +1,1 @@
+<span>{{ $account->accountNumber }} | {{ $account->accountHolder->name }} - {{ $account->bank->abbreviation }}</span>
