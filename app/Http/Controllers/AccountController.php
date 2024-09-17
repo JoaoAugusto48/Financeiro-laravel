@@ -68,7 +68,11 @@ class AccountController extends Controller
      */
     public function show(Account $account)
     {
-        return view('accounts.show')->with('account', $account);
+        $transactions = Transaction::where('account_id', $account->id)->get();
+
+        return view('accounts.show')
+                    ->with('account', $account)
+                    ->with('transactions', $transactions);
     }
 
     /**

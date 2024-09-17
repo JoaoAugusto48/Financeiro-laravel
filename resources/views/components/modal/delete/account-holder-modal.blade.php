@@ -1,10 +1,22 @@
 <x-modal.modal id="{{ $id }}">
     <x-slot:title>Tem certeza que deseja remover "{{ $accountHolder->name }}"?</x-slot:title>
     <x-slot:body>
-        <p class="text-body">Name | Accounts | Transactions | Allowances</p>
-        <p class="text-body">Possui {{ $accountHolder->accounts->count() }} Accounts relacionadas</p>
-        <p class="text-body">Possui {{ $accountHolder->transactions->count() }} Transactions relacionadas</p>
-        <p class="text-body">Possui {{ $accountHolder->allowances->count() }} Allowances relacionadas</p>
+        <div class="row">
+            <div class="col">
+                <p class="text-body">Name: {{ $accountHolder->name }}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <p class="text-body">Accounts: {{ $accountHolder->accounts->count() }}</p>
+            </div>
+            <div class="col">
+                <p class="text-body">Transactions: {{ $accountHolder->transactions->count() }}</p>
+            </div>
+            <div class="col">
+                <p class="text-body">Allowances: {{ $accountHolder->allowances->count() }}</p>
+            </div>
+        </div>
     </x-slot:body>
     <x-slot:buttons>
         <form action="{{ route('holders.destroy', $accountHolder->id) }}" method="POST" class="d-inline">

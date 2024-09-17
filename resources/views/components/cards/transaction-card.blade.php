@@ -3,7 +3,7 @@
         <x-helper.currency-text-color value="{{ $transaction->kindTransaction }}">
             <x-helper.currency-text :value="$transaction->value"/>
         </x-helper.currency-text-color>
-        | {{ $transaction->account->accountHolder->name }}</h5>
+        - {{ $transaction->account->accountHolder->name }}</h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">
         <x-helper.date-text value="{{ $transaction->dateTransaction }}" format="d/m/Y"/> ({{ $transaction->account->bank->name }})
     </h6>

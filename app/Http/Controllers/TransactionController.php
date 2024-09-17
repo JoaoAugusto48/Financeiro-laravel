@@ -19,7 +19,7 @@ class TransactionController extends Controller
      */
     public function index(Transaction $transaction)
     {
-        $transactions = Transaction::orderByDesc('dateTransaction')->paginate(20);
+        $transactions = Transaction::paginate(20);
         $success = session('mensagem.success');
         $error = session('mensagem.error');
 

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,4 +20,11 @@ class Transaction extends Model
     {
         return $this->belongsTo(AccountHolder::class, 'relatedHolder_id');
     }
+
+    protected static function booted(): void
+    {
+        self::addGlobalScope('ordered', function (Builder $querybuilder): void {
+            $querybuilder->orderByDesc('dateTransaction');
+        });
+    } 
 }

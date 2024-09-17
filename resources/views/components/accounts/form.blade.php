@@ -9,6 +9,8 @@
             <div class="hstack gap-2">
                 <x-action.button.button-back url="{{ $goBack }}"/>
                 <div class="vr"></div>
+                <x-action.button.button-create label="New Bank" :url="route('banks.create')" class="btn btn-outline-primary"/>
+                <x-action.button.button-create label="New Holder" :url="route('holders.create')" class="btn btn-outline-primary"/>
                 <x-action.button.button-save/>
             </div>
         </div>
