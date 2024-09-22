@@ -1,8 +1,7 @@
 <x-layout title="Bank" page-name="Bank">
 
-    <x-helper.alert.danger :error="$error"/>
-    <x-helper.alert.success :success="$success"/>
-
+    <x-helper.alert :$messages/>
+    
     <div class="row">
         <div class="col">
             <x-action.button.button-create url="{{ route('banks.create') }}"/>

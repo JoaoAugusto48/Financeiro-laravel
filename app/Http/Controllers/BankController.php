@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\BankFormRequest;
 use App\Models\Account;
 use App\Models\Bank;
+use App\Services\MessageService;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -17,13 +18,10 @@ class BankController extends Controller
     public function index(Bank $bank)
     {
         $banks = Bank::paginate(20);
-        $success = session('mensagem.success');
-        $error = session('mensagem.error');
 
         return view('banks.index')
                 ->with('banks', $banks)
-                ->with('success', $success)
-                ->with('error', $error);
+                ->with('messages', session(MessageService::$mensagem));
     }
 
     /**
@@ -39,16 +37,21 @@ class BankController extends Controller
      */
     public function store(BankFormRequest $request)
     {
-        $bank = new Bank();
-        $bank->number = $request->numero;
-        $bank->name = $request->nome;
-        $bank->abbreviation = strtoupper($request->sigla);
-        $bank->deleteable = true;
-        
-        $bank->save();
+        try {
+            $bank = new Bank();
+            $bank->number = $request->numero;
+            $bank->name = $request->nome;
+            $bank->abbreviation = strtoupper($request->sigla);
+            $bank->deleteable = true;
+            
+            $bank->save();
+    
+            MessageService::success("Banco '{$bank->name}' criado com sucesso");
+        } catch (\Throwable $th) {
+            MessageService::error($th->getMessage());
+        }
 
-        return to_route('banks.index')
-                    ->with('mensagem.success', "Banco '{$bank->name}' criado com sucesso");
+        return to_route('banks.index');
     }
 
     /**
@@ -72,15 +75,23 @@ class BankController extends Controller
      */
     public function update(BankFormRequest $request, string $id)
     {
-        $bank = Bank::find($id);
-        $bank->number = $request->numero;
-        $bank->name = $request->nome;
-        $bank->abbreviation = strtoupper($request->sigla);
-        
-        $bank->save();
-        
-        return to_route('banks.index')
-                    ->with('mensagem.success', "Banco '{$bank->name}' atualizado com sucesso");
+        try {
+            $bank = Bank::find($id);
+            if(!$bank->deleteable){
+                throw new Exception();
+            }
+            $bank->number = $request->numero;
+            $bank->name = $request->nome;
+            $bank->abbreviation = strtoupper($request->sigla);
+            
+            $bank->save();
+            
+            MessageService::success("Banco '{$bank->name}' atualizado com sucesso");
+        } catch (\Throwable $th) {
+            MessageService::error("Banco '{$bank->name}' não pode ser atualizado.");
+        }
+
+        return to_route('banks.index');
     }
 
     /**
@@ -95,12 +106,12 @@ class BankController extends Controller
             }
             $bank->delete();
 
-            return to_route('banks.index')
-                    ->with('mensagem.success', "Banco '{$bank->name}' removido com sucesso.");
+            MessageService::success("Banco '{$bank->name}' removido com sucesso.");
         } catch (\Throwable $th) {
-            return to_route('banks.index')
-                    ->with('mensagem.error', "O banco '{$bank->name}' não pode ser excluido, há informações cadastradas em outros lugares.");
+            MessageService::error("O banco '{$bank->name}' não pode ser excluido, há informações cadastradas em outros lugares.");
         }
+
+        return to_route('banks.index');
     }
 
     public function search(Request $request) 

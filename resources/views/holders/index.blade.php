@@ -1,7 +1,6 @@
 <x-layout title="Account Holder" page-name="Holder">
     
-    <x-helper.alert.danger :error="$error"/>
-    <x-helper.alert.success :success="$success"/>
+    <x-helper.alert :$messages/>
 
     <div class="row mb-2">
         <div class="col">

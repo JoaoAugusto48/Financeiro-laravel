@@ -9,6 +9,7 @@ use App\Models\Account;
 use App\Models\AccountHolder;
 use App\Models\Allowance;
 use App\Models\User;
+use App\Services\MessageService;
 use Illuminate\Http\Request;
 
 class AllowanceController extends Controller
@@ -19,13 +20,10 @@ class AllowanceController extends Controller
     public function index(Allowance $allowance)
     {
         $allowances = Allowance::paginate(20);
-        $success = session('mensagem.success');
-        $error = session('mensagem.error');
 
         return view('allowances.index')
                 ->with('allowances', $allowances)
-                ->with('success', $success)
-                ->with('error', $error);
+                ->with('messages', session(MessageService::$mensagem));
     }
 
     /**
@@ -48,19 +46,23 @@ class AllowanceController extends Controller
      */
     public function store(AllowanceFormRequest $request)
     {
-        $allowance = new Allowance();
-        $allowance->title = $request->titulo;
-        $allowance->value = $request->valor;
-        $allowance->kindTransaction = TransactionEnum::from($request->tipoTransacao)->name;
-        $allowance->description = $request->descricao;
-        $allowance->account_id = $request->titular;
-        $allowance->relatedHolder_id = $request->contaRelacionada;
+        try {
+            $allowance = new Allowance();
+            $allowance->title = $request->titulo;
+            $allowance->value = $request->valor;
+            $allowance->kindTransaction = TransactionEnum::from($request->tipoTransacao)->name;
+            $allowance->description = $request->descricao;
+            $allowance->account_id = $request->titular;
+            $allowance->relatedHolder_id = $request->contaRelacionada;
+    
+            $allowance->save();
+            
+            MessageService::success("Mensalidade '$allowance->title' criada com sucesso");
+        } catch (\Throwable $th) {
+            MessageService::error($th->getMessage());
+        }
 
-        $allowance->save();
-
-
-        return to_route('allowances.index')
-                ->with('mensagem.success', "Mensalidade '$allowance->title' criada com sucesso");
+        return to_route('allowances.index');
     }
 
     /**
@@ -93,19 +95,23 @@ class AllowanceController extends Controller
      */
     public function update(AllowanceFormRequest $request, string $id)
     {
-        $allowance = Allowance::find($id);
-        $allowance->title = $request->titulo;
-        $allowance->value = $request->valor;
-        $allowance->kindTransaction = TransactionEnum::from($request->tipoTransacao)->name;
-        $allowance->description = $request->descricao;
-        $allowance->account_id = $request->titular;
-        $allowance->relatedHolder_id = $request->contaRelacionada;
+        try {
+            $allowance = Allowance::find($id);
+            $allowance->title = $request->titulo;
+            $allowance->value = $request->valor;
+            $allowance->kindTransaction = TransactionEnum::from($request->tipoTransacao)->name;
+            $allowance->description = $request->descricao;
+            $allowance->account_id = $request->titular;
+            $allowance->relatedHolder_id = $request->contaRelacionada;
+    
+            $allowance->save();
 
-        $allowance->save();
+            MessageService::success("Mensalidade '$allowance->title' criada com sucesso");
+        } catch (\Throwable $th) {
+            MessageService::error($th->getMessage());
+        }
 
-
-        return to_route('allowances.index')
-                ->with('mensagem.success', "Mensalidade '$allowance->title' criada com sucesso");
+        return to_route('allowances.index');
     }
 
     /**
@@ -116,11 +122,11 @@ class AllowanceController extends Controller
         try {
             $allowance->delete();
 
-            return to_route('allowances.index')
-                    ->with('mensagem.success', "Mensalidade '{$allowance->title}' removida com sucesso.");
+            MessageService::success("Mensalidade '{$allowance->title}' removida com sucesso.");
         } catch (\Throwable $th) {
-            return to_route('allowances.index')
-                    ->with('mensagem.error', "Mensalidade '{$allowance->title}' não pode ser excluida.");
+            MessageService::error("Mensalidade '{$allowance->title}' não pode ser excluida.");
         }
+        
+        return to_route('allowances.index');
     }
 }

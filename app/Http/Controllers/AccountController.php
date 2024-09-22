@@ -9,6 +9,7 @@ use App\Models\AccountHolder;
 use App\Models\Allowance;
 use App\Models\Bank;
 use App\Models\Transaction;
+use App\Services\MessageService;
 use Illuminate\Http\Request;
 
 class AccountController extends Controller
@@ -20,14 +21,11 @@ class AccountController extends Controller
     {
         $accounts = Account::paginate(20);
         $accountBalances = Account::sum('balance');
-        $success = session('mensagem.success');
-        $error = session('mensagem.error');
 
         return view('accounts.index')
                 ->with('accounts', $accounts)
                 ->with('accountBalances', $accountBalances)
-                ->with('success', $success)
-                ->with('error', $error);
+                ->with('messages', session(MessageService::$mensagem));
     }
 
     /**
@@ -47,20 +45,24 @@ class AccountController extends Controller
      */
     public function store(AccountFormRequest $request)
     {
-        $account = new Account();
-        $account->accountHolder_id = $request->titular;
-        $account->bank_id = $request->banco;
-        $account->accountNumber = $request->numeroConta;
-        $account->deposit($request->saldoAtual);
+        try {
+            $account = new Account();
+            $account->accountHolder_id = $request->titular;
+            $account->bank_id = $request->banco;
+            $account->accountNumber = $request->numeroConta;
+            $account->deposit($request->saldoAtual);
+    
+            $accountHolder = AccountHolder::find($request->titular);
+            $accountHolder->linkAccount = true;
+            
+            $account->save();
+            $accountHolder->save();
 
-        $accountHolder = AccountHolder::find($request->titular);
-        $accountHolder->linkAccount = true;
-        
-        $account->save();
-        $accountHolder->save();
-
-        return to_route('accounts.index')
-                ->with('mensagem.success', "Account '{$account->accountNumber}' criada com sucesso");
+            MessageService::success("Account '{$account->accountNumber}' criada com sucesso");
+        } catch (\Throwable $th) {
+            MessageService::error($th->getMessage());
+        }
+        return to_route('accounts.index');
     }
 
     /**
@@ -93,13 +95,16 @@ class AccountController extends Controller
      */
     public function update(AccountFormRequest $request, string $id)
     {
-        $account = Account::find($id);
-        $account->accountNumber = $request->numeroConta;
-
-        $account->save();
-
-        return to_route('accounts.index')
-                ->with('mensagem.success', "Account '{$account->accountNumber}' atualizada com sucesso");
+        try {
+            $account = Account::find($id);
+            $account->accountNumber = $request->numeroConta;
+    
+            $account->save();
+            MessageService::success("Account '{$account->accountNumber}' atualizada com sucesso");
+        } catch (\Throwable $th) {
+            MessageService::error($th->getMessage());
+        }
+        return to_route('accounts.index');
     }
 
     /**
@@ -116,11 +121,10 @@ class AccountController extends Controller
             
             $account->delete();
 
-            return to_route('accounts.index')
-                    ->with('mensagem.success', "Conta '{$account->accountNumber}' removida com sucesso.");
+            MessageService::success("Conta '{$account->accountNumber}' removida com sucesso.");
         } catch (\Throwable $th) {
-            return to_route('accounts.index')
-                    ->with('mensagem.error', "A conta '{$account->accountNumber}' não pode ser excluida, há informações cadastradas em outros lugares.");
+            MessageService::error("A conta '{$account->accountNumber}' não pode ser excluida, há informações cadastradas em outros lugares.");
         }
+        return to_route('accounts.index');
     }
 }

@@ -9,6 +9,7 @@ use App\Models\Account;
 use App\Models\AccountHolder;
 use App\Models\Allowance;
 use App\Models\Transaction;
+use App\Services\MessageService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -20,13 +21,10 @@ class TransactionController extends Controller
     public function index(Transaction $transaction)
     {
         $transactions = Transaction::paginate(20);
-        $success = session('mensagem.success');
-        $error = session('mensagem.error');
 
         return view('transactions.index')
                 ->with('transactions', $transactions)
-                ->with('success', $success)
-                ->with('error', $error);
+                ->with('messages', session(MessageService::$mensagem));
     }
 
     /**
@@ -75,12 +73,12 @@ class TransactionController extends Controller
             $transaction->save();
             $account->save();
 
-            return to_route('transactions.index')
-                ->with('mensagem.success', "Transação '{$transaction->dateTransaction} - {$transaction->value}' criada com sucesso");
+            MessageService::success("Transação '{$transaction->dateTransaction} - {$transaction->value}' criada com sucesso");
         } catch (\Throwable $th) {
-            return to_route('transactions.index')
-                ->with('mensagem.error', "Transação não pode ser criada.");
+            MessageService::error("Transação não pode ser criada.");
         }
+
+        return to_route('transactions.index');
     }
 
     /**
@@ -115,15 +113,20 @@ class TransactionController extends Controller
      */
     public function update(TransactionFormRequest $request, string $id)
     {
-        $transaction = Transaction::find($id);
-        $transaction->description = $request->descricao;
-        $transaction->dateTransaction = $request->data;
-        $transaction->relatedHolder_id = $request->contaRelacionada;
-        
-        $transaction->save();
+        try {
+            $transaction = Transaction::find($id);
+            $transaction->description = $request->descricao;
+            $transaction->dateTransaction = $request->data;
+            $transaction->relatedHolder_id = $request->contaRelacionada;
+            
+            $transaction->save();
 
-        return to_route('transactions.index')
-                ->with('mensagem.success', "Transação '{$transaction->dateTransaction} - {$transaction->value}' atualizada com sucesso");
+            MessageService::success("Transação '{$transaction->dateTransaction} - {$transaction->value}' atualizada com sucesso");
+        } catch (\Throwable $th) {
+            MessageService::error($th->getMessage());
+        }
+
+        return to_route('transactions.index');
     }
 
     /**
@@ -148,11 +151,11 @@ class TransactionController extends Controller
             $account->save();
             $transactionDelete->delete();
 
-            return to_route('transactions.index')
-                    ->with('mensagem.success', "Transação '{$transaction->dateTransaction} - {$transaction->value}' removida com sucesso.");
+            MessageService::success("Transação '{$transaction->dateTransaction} - {$transaction->value}' removida com sucesso.");
         } catch (\Throwable $th) {
-            return to_route('transactions.index')
-                    ->with('mensagem.error', "Transação '{$transaction->dateTransaction} - {$transaction->value}' não pode ser removida.");
+            MessageService::error("Transação '{$transaction->dateTransaction} - {$transaction->value}' não pode ser removida.");
         }
+
+        return to_route('transactions.index');
     }
 }

@@ -9,6 +9,7 @@ use App\Models\AccountHolder;
 use App\Models\Allowance;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Services\MessageService;
 use Illuminate\Http\Request;
 
 class AccountHolderController extends Controller
@@ -20,13 +21,9 @@ class AccountHolderController extends Controller
     {
         $accountHolders = AccountHolder::paginate(20);
 
-        $success = session('mensagem.success');
-        $error = session('mensagem.error');
-
         return view('holders.index')
                 ->with('accountHolders', $accountHolders)
-                ->with('success', $success)
-                ->with('error', $error);
+                ->with('messages', session(MessageService::$mensagem));
     }
 
     /**
@@ -42,15 +39,20 @@ class AccountHolderController extends Controller
      */
     public function store(AccountHolderFormRequest $request)
     {
-        $accountHolder = new AccountHolder();
-        $accountHolder->name = $request->nome;
-        $accountHolder->linkAccount = false;
-        $accountHolder->user_id = User::first()->id;
-        
-        $accountHolder->save();
+        try {
+            $accountHolder = new AccountHolder();
+            $accountHolder->name = $request->nome;
+            $accountHolder->linkAccount = false;
+            $accountHolder->user_id = User::first()->id;
+            
+            $accountHolder->save();
 
-        return to_route('holders.index')
-                ->with('mensagem.success', "Account Holder '{$accountHolder->name}' criado com sucesso");
+            MessageService::success("Account Holder '{$accountHolder->name}' criado com sucesso");
+        } catch (\Throwable $th) {
+            MessageService::error($th->getMessage());
+        }
+
+        return to_route('holders.index');
     }
 
     /**
@@ -82,13 +84,18 @@ class AccountHolderController extends Controller
      */
     public function update(AccountHolderFormRequest $request, string $id)
     {
-        $accountHolder = AccountHolder::find($id);
-        $accountHolder->name = $request->nome;
+        try {
+            $accountHolder = AccountHolder::find($id);
+            $accountHolder->name = $request->nome;
+    
+            $accountHolder->save();
 
-        $accountHolder->save();
+            MessageService::success("Account Holder '{$accountHolder->name}' atualizado com sucesso");
+        } catch (\Throwable $th) {
+            MessageService::error($th->getMessage());
+        }
 
-        return to_route('holders.index')
-                    ->with('mensagem.success', "Account Holder '{$accountHolder->name}' atualizado com sucesso");
+        return to_route('holders.index');
     }
 
     /**
@@ -106,11 +113,10 @@ class AccountHolderController extends Controller
             }
             $holder->delete();
 
-            return to_route('holders.index')
-                    ->with('mensagem.success', "Holder '{$holder->name}' removido com sucesso.");
+            MessageService::success("Holder '{$holder->name}' removido com sucesso.");
         } catch (\Throwable $th) {
-            return to_route('holders.index')
-                    ->with('mensagem.error', "Holder '{$holder->name}' não pode ser removido, pois há relações cadastradas em outro locais.");
+            MessageService::error("Holder '{$holder->name}' não pode ser removido, pois há relações cadastradas em outro locais.");
         }
+        return to_route('holders.index');
     }
 }
