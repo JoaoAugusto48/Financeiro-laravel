@@ -7,7 +7,7 @@ use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Number;
 
-class InputGroupShow extends InputShow
+class GroupShow extends Show
 {
     public string $group;
     
@@ -30,6 +30,6 @@ class InputGroupShow extends InputShow
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.input.input-group-show');
+        return view('components.form.input.group-show');
     }
 }

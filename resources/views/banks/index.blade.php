@@ -4,7 +4,7 @@
     
     <div class="row">
         <div class="col">
-            <x-action.button.button-create url="{{ route('banks.create') }}"/>
+            <x-action.button.create url="{{ route('banks.create') }}"/>
         </div>
     </div>
 
@@ -31,10 +31,10 @@
                             <td>
                                 <div class="hstack gap-1">
                                     <div class="ms-auto">
-                                        <x-action.button.group.button-show :url="route('banks.show', $bank->id)"/>
+                                        <x-action.button.group.show :url="route('banks.show', $bank->id)"/>
                                     </div>
-                                    <x-action.button.group.button-edit :url="route('banks.edit', $bank->id)"/>
-                                    <x-action.button.group.button-delete :action="route('banks.destroy', $bank->id)" :object="$bank"/>
+                                    <x-action.button.group.edit :url="route('banks.edit', $bank->id)"/>
+                                    <x-action.button.group.delete :action="route('banks.destroy', $bank->id)" :object="$bank"/>
                                 </div>
                             </td>
                         </tr>

@@ -6,10 +6,11 @@
         Contas: {{ $accountHolder->accounts->count() }}
     </p>
     <div class="col align-self-end">
-        <div class="btn-group" role="group" aria-label="Ativities">
-            <x-action.button.group.button-show url="{{ route('holders.show', $accountHolder->id) }}"/>
-            <x-action.button.group.button-edit url="{{ route('holders.edit', $accountHolder->id) }}"/>
-            <x-action.button.group.button-delete action="{{ route('holders.destroy', $accountHolder->id) }}" :object="$accountHolder"/>
-        </div>
+        <x-action.button.stretched-link url="{{ route('holders.show', $accountHolder->id) }}"/>
+        {{-- <div class="btn-group" role="group" aria-label="Ativities">
+            <x-action.button.group.show url="{{ route('holders.show', $accountHolder->id) }}"/>
+            <x-action.button.group.edit url="{{ route('holders.edit', $accountHolder->id) }}"/>
+            <x-action.button.group.delete action="{{ route('holders.destroy', $accountHolder->id) }}" :object="$accountHolder"/>
+        </div> --}}
     </div>
 </x-cards.card>

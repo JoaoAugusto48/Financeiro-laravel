@@ -17,10 +17,11 @@
         <p class="card-text">Note: {{ $transaction->description }}</p>
     @endisset
     <div class="col align-self-end">
-        <div class="btn-group" role="group" aria-label="Ativities">
-            <x-action.button.group.button-show url="{{ route('transactions.show', $transaction->id) }}"/>
-            <x-action.button.group.button-edit url="{{ route('transactions.edit', $transaction->id) }}"/>
-            <x-action.button.group.button-delete action="{{ route('transactions.destroy', $transaction->id) }}" :object="$transaction"/>
-        </div>
+        <x-action.button.stretched-link url="{{ route('transactions.show', $transaction->id) }}"/>
+        {{-- <div class="btn-group" role="group" aria-label="Ativities">
+            <x-action.button.group.show url="{{ route('transactions.show', $transaction->id) }}"/>
+            <x-action.button.group.edit url="{{ route('transactions.edit', $transaction->id) }}"/>
+            <x-action.button.group.delete action="{{ route('transactions.destroy', $transaction->id) }}" :object="$transaction"/>
+        </div> --}}
     </div>
 </x-cards.card>

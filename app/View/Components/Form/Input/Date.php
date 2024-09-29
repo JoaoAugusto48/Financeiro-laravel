@@ -7,19 +7,27 @@ use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class InputDateShow extends InputShow
+class Date extends Input
 {
-    public string $format;
     
-    public function __construct($value = '', $label = '', $class = '', $format = 'Y-m-d')
-    {
-        parent::__construct($value,$label,$class);
-        $this->format = $format;
-    }
+    public string $format;
+    public string $max;
 
+    public function __construct($name, $label = '', $value = '', $max = '', $required = false, $format = 'Y-m-d')
+    {
+        parent::__construct($name,$label,$value,'','date',$required);
+        $this->format = $format;
+        $this->max = $max;
+    }
+    
     public function formattedValue(): string
     {
         return Carbon::parse($this->value)->format($this->format);
+    }
+
+    public function formattedMax(): string
+    {
+        return Carbon::parse($this->max)->format($this->format);
     }
 
     /**
@@ -27,6 +35,6 @@ class InputDateShow extends InputShow
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.input.input-date-show');
+        return view('components.form.input.date');
     }
 }

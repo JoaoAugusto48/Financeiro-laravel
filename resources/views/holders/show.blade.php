@@ -2,7 +2,13 @@
 
     <div class="row mb-2">
         <div class="col">
-            <x-action.button.button-back :url="route('holders.index')" />
+            <div class="hstack gap-2">
+                <x-action.button.back :url="route('holders.index')" />
+                <div class="vr"></div>
+                <x-action.button.create url="{{ route('holders.create') }}"/>
+                <x-action.button.edit url="{{ route('holders.edit', $accountHolder) }}"/>
+                <x-action.button.delete action="{{ route('holders.destroy', $accountHolder->id) }}" :object="$accountHolder" />
+            </div>
         </div>
     </div>
 

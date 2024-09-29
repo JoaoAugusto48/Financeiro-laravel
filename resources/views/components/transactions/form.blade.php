@@ -7,13 +7,13 @@
     <div class="row">
         <div class="col">
             <div class="hstack gap-2">
-                <x-action.button.button-back url="{{ $goBack }}"/>
+                <x-action.button.back url="{{ $goBack }}"/>
                 <div class="vr"></div>
                 @empty($transaction)
-                <x-action.button.button-create label="New Account" :url="route('accounts.create')" class="btn btn-outline-primary"/>
+                <x-action.button.create label="New Account" :url="route('accounts.create')" class="btn btn-outline-primary"/>
                 @endempty
-                <x-action.button.button-create label="New Account Holder" :url="route('holders.create')" class="btn btn-outline-primary"/>
-                <x-action.button.button-save/>
+                <x-action.button.create label="New Account Holder" :url="route('holders.create')" class="btn btn-outline-primary"/>
+                <x-action.button.save/>
             </div>
         </div>
     </div>
@@ -42,19 +42,19 @@
                                 required/>
                         @endempty
                         @isset($transaction)
-                            <x-form.input.input-show label="Titular" value="{{ $transaction->account->accountNumber }} | {{ $transaction->account->accountHolder->name }} - {{ $transaction->account->bank->abbreviation }}"/>
+                            <x-form.input.show label="Titular" value="{{ $transaction->account->accountNumber }} | {{ $transaction->account->accountHolder->name }} - {{ $transaction->account->bank->abbreviation }}"/>
                         @endisset
                     </div>
                     <div class="col-3">
                         @empty($transaction)
-                        <x-form.input.input-group-money 
+                        <x-form.input.group-money 
                                 label="Valor" 
                                 name="valor"  
                                 value="{{ $transaction->value ?? '' }}"
                                 required/>
                         @endempty
                         @isset($transaction)
-                            <x-form.input.input-group-show label="Valor" value="{{ $transaction->value }}" group="R$"/>
+                            <x-form.input.group-show label="Valor" value="{{ $transaction->value }}" group="R$"/>
                         @endisset
                     </div>
                     <div class="col-3">
@@ -65,7 +65,7 @@
                                 selected="{{ $transaction->relatedHolder_id ?? '' }}"/>
                     </div>
                     <div class="col-3">
-                        <x-form.input.input-date
+                        <x-form.input.date
                             label="Data da Transação"
                             name="data"
                             value="{{ $transaction->dateTransaction ?? '' }}"
@@ -76,14 +76,14 @@
                 <div class="row mt-2">
                     <div class="col-3">
                         @empty($transaction)
-                        <x-form.radio.radio-transaction-enum
+                        <x-form.radio.transaction-enum
                                 label="Tipo transação"
                                 name="tipoTransacao"
                                 checked="{{ $transaction->kindTransaction ?? '' }}"
                                 required/>
                         @endempty
                         @isset($transaction)
-                            <x-form.radio.radio-transaction-enum-show label="Tipo transação" checked="{{ $transaction->kindTransaction }}"/>
+                            <x-form.radio.transaction-enum-show label="Tipo transação" checked="{{ $transaction->kindTransaction }}"/>
                         @endisset
                     </div>
                     <div class="col-6">
@@ -100,7 +100,7 @@
 
     <div class="row mt-2">
         <div class="col">
-            <x-action.button.button-save/>
+            <x-action.button.save/>
         </div>
     </div>
 </form>

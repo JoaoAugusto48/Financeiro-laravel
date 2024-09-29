@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class InputGroup extends Input
+class Group extends Input
 {
     public string $group;
     /**
@@ -23,6 +23,6 @@ class InputGroup extends Input
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.input.input-group');
+        return view('components.form.input.group');
     }
 }

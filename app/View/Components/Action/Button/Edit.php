@@ -6,14 +6,14 @@ use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class ButtonDelete extends Button
+class Edit extends Button
 {
     /**
      * Create a new component instance.
-     */    
-    public function __construct($label = 'Delete', $url = '#', $class = 'danger')
+     */
+    public function __construct($label = 'Edit', $url = '#', $class = 'warning')
     {
-        parent::__construct($label,$url,$class,type: 'submit');
+        parent::__construct($label,$url,$class,true);
     }
 
     /**
@@ -21,6 +21,6 @@ class ButtonDelete extends Button
      */
     public function render(): View|Closure|string
     {
-        return view('components.action.button.button-delete');
+        return view('components.action.button.edit');
     }
 }

@@ -1,4 +1,4 @@
-<x-form.radio.radio-show label="{{ $label }}">
+<x-form.radio.show label="{{ $label }}">
     @foreach ($transactionEnum as $transaction)
         <div class="form-check">
             <input class="form-check-input" 
@@ -10,4 +10,4 @@
             </label>
         </div>
     @endforeach
-</x-form.radio.radio-show>
+</x-form.radio.show>

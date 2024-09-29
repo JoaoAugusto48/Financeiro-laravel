@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class InputGroupMoney extends InputGroup
+class GroupMoney extends Group
 {
     
     public function __construct($name,$label = '',$value = '0.00',$required = '')
@@ -22,6 +22,6 @@ class InputGroupMoney extends InputGroup
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.input.input-group-money');
+        return view('components.form.input.group-money');
     }
 }

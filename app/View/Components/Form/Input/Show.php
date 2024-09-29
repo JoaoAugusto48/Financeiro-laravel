@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class InputShow extends Component
+class Show extends Component
 {
     public string $label;
     public string $value;
@@ -24,6 +24,6 @@ class InputShow extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.input.input-show');
+        return view('components.form.input.show');
     }
 }

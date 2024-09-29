@@ -1,4 +1,4 @@
-<x-form.input.input-group 
+<x-form.input.group 
     label="{{ $label }}" 
     name="{{ $name }}" 
     value="{{ $value }}" 

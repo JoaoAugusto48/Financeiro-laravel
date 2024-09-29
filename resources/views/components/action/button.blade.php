@@ -1,5 +1,5 @@
 @if ($isLink != 'false')
-    <a href="{{ $url ?? '' }}" class="btn btn-{{ $class }}" {{ $attributes }}>
+    <a href="{{ $url ?? '' }}" class="btn btn-{{ $class }}" draggable="false" {{ $attributes }}>
         {{ $label }}
     </a>
 @else

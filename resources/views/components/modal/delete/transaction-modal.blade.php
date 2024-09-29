@@ -1,7 +1,6 @@
 <x-modal.modal id="{{ $id }}">
     <x-slot:title>Tem certeza que deseja remover essa transação?</x-slot:title>
     <x-slot:body>
-        <p class="text-body">Value | KindTransaction | Description | Account | RelatedHolder</p>
         <div class="row">
             <div class="col">
                 <p class="text-body">Value: <x-helper.currency-text value="{{ $transaction->value }}"/></p>

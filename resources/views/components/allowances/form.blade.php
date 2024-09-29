@@ -7,11 +7,11 @@
     <div class="row">
         <div class="col">
             <div class="hstack gap-2">
-                <x-action.button.button-back url="{{ $goBack }}"/>
+                <x-action.button.back url="{{ $goBack }}"/>
                 <div class="vr"></div>
-                <x-action.button.button-create label="New Account" :url="route('accounts.create')" class="btn btn-outline-primary"/>
-                <x-action.button.button-create label="New Account Holder" :url="route('holders.create')" class="btn btn-outline-primary"/>
-                <x-action.button.button-save/>
+                <x-action.button.create label="New Account" :url="route('accounts.create')" class="btn btn-outline-primary"/>
+                <x-action.button.create label="New Account Holder" :url="route('holders.create')" class="btn btn-outline-primary"/>
+                <x-action.button.save/>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
                                 required/>
                     </div>
                     <div class="col-3">
-                        <x-form.input.input-group-money 
+                        <x-form.input.group-money 
                                 label="Valor" 
                                 name="valor"  
                                 value="{{ $allowance->value ?? '' }}"/>
@@ -54,7 +54,7 @@
                             value="{{ $allowance->description ?? '' }}"/>
                     </div>
                     <div class="col-3">
-                        <x-form.radio.radio-transaction-enum
+                        <x-form.radio.transaction-enum
                                 label="Tipo transação"
                                 name="tipoTransacao"
                                 checked="{{ $allowance->kindTransaction ?? '' }}"
@@ -75,7 +75,7 @@
 
     <div class="row mt-2">
         <div class="col">
-            <x-action.button.button-save/>
+            <x-action.button.save/>
         </div>
     </div>
 </form>

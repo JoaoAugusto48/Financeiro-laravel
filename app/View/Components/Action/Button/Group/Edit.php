@@ -7,12 +7,12 @@ use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class ButtonShow extends Button
+class Edit extends Button
 {
     /**
      * Create a new component instance.
      */
-    public function __construct($label = '', $url = '#', $class = 'info btn-sm')
+    public function __construct($label = '', $url = '#', $class = 'warning btn-sm')
     {
         parent::__construct($label,$url,$class,true);
     }
@@ -22,6 +22,6 @@ class ButtonShow extends Button
      */
     public function render(): View|Closure|string
     {
-        return view('components.action.button.group.button-show');
+        return view('components.action.button.group.edit');
     }
 }

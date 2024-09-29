@@ -7,9 +7,9 @@
     <div class="row">
         <div class="col">
             <div class="hstack gap-2">
-                <x-action.button.button-back url="{{ $goBack }}"/>
+                <x-action.button.back url="{{ $goBack }}"/>
                 <div class="vr"></div>
-                <x-action.button.button-save/>
+                <x-action.button.save/>
             </div>
         </div>
     </div>
@@ -56,7 +56,7 @@
 
     <div class="row">
         <div class="col">
-            <x-action.button.button-save />
+            <x-action.button.save />
         </div>
     </div>
 </form>

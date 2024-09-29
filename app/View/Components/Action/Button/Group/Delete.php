@@ -12,7 +12,7 @@ use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class ButtonDelete extends Button
+class Delete extends Button
 {
     public object $object;
     public string|bool $typeObject;
@@ -65,6 +65,6 @@ class ButtonDelete extends Button
      */
     public function render(): View|Closure|string
     {
-        return view('components.action.button.group.button-delete');
+        return view('components.action.button.group.delete');
     }
 }

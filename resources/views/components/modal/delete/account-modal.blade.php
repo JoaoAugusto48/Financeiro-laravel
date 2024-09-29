@@ -1,8 +1,6 @@
 <x-modal.modal id="{{ $id }}">
     <x-slot:title>Tem certeza que deseja remover "{{ $account->accountNumber }}"?</x-slot:title>
     <x-slot:body>
-        <p class="text-body">accountNumber | Bank | Account Holder | balance</p>
-
         <div class="row">
             <div class="col">
                 <p class="text-body">Acc. number: {{ $account->accountNumber }}</p>

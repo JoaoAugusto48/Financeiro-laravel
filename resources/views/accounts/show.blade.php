@@ -1,6 +1,6 @@
 <x-layout page-name="Account">
     <x-slot:title>
-        Atualizar '{{ $account->accountNumber }} - {{ $account->accountHolder->name }}'
+        {{ $account->accountNumber }} - {{ $account->accountHolder->name }}
     </x-slot:title>
 
     @if ($transactions->count() > 0)

@@ -4,7 +4,7 @@
 
     <div class="row mb-2">
         <div class="col">
-            <x-action.button.button-create url="{{ route('accounts.create') }}"/>
+            <x-action.button.create url="{{ route('accounts.create') }}"/>
         </div>
         <div class="col ms-auto h3 text-end">
             Amount: 

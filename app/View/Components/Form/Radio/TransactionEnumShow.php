@@ -2,19 +2,22 @@
 
 namespace App\View\Components\Form\Radio;
 
+use App\Enums\TransactionEnum;
 use Closure;
 use Illuminate\View\Component;
 use Illuminate\Contracts\View\View;
 
-class RadioShow extends Component
+class TransactionEnumShow extends Show
 {
-    public string $label;
-    public string $checked;
+    /**
+     * @var TransactionEnum[]
+     */
+    public array $transactionEnum;
 
     public function __construct($label = '', $checked = '')
     {
-        $this->label = $label;
-        $this->checked = $checked;
+        parent::__construct($label,$checked);
+        $this->transactionEnum = TransactionEnum::cases();
     }
 
     /**
@@ -22,6 +25,6 @@ class RadioShow extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.form.radio.radio-show');
+        return view('components.form.radio.transaction-enum-show');
     }
 }
