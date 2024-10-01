@@ -4,10 +4,7 @@
     </x-slot:title>
 
     <x-transactions.form :action="route('transactions.update', $transaction->id)"
-                :go-back="route('transactions.index')"
-                :transaction="$transaction"
-                :accounts="$accounts"
-                :related-accounts="$relatedAccounts"
-                :allowances="$allowances"
-                :today="$today"/>
+        :go-back="route('transactions.show', $transaction)"
+        :$transaction :$accounts :$relatedAccounts 
+        :$allowances :$today/>
 </x-layout>

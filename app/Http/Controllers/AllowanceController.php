@@ -9,6 +9,7 @@ use App\Models\Account;
 use App\Models\AccountHolder;
 use App\Models\Allowance;
 use App\Models\User;
+use App\Services\Messages\AllowanceMessageService;
 use App\Services\MessageService;
 use Illuminate\Http\Request;
 
@@ -57,7 +58,7 @@ class AllowanceController extends Controller
     
             $allowance->save();
             
-            MessageService::success("Mensalidade '$allowance->title' criada com sucesso");
+            MessageService::success(AllowanceMessageService::create($allowance));
         } catch (\Throwable $th) {
             MessageService::error($th->getMessage());
         }
@@ -106,7 +107,7 @@ class AllowanceController extends Controller
     
             $allowance->save();
 
-            MessageService::success("Mensalidade '$allowance->title' criada com sucesso");
+            MessageService::success(AllowanceMessageService::update($allowance));
         } catch (\Throwable $th) {
             MessageService::error($th->getMessage());
         }
@@ -122,9 +123,9 @@ class AllowanceController extends Controller
         try {
             $allowance->delete();
 
-            MessageService::success("Mensalidade '{$allowance->title}' removida com sucesso.");
+            MessageService::success(AllowanceMessageService::delete($allowance));
         } catch (\Throwable $th) {
-            MessageService::error("Mensalidade '{$allowance->title}' não pode ser excluida.");
+            MessageService::error($th->getMessage());
         }
         
         return to_route('allowances.index');

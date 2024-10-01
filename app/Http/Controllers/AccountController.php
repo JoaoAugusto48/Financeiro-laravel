@@ -9,6 +9,7 @@ use App\Models\AccountHolder;
 use App\Models\Allowance;
 use App\Models\Bank;
 use App\Models\Transaction;
+use App\Services\Messages\AccountMessageService;
 use App\Services\MessageService;
 use Illuminate\Http\Request;
 
@@ -58,7 +59,7 @@ class AccountController extends Controller
             $account->save();
             $accountHolder->save();
 
-            MessageService::success("Account '{$account->accountNumber}' criada com sucesso");
+            MessageService::success(AccountMessageService::create($account));
         } catch (\Throwable $th) {
             MessageService::error($th->getMessage());
         }
@@ -100,7 +101,7 @@ class AccountController extends Controller
             $account->accountNumber = $request->numeroConta;
     
             $account->save();
-            MessageService::success("Account '{$account->accountNumber}' atualizada com sucesso");
+            MessageService::success(AccountMessageService::update($account));
         } catch (\Throwable $th) {
             MessageService::error($th->getMessage());
         }
@@ -121,9 +122,11 @@ class AccountController extends Controller
             
             $account->delete();
 
-            MessageService::success("Conta '{$account->accountNumber}' removida com sucesso.");
+            MessageService::success(AccountMessageService::delete($account));
+        } catch (\Exception $ex) {
+            MessageService::warning(AccountMessageService::errorException($account));
         } catch (\Throwable $th) {
-            MessageService::error("A conta '{$account->accountNumber}' não pode ser excluida, há informações cadastradas em outros lugares.");
+            MessageService::error($th->getMessage());
         }
         return to_route('accounts.index');
     }

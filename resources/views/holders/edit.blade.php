@@ -5,6 +5,6 @@
     
     <x-holders.form 
         :action="route('holders.update', $accountHolder->id)"
-        :account-holder="$accountHolder"
-        :goBack="route('holders.index')"/>
+        :$accountHolder
+        :go-back="route('holders.show', $accountHolder)"/>
 </x-layout>

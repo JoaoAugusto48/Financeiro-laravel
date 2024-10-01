@@ -29,6 +29,8 @@ class CurrencyTextColor extends Component
                 $class = 'text-success';
             } elseif ($this->value < 0) {
                 $class = 'text-danger';
+            } else {
+                $class= 'text-secondary';
             }
         }
 

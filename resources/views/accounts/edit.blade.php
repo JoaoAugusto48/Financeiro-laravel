@@ -4,6 +4,6 @@
     </x-slot:title>
     
     <x-accounts.form action="{{ route('accounts.update', $account) }}"
-        :go-back="route('accounts.index')"
+        :go-back="route('accounts.show', $account)"
         :$account :$banks :$accountHolders/>
 </x-layout>

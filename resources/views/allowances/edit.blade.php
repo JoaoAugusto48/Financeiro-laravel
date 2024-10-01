@@ -4,9 +4,7 @@
     </x-slot:title>
 
     <x-allowances.form action="{{ route('allowances.update', $allowance->id) }}" 
-                go-back="{{ route('allowances.index') }}"
-                :allowance="$allowance"
-                :transactions="$transactions"
-                :accounts="$accounts"
-                :relatedAccounts="$relatedAccounts"/>
+        go-back="{{ route('allowances.show', $allowance) }}"
+        :$allowance :$transactions 
+        :$accounts :$relatedAccounts/>
 </x-layout>

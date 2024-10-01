@@ -9,6 +9,7 @@ use App\Models\AccountHolder;
 use App\Models\Allowance;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Services\Messages\AccountHolderMessageService;
 use App\Services\MessageService;
 use Illuminate\Http\Request;
 
@@ -47,7 +48,7 @@ class AccountHolderController extends Controller
             
             $accountHolder->save();
 
-            MessageService::success("Account Holder '{$accountHolder->name}' criado com sucesso");
+            MessageService::success(AccountHolderMessageService::create($accountHolder));
         } catch (\Throwable $th) {
             MessageService::error($th->getMessage());
         }
@@ -90,7 +91,7 @@ class AccountHolderController extends Controller
     
             $accountHolder->save();
 
-            MessageService::success("Account Holder '{$accountHolder->name}' atualizado com sucesso");
+            MessageService::success(AccountHolderMessageService::update($accountHolder));
         } catch (\Throwable $th) {
             MessageService::error($th->getMessage());
         }
@@ -113,9 +114,11 @@ class AccountHolderController extends Controller
             }
             $holder->delete();
 
-            MessageService::success("Holder '{$holder->name}' removido com sucesso.");
+            MessageService::success(AccountHolderMessageService::delete($holder));
+        } catch (\Exception $ex) {
+            MessageService::warning(AccountHolderMessageService::errorException($holder));
         } catch (\Throwable $th) {
-            MessageService::error("Holder '{$holder->name}' não pode ser removido, pois há relações cadastradas em outro locais.");
+            MessageService::error($th->getMessage());
         }
         return to_route('holders.index');
     }
