@@ -5,7 +5,5 @@
     
     <x-accounts.form action="{{ route('accounts.update', $account) }}"
         :go-back="route('accounts.index')"
-        :account="$account"
-        :banks="$banks"
-        :accountHolders="$accountHolders"/>
+        :$account :$banks :$accountHolders/>
 </x-layout>

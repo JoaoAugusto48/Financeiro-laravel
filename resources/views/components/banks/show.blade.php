@@ -1,14 +1,3 @@
-<div class="row">
-    <div class="col">
-        <div class="hstack gap-2">
-            <x-action.button.back url="{{ $goBack }}"/>
-            <div class="vr"></div>
-            <x-action.button.create url="{{ route('banks.create') }}"/>
-            <x-action.button.edit url="{{ route('banks.edit', $bank) }}"/>
-        </div>
-    </div>
-</div>
-
 <div class="mt-2">
     <div class="row">
         <div class="col-7">

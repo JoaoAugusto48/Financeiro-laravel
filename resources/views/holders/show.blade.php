@@ -5,9 +5,9 @@
             <div class="hstack gap-2">
                 <x-action.button.back :url="route('holders.index')" />
                 <div class="vr"></div>
-                <x-action.button.create url="{{ route('holders.create') }}"/>
-                <x-action.button.edit url="{{ route('holders.edit', $accountHolder) }}"/>
-                <x-action.button.delete action="{{ route('holders.destroy', $accountHolder->id) }}" :object="$accountHolder" />
+                <x-action.button.create :url="route('holders.create')"/>
+                <x-action.button.edit :url="route('holders.edit', $accountHolder)"/>
+                <x-action.button.delete :action="route('holders.destroy', $accountHolder->id)" :object="$accountHolder" />
             </div>
         </div>
     </div>
