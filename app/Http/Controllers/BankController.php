@@ -24,7 +24,7 @@ class BankController extends Controller
                 ->with('banks', $banks)
                 ->with('messages', session(MessageService::$mensagem));
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */

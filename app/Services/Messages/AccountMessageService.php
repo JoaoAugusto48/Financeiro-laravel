@@ -17,11 +17,11 @@ class AccountMessageService
 
     public static function delete(Account $account): string
     {
-        return "Conta '{$account->accountNumber}' removida com sucesso.";
+        return "Account '{$account->accountNumber}' removida com sucesso.";
     }
 
     public static function errorException($account): string
     {
-        return "A conta '{$account->accountNumber}' não pode ser excluida, há informações cadastradas em outros lugares.";
+        return "Account '{$account->accountNumber}' não pode ser excluida, há informações cadastradas em outros lugares.";
     }
 }

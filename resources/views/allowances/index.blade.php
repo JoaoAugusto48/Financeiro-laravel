@@ -14,7 +14,7 @@
 
     <div class="row row-cols-4">
         @foreach ($allowances as $allowance)
-            <x-cards.allowance-card :allowance="$allowance" />
+            <x-cards.allowance-card :$allowance />
         @endforeach
     </div>
 </x-layout>

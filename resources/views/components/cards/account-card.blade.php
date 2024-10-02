@@ -1,4 +1,4 @@
-<x-cards.card >
+<x-cards.card>
     <h5 class="card-title">{{ $account->bank->name }} - {{ $account->accountNumber }}</h5>
     <h6 class="card-subtitle mb-2 text-body-secondary">{{ $account->accountHolder->name }}</h6>
     <p class="card-text">

@@ -18,11 +18,11 @@ class AccountHolderMessageService
 
     public static function delete(AccountHolder $accountHolder): string
     {
-        return "Holder '{$accountHolder->name}' removido com sucesso.";
+        return "Account Holder '{$accountHolder->name}' removido com sucesso.";
     }
 
     public static function errorException(AccountHolder $accountHolder): string
     {
-        return "Holder '{$accountHolder->name}' não pode ser removido, pois há relações cadastradas em outro locais.";
+        return "Account Holder '{$accountHolder->name}' não pode ser removido, pois há relações cadastradas em outro locais.";
     }
 }
