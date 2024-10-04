@@ -14,20 +14,29 @@
                 <x-banks.search :action="route('banks.search')" />
             </div>
         </div> --}}
-        <div class="col">
+
+        <x-action.dropdown-filter :options="[
+            ['label' => 'Nome', 'sort' => 'name', 'type' => 'asc'],
+            ['label' => 'Número', 'sort' => 'number', 'type' => 'asc'],
+            ['label' => 'Abreviação', 'sort' => 'abbreviation', 'type' => 'asc']
+        ]" :current-sort="$currentSort" />
+
+        {{-- <div class="col">
             <div class="d-flex justify-content-end">
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-filter"></i>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Nome</a></li>
-                        <li><a class="dropdown-item" href="#">Número</a></li>
-                        <li><a class="dropdown-item" href="#">Abreviação</a></li>
+                        <li><a class="dropdown-item active" href="{{ route('banks.order', ['sort' => 'name', 'type' => 'asc']) }}">
+                            Nome <i class="bi bi-check2"></i>
+                        </a></li>
+                        <li><a class="dropdown-item" href="{{ route('banks.order', ['sort' => 'number', 'type' => 'asc']) }}">Número</a></li>
+                        <li><a class="dropdown-item" href="{{ route('banks.order', ['sort' => 'abbreviation', 'type' => 'asc']) }}">Abreviação</a></li>
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 
     <div class="row">

@@ -22,4 +22,5 @@ Route::resources([
 
 Route::prefix('banks')->group(function () {
     Route::post('search', [BankController::class, 'search'])->name('banks.search');
+    Route::get('{sort}/{type}', [BankController::class, 'index'])->name('banks.order');
 });

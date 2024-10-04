@@ -8,6 +8,7 @@ use App\Models\Account;
 use App\Models\Bank;
 use App\Services\Messages\BankMessageService;
 use App\Services\MessageService;
+use App\Services\SortParamsService;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -16,15 +17,20 @@ class BankController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Bank $bank)
+    public function index(Bank $bank, Request $request, string $sort = 'name', string $type = 'asc')
     {
-        $banks = Bank::paginate(20);
+        $allowedSorts = ['name', 'number', 'abbreviation'];
+        $sort = in_array($sort, $allowedSorts) ? $sort : 'name';
+        $type = ($type === 'desc') ? 'desc' : 'asc';
+
+        $banks = Bank::orderBy($sort, $type)->paginate(20);
 
         return view('banks.index')
                 ->with('banks', $banks)
+                ->with('currentSort', new SortParamsService($sort, $type))
                 ->with('messages', session(MessageService::$mensagem));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */
