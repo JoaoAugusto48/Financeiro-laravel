@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Enums\Sort\BankSortEnum;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\BankFormRequest;
 use App\Models\Account;
@@ -17,17 +18,15 @@ class BankController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Bank $bank, Request $request, string $sort = 'name', string $type = 'asc')
+    public function index(Bank $bank, string $sort = '', string $type = '')
     {
-        $allowedSorts = ['name', 'number', 'abbreviation'];
-        $sort = in_array($sort, $allowedSorts) ? $sort : 'name';
-        $type = ($type === 'desc') ? 'desc' : 'asc';
+        $currentSort = new SortParamsService($sort, $type, BankSortEnum::allowedSorts());
 
-        $banks = Bank::orderBy($sort, $type)->paginate(20);
+        $banks = Bank::orderBy($currentSort->sort, $currentSort->type)->paginate(20);
 
         return view('banks.index')
                 ->with('banks', $banks)
-                ->with('currentSort', new SortParamsService($sort, $type))
+                ->with('currentSort', $currentSort)
                 ->with('messages', session(MessageService::$mensagem));
     }
 

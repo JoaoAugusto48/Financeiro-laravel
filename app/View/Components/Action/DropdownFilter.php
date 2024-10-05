@@ -16,7 +16,6 @@ class DropdownFilter extends Component
     {
         $this->options = $options;
         $this->currentSort = $currentSort;
-        // dd($currentSort);
     }
 
     /**
