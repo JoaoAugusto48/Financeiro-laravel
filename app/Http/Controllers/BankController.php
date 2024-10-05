@@ -35,7 +35,9 @@ class BankController extends Controller
      */
     public function create()
     {
-        return view('banks.create');
+        $banks = Bank::get();
+        return view('banks.create')
+            ->with('banks', $banks);
     }
 
     /**

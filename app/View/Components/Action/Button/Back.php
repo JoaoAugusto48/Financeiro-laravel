@@ -11,9 +11,14 @@ class Back extends Button
     /**
      * Create a new component instance.
      */
-    public function __construct($label = 'Back', $url = '#', $class = 'info text-black-50')
+    public function __construct($label = 'Back', $url = '', $class = 'info text-black-50')
     {
         parent::__construct($label,$url,$class,true);
+    }
+
+    public function historyBack(): string
+    {
+        return ($this->url == '') ? 'javascript:history.back()' : $this->url;
     }
 
     /**
