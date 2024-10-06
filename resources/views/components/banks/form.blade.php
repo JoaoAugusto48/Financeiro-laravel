@@ -1,6 +1,3 @@
-@isset($bank)
-    @method('PUT')
-@endisset
 
 <div class="mt-2">
     <div class="row">
