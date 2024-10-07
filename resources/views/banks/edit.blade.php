@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col">
                 <div class="hstack gap-2">
-                    <x-action.button.back url="{{ route('banks.index') }}"/>
+                    <x-action.button.back/>
                     <div class="vr"></div>
                     <x-action.button.save/>
                 </div>

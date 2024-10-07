@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col">
                 <div class="hstack gap-2">
-                    <x-action.button.back url="{{ route('banks.index') }}"/>
+                    <x-action.button.back/>
                     <div class="vr"></div>
                     <x-action.button.save/>
                 </div>
@@ -29,7 +29,7 @@
                         </tr>
                     </x-slot:thead>
                     <x-slot:tbody>
-                        @foreach ($banks as $bank)
+                        @foreach ($banks as $key => $bank)
                         <tr>
                             <th class="col-2" scope="row">{{ $bank->number }}</th>
                             <td class="col-2">{{ $bank->abbreviation }}</td>

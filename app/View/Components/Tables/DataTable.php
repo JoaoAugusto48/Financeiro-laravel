@@ -36,7 +36,6 @@ class DataTable extends Component
         $this->id = $id;
         $this->thead = $thead;
         $this->tbody = $tbody;
-        $this->class = $class;
         $this->ordering = $ordering;
         $this->paging = $paging;
         $this->searching = $searching;

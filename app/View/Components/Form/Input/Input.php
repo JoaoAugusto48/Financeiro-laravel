@@ -14,9 +14,9 @@ class Input extends Component
     public string $value;
     public string $placeholder;
     public bool $required;
-    public string $class;
+    public ?string $class;
     
-    public function __construct($name, $label = '', $value = '', $placeholder = '', $type = 'text', $required = false, $class = 'form-control')
+    public function __construct($name, $label = '', $value = '', $placeholder = '', $type = 'text', $required = false, $class = null)
     {
         $this->type = $type;
         $this->name = $name;

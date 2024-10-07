@@ -1,4 +1,4 @@
-<table id="{{ $id }}" class="table table-hover text-center table-responsive">
+<table id="{{ $id }}" class="{{ $class }}">
     <thead>
         {{ $thead }}
     </thead>

@@ -21,6 +21,7 @@
                         value="{{ $bank->abbreviation ?? old('sigla') }}"
                         autocomplete="off"
                         maxlength="4"
+                        class="text-uppercase"
                         required/>
                 </div>
             </div>

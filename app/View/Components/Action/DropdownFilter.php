@@ -9,6 +9,10 @@ use Illuminate\Contracts\View\View;
 
 class DropdownFilter extends Component
 {
+    /**
+     * Summary of options
+     * @var SortParamsService[]
+     */
     public array $options;
     public SortParamsService $currentSort;
 
