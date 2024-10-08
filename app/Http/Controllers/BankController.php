@@ -21,7 +21,7 @@ class BankController extends Controller
     public function index(Bank $bank, string $sort = '', string $type = '')
     {
         $currentSort = new SortParamsService($sort, $type, BankSortEnum::allowedSorts());
-
+        
         $banks = Bank::orderBy($currentSort->sort, $currentSort->type)->paginate(20);
 
         return view('banks.index')

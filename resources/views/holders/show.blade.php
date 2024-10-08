@@ -3,7 +3,7 @@
     <div class="row mb-2">
         <div class="col">
             <div class="hstack gap-2">
-                <x-action.button.back :url="route('holders.index')" />
+                <x-action.button.back/>
                 <div class="vr"></div>
                 <x-action.button.create :url="route('holders.create')"/>
                 <x-action.button.edit :url="route('holders.edit', $accountHolder)"/>

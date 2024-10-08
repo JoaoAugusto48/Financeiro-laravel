@@ -14,7 +14,7 @@
 
     <div class="row row-cols-4">
         @foreach ($accountHolders as $accountHolder)
-            <x-cards.account-holder-card :accountHolder="$accountHolder"/>
+            <x-cards.account-holder-card :$accountHolder/>
         @endforeach
     </div>
 </x-layout>

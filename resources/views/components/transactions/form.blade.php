@@ -1,109 +1,89 @@
-<form action="{{ $action }}" method="post">
-    @csrf
-
-    @isset($transaction)
-        @method('PUT')
-    @endisset
+<div class="mt-2">
     <div class="row">
-        <div class="col">
-            <div class="hstack gap-2">
-                <x-action.button.back url="{{ $goBack }}"/>
-                <div class="vr"></div>
-                @empty($transaction)
-                <x-action.button.create label="New Account" :url="route('accounts.create')" class="btn btn-outline-primary"/>
-                @endempty
-                <x-action.button.create label="New Account Holder" :url="route('holders.create')" class="btn btn-outline-primary"/>
-                <x-action.button.save/>
-            </div>
-        </div>
-    </div>
-
-    <div class="mt-2">
-        <div class="row">
-            <div class="col-12">
-                @empty($transaction)
-                <div class="row mb-2">
-                    <div class="col-6">
-                        <x-form.select.allowance-select 
-                            label="Mensalidade" 
-                            name="allowance"
-                            :options="$allowances"/>
-                    </div>
+        <div class="col-12">
+            @empty($transaction)
+            <div class="row mb-2">
+                <div class="col-6">
+                    <x-form.select.allowance-select 
+                        label="Mensalidade" 
+                        name="allowance"
+                        :options="$allowances"/>
                 </div>
-                @endempty
-                <div class="row">
-                    <div class="col-3">
-                        @empty($transaction)
-                        <x-form.select.account-select 
-                                label="Titular" 
-                                name="titular" 
-                                :options="$accounts"
-                                selected="{{ $transaction->account_id ?? '' }}"
-                                required/>
-                        @endempty
-                        @isset($transaction)
-                            <x-form.input.show label="Titular" value="{{ $transaction->account->accountNumber }} | {{ $transaction->account->accountHolder->name }} - {{ $transaction->account->bank->abbreviation }}"/>
-                        @endisset
-                    </div>
-                    <div class="col-3">
-                        @empty($transaction)
-                        <x-form.input.group-money 
-                                label="Valor" 
-                                name="valor"  
-                                value="{{ $transaction->value ?? '' }}"
-                                required/>
-                        @endempty
-                        @isset($transaction)
-                            <x-form.input.group-show label="Valor" value="{{ $transaction->value }}" group="R$"/>
-                        @endisset
-                    </div>
-                    <div class="col-3">
-                        <x-form.select.account-holder-select 
-                                label="Conta relacionada" 
-                                name="contaRelacionada" 
-                                :options="$relatedAccounts"
-                                selected="{{ $transaction->relatedHolder_id ?? '' }}"/>
-                    </div>
-                    <div class="col-3">
-                        <x-form.input.date
-                            label="Data da Transação"
-                            name="data"
-                            value="{{ $transaction->dateTransaction ?? '' }}"
-                            max="{{ $today }}"
+            </div>
+            @endempty
+            <div class="row">
+                <div class="col-3">
+                    @empty($transaction)
+                    <x-form.select.account-select 
+                            label="Titular" 
+                            name="titular" 
+                            :options="$accounts"
+                            selected="{{ $transaction->account_id ?? '' }}"
                             required/>
-                    </div>
+                    @endempty
+                    @isset($transaction)
+                        <x-form.input.show label="Titular" value="{{ $transaction->account->accountNumber }} | {{ $transaction->account->accountHolder->name }} - {{ $transaction->account->bank->abbreviation }}"/>
+                    @endisset
                 </div>
-                <div class="row mt-2">
-                    <div class="col-3">
-                        @empty($transaction)
-                        <x-form.radio.transaction-enum
-                                label="Tipo transação"
-                                name="tipoTransacao"
-                                checked="{{ $transaction->kindTransaction ?? '' }}"
-                                required/>
-                        @endempty
-                        @isset($transaction)
-                            <x-form.radio.transaction-enum-show label="Tipo transação" checked="{{ $transaction->kindTransaction }}"/>
-                        @endisset
-                    </div>
-                    <div class="col-6">
-                        <x-form.textarea 
-                            label="Descrição"
-                            name="descricao"
-                            rows="3"
-                            value="{{ $transaction->description ?? '' }}"/>
-                    </div>
+                <div class="col-3">
+                    @empty($transaction)
+                    <x-form.input.group-money 
+                            label="Valor" 
+                            name="valor"  
+                            value="{{ $transaction->value ?? '' }}"
+                            required/>
+                    @endempty
+                    @isset($transaction)
+                        <x-form.input.group-show label="Valor" value="{{ $transaction->value }}" group="R$"/>
+                    @endisset
+                </div>
+                <div class="col-3">
+                    <x-form.select.account-holder-select 
+                            label="Conta relacionada" 
+                            name="contaRelacionada" 
+                            :options="$relatedAccounts"
+                            selected="{{ $transaction->relatedHolder_id ?? '' }}"/>
+                </div>
+                <div class="col-3">
+                    <x-form.input.date
+                        label="Data da Transação"
+                        name="data"
+                        value="{{ $transaction->dateTransaction ?? '' }}"
+                        max="{{ $today }}"
+                        required/>
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="col-3">
+                    @empty($transaction)
+                    <x-form.radio.transaction-enum
+                            label="Tipo transação"
+                            name="tipoTransacao"
+                            checked="{{ $transaction->kindTransaction ?? '' }}"
+                            required/>
+                    @endempty
+                    @isset($transaction)
+                        <x-form.radio.transaction-enum-show label="Tipo transação" checked="{{ $transaction->kindTransaction }}"/>
+                    @endisset
+                </div>
+                <div class="col-6">
+                    <x-form.textarea 
+                        label="Descrição"
+                        name="descricao"
+                        rows="3"
+                        value="{{ $transaction->description ?? '' }}"/>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="row mt-2">
-        <div class="col">
-            <x-action.button.save/>
-        </div>
+<div class="row mt-2">
+    <div class="col">
+        <x-action.button.save/>
     </div>
-</form>
+</div>
+
 
 @push('scripts')
 <script>

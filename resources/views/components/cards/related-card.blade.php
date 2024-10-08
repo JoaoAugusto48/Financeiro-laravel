@@ -1,5 +1,5 @@
-<div class="card p-0">
-    <div class="card-header">
+<div class="card p-0 border-0">
+    <div class="card-header bg-dark border-0">
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active" aria-disabled="true" id="transactions-tab">Transações</a>

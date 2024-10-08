@@ -1,11 +1,11 @@
 <x-layout page-name="Transaction">
     <x-slot:title>
-        <x-helper.currency-text :value="$transaction->value"/> - {{ $transaction->account->accountHolder->name }}
+        <x-helper.currency-text :value="$transaction->value"/> ({{ $transaction->account->accountHolder->name }})
     </x-slot:title>
 
     <div class="col">
         <div class="hstack gap-2">
-            <x-action.button.back :url="route('transactions.index')" />
+            <x-action.button.back/>
             <div class="vr"></div>
             <x-action.button.create url="{{ route('transactions.create') }}"/>
             <x-action.button.edit url="{{ route('transactions.edit', $transaction) }}"/>
@@ -13,7 +13,5 @@
         </div>
     </div>
     
-    <x-transactions.show 
-        :go-back="route('transactions.index')" 
-        :transaction="$transaction"/>
+    <x-transactions.show :transaction="$transaction"/>
 </x-layout>

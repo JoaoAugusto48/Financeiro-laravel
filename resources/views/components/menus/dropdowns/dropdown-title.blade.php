@@ -1,6 +1,3 @@
-<a class="nav-link dropdown-toggle" 
-    role="button" 
-    data-bs-toggle="dropdown"
-    aria-expanded="false">
+<a class="nav-link" href="{{ $url }}">
     {{ $slot }}
 </a>
