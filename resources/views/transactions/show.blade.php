@@ -13,5 +13,5 @@
         </div>
     </div>
     
-    <x-transactions.show :transaction="$transaction"/>
+    <x-transactions.show :$transaction/>
 </x-layout>

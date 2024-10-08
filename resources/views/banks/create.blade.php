@@ -15,8 +15,7 @@
 
         <div class="row">
             <div class="col-7">
-                <x-banks.form action="{{ route('banks.store') }}"
-                            go-back="{{ route('banks.index') }}"/>
+                <x-banks.form />
             </div>
 
             <div class="col-5">

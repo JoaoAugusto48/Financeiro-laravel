@@ -18,7 +18,7 @@
                 ['label' => 'Nome', 'sort' => 'name', 'type' => 'asc'],
                 ['label' => 'Número', 'sort' => 'number', 'type' => 'asc'],
                 ['label' => 'Abreviação', 'sort' => 'abbreviation', 'type' => 'asc']
-            ]" :current-sort="$currentSort" />
+            ]" :$currentSort />
         </div>
     </div>
 

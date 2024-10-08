@@ -12,9 +12,6 @@
         </div>
     </div>
 
-    <x-cards.related-card 
-        :allowances="$allowances" 
-        :accounts="$accounts"
-        :transactions="$transactions"/>
+    <x-cards.related-card :$allowances :$accounts :$transactions/>
 </x-layout>
 

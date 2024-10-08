@@ -19,9 +19,7 @@
 
         <div class="row">
             <div class="col-7">
-                <x-banks.form   
-                    :action="route('banks.update', $bank->id)" 
-                    :$bank :go-back="route('banks.index')" />
+                <x-banks.form :$bank/>
             </div>
         </div>
    

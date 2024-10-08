@@ -17,9 +17,6 @@
             </div>
         </div>
 
-        <x-holders.form 
-            :action="route('holders.update', $accountHolder->id)"
-            :$accountHolder
-            :go-back="route('holders.show', $accountHolder)"/>
+        <x-holders.form :$accountHolder/>
     </form>
 </x-layout>

@@ -13,7 +13,6 @@
             </div>
         </div>
 
-        <x-holders.form action="{{ route('holders.store') }}"
-                        go-back="{{ route('holders.index') }}"/>
+        <x-holders.form/>
     </form>
 </x-layout>
