@@ -63,9 +63,9 @@ class TransactionController extends Controller
 
             $account = Account::find($transaction->account_id);
 
-            if($transaction->kindTransaction == TransactionEnum::Deposit->name) {
+            if($transaction->kindTransaction == TransactionEnum::REVENUE->name) {
                 $account->deposit($transaction->value);            
-            } elseif ($transaction->kindTransaction == TransactionEnum::Withdraw->name) {
+            } elseif ($transaction->kindTransaction == TransactionEnum::EXPENSE->name) {
                 $account->withdraw($transaction->value);
             } else {
                 throw new \Exception();
@@ -141,9 +141,9 @@ class TransactionController extends Controller
             $account = Account::find($transaction->account_id);
 
             // with different order to delete
-            if($transaction->kindTransaction == TransactionEnum::Deposit->name) {
+            if($transaction->kindTransaction == TransactionEnum::REVENUE->name) {
                 $account->withdraw($transaction->value);
-            } elseif ($transaction->kindTransaction == TransactionEnum::Withdraw->name) {
+            } elseif ($transaction->kindTransaction == TransactionEnum::EXPENSE->name) {
                 $account->deposit($transaction->value);
             } else {
                 throw new \Exception();

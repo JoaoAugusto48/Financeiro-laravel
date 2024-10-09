@@ -21,7 +21,7 @@ class AllowanceSeeder extends Seeder
                 'title' => 'Inglês',
                 'account_id' => 1,
                 'value' => 240,
-                'kindTransaction' => TransactionEnum::Withdraw->name,
+                'kindTransaction' => TransactionEnum::EXPENSE->name,
                 'description' => 'Pagamento mensal de Inglês',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -31,7 +31,7 @@ class AllowanceSeeder extends Seeder
                 'title' => 'Salário',
                 'account_id' => 1,
                 'value' => 2100,
-                'kindTransaction' => TransactionEnum::Deposit->name,
+                'kindTransaction' => TransactionEnum::REVENUE->name,
                 'description' => '',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')

@@ -4,6 +4,8 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AccountHolderController;
 use App\Http\Controllers\AllowanceController;
 use App\Http\Controllers\BankController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TransactionCategoryController;
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
 
@@ -18,6 +20,8 @@ Route::resources([
     'allowances' => AllowanceController::class,
     'banks' => BankController::class,
     'transactions' => TransactionController::class,
+    'categories' => CategoryController::class,
+    'transaction/categories' => TransactionCategoryController::class,
 ]);
 
 Route::prefix('banks')->group(function () {

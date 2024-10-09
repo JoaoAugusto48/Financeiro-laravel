@@ -19,7 +19,7 @@ class TransactionCard extends Card
 
     public function borderColor()
     {
-        if($this->transaction->kindTransaction == TransactionEnum::Deposit->name){
+        if($this->transaction->kindTransaction == TransactionEnum::REVENUE->name){
             return 'border-success';
         }
         return 'border-danger';

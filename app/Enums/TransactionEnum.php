@@ -4,6 +4,6 @@ namespace App\Enums;
 
 enum TransactionEnum: string
 {
-    case Deposit = 'Deposito';
-    case Withdraw = 'Saque';
+    case REVENUE = 'Receita';
+    case EXPENSE = 'Despesa';
 }

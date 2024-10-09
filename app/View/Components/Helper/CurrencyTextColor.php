@@ -20,9 +20,9 @@ class CurrencyTextColor extends Component
     public function textClass(): string
     {
         $class = '';
-        if($this->value == TransactionEnum::Deposit->name) {
+        if($this->value == TransactionEnum::REVENUE->name) {
             $class = 'text-success';
-        } elseif ($this->value == TransactionEnum::Withdraw->name) {
+        } elseif ($this->value == TransactionEnum::EXPENSE->name) {
             $class = 'text-danger';
         } else {
             if($this->value > 0) {

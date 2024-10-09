@@ -21,6 +21,11 @@ class Transaction extends Model
         return $this->belongsTo(AccountHolder::class, 'relatedHolder_id');
     }
 
+    public function transactionCategory()
+    {
+        return $this->belongsTo(TransactionCategory::class, 'transactionCategory_id');
+    }
+
     protected static function booted(): void
     {
         self::addGlobalScope('ordered', function (Builder $querybuilder): void {

@@ -19,10 +19,10 @@ class Allowance extends Component
 
     public function kindTransaction(): string
     {
-        if($this->allowance->kindTransaction == TransactionEnum::Deposit->name){
-            return TransactionEnum::Deposit->value;
+        if($this->allowance->kindTransaction == TransactionEnum::REVENUE->name){
+            return TransactionEnum::REVENUE->value;
         }
-        return TransactionEnum::Withdraw->value;
+        return TransactionEnum::EXPENSE->value;
     }
 
     /**

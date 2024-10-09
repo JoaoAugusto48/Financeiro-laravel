@@ -18,10 +18,12 @@ return new class extends Migration
             $table->string("kindTransaction");
             $table->date("dateTransaction");
             $table->string("description")->nullable();
+            $table->unsignedBigInteger("transactionCategory_id");
             $table->unsignedBigInteger("relatedHolder_id")->nullable();
             $table->timestamps();
 
             $table->foreign("account_id")->references("id")->on("accounts");
+            $table->foreign("transactionCategory_id")->references("id")->on("transaction_categories");
             $table->foreign("relatedHolder_id")->references("id")->on("account_holders");
         });
     }
