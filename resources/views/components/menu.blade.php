@@ -78,6 +78,17 @@
                             Transactions
                         </x-menus.dropdowns.dropdown-title>
                     </li>
+                    <li class="nav-item">
+                        <hr>
+                    </li>
+                    <li class="nav-item">
+                        <x-menus.dropdowns.dropdown-title url="#">
+                            <i class="bi bi-braces"></i>
+                            Categories
+                        </x-menus.dropdowns.dropdown-title>
+                    </li>
+
+                    
                     {{-- <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                             aria-expanded="false">

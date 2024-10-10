@@ -8,4 +8,5 @@ enum AccountHolderTypeEnum: string
     case COMPANY = 'Empresa';
     case SUPPLIER = 'Fornecedor';
     case CLIENT = 'Cliente';
+    case ASSOCIATION = 'Associação';
 }

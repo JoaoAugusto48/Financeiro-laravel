@@ -21,17 +21,17 @@
 
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="bi bi-arrow-{{ $currentSort->type == 'asc' ? 'up' : 'down' }}"></i>
+                    <i class="bi bi-sort-alpha-{{ $currentSort->type == 'asc' ? 'up' : 'down-alt' }}"></i>
                 </button>
                 <ul class="dropdown-menu">
                     <li>
                         <a class="dropdown-item {{ $currentSort->type == 'asc' ? 'active' : '' }}" href="{{ route('banks.order', ['sort' => $currentSort->sort, 'type' => 'asc']) }}">
-                            <i class="bi bi-arrow-up"></i> Asc
+                            <i class="bi bi-sort-alpha-up"></i> Asc
                         </a>
                     </li>
                     <li>
                         <a class="dropdown-item {{ $currentSort->type == 'desc' ? 'active' : '' }}" href="{{ route('banks.order', ['sort' => $currentSort->sort, 'type' => 'desc']) }}">
-                            <i class="bi bi-arrow-down"></i> Desc
+                            <i class="bi bi-sort-alpha-down-alt"></i> Desc
                         </a>
                     </li>
                 </ul>

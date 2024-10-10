@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class AccountHolder extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'user_id', 'linkAccount', 'descriptionn', 'phone', 'email', 'address', 'category_id'];
+    protected $fillable = ['name', 'user_id', 'linkAccount', 'description', 'phone', 'email', 'address', 'category_id'];
 
     public function user()
     {
