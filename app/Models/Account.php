@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Account extends Model
 {
     use HasFactory;
-    protected $fillable = ['accountNumber', 'bank_id', 'accountHolder_id'];
+    protected $fillable = ['accountNumber', 'bank_id', 'accountHolder_id', 'favorite'];
 
     public function bank()
     {

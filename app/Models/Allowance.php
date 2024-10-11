@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Allowance extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'value', 'kindTransaction', 'description', 'relatedHolder_id', 'account_id'];
+    protected $fillable = ['title', 'value', 'kindTransaction', 'description', 'favorite', 'relatedHolder_id', 'account_id'];
 
     public function account()
     {

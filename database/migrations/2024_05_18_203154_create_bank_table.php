@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string("name");
             $table->string("abbreviation");
             $table->boolean("deleteable");
+            $table->boolean("favorite")->default(false);
             $table->timestamps();
         });
     }

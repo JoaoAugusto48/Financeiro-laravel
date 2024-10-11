@@ -15,16 +15,16 @@ return new class extends Migration
             $table->bigIncrements("id");
             $table->string("name");
             $table->boolean("linkAccount");
-            $table->string('type'); // Tipo de titular (Pessoa, Loja, etc.)
+            $table->string('type'); // Tipo de titular (Pessoa, Empresa, Comércio, etc.)
             $table->text('description')->nullable(); // Descrição ou observação
             $table->string('phone', 20)->nullable(); // Informações de contato
             $table->string('email')->nullable();
             $table->string('address')->nullable();
             $table->boolean('status')->default(true); // Status do titular - default(true)
-            $table->string('relationship')->nullable(); // Relacionamento com o titular - Amigo, Cliente, Fornecedor, Familiar
+            $table->boolean("favorite")->default(false);
+            $table->unsignedBigInteger('account_holder_category_id')->nullable(); // Categoria (Pessoa, Loja, etc.)
             
-            $table->unsignedBigInteger('category_id')->nullable(); // Categoria (Pessoa, Loja, etc.)
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreign('account_holder_category_id')->references('id')->on('account_holder_categories');
             
             $table->unsignedBigInteger("user_id");
             $table->timestamps();

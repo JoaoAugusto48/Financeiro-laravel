@@ -6,7 +6,7 @@ enum AccountHolderTypeEnum: string
 {
     case PEOPLE = 'Pessoa';
     case COMPANY = 'Empresa';
-    case SUPPLIER = 'Fornecedor';
+    case BUSINESS = 'Comércio';
     case CLIENT = 'Cliente';
     case ASSOCIATION = 'Associação';
 }

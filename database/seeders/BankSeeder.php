@@ -20,7 +20,8 @@ class BankSeeder extends Seeder
                 'number' => '000',
                 'name' => 'Dinheiro',
                 'abbreviation' => 'DIN',
-                'deleteable' => 0,
+                'deleteable' => false,
+                'favorite' => false,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -29,7 +30,8 @@ class BankSeeder extends Seeder
                 'number' => '001',
                 'name' => 'Banco do Brasil',
                 'abbreviation' => 'BB',
-                'deleteable' => 0,
+                'deleteable' => false,
+                'favorite' => false,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -38,7 +40,8 @@ class BankSeeder extends Seeder
                 'number' => '002',
                 'name' => 'Caixa Federal',
                 'abbreviation' => 'CX',
-                'deleteable' => 0,
+                'deleteable' => false,
+                'favorite' => false,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ],
@@ -47,7 +50,8 @@ class BankSeeder extends Seeder
                 'number' => '003',
                 'name' => 'Nubank',
                 'abbreviation' => 'NU',
-                'deleteable' => 0,
+                'deleteable' => false,
+                'favorite' => false,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
             ])

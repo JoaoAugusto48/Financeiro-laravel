@@ -18,6 +18,7 @@ return new class extends Migration
             $table->decimal("value", 10, 2);
             $table->string("kindTransaction");
             $table->string("description")->nullable();
+            $table->boolean("favorite")->default(false);
             $table->unsignedBigInteger("relatedHolder_id")->nullable();
             $table->timestamps();
 
