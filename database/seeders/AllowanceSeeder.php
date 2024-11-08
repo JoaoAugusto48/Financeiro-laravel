@@ -23,6 +23,7 @@ class AllowanceSeeder extends Seeder
                 'value' => 240,
                 'kindTransaction' => TransactionEnum::EXPENSE->name,
                 'favorite' => false,
+                'transactionCategory_id' => 6,
                 'description' => 'Pagamento mensal de Inglês',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
@@ -34,6 +35,7 @@ class AllowanceSeeder extends Seeder
                 'value' => 2100,
                 'kindTransaction' => TransactionEnum::REVENUE->name,
                 'favorite' => true,
+                'transactionCategory_id' => 5,
                 'description' => '',
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')

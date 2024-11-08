@@ -19,7 +19,7 @@ class AccountHolderSeeder extends Seeder
             array([
                 'id' => 1,
                 'name' => 'João Augusto',
-                'type' => AccountHolderTypeEnum::PEOPLE->name,
+                'type' => AccountHolderTypeEnum::INDIVIDUAL->name,
                 'description' => 'Sou eu',
                 'phone' => '(18) 99818 0912',
                 'email' => 'jpaiaobonifacio@gmail.com',
@@ -34,7 +34,7 @@ class AccountHolderSeeder extends Seeder
             [
                 'id' => 2,
                 'name' => 'José Renato',
-                'type' => AccountHolderTypeEnum::PEOPLE->name,
+                'type' => AccountHolderTypeEnum::INDIVIDUAL->name,
                 'description' => 'Sou eu',
                 'phone' => '(18) 99818 1232',
                 'email' => 'usuareio@example.com',

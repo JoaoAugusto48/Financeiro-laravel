@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("accountNumber");
             $table->decimal("balance", 20, 2);
             $table->boolean("favorite")->default(false);
+            $table->text('description')->nullable();
             $table->timestamps();
 
             $table->foreign("bank_id")->references("id")->on("banks");

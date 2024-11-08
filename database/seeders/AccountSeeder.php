@@ -21,6 +21,7 @@ class AccountSeeder extends Seeder
                 'accountHolder_id' => 1,
                 'accountNumber' => '1519',
                 'balance' => 0,
+                'description' => 'Conta criada para cuidar das minhas próprias transações bancarias',
                 'favorite' => false,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                 'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
