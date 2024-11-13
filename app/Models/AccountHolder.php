@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class AccountHolder extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'user_id', 'linkAccount', 'description', 'phone', 'email', 'address', 'category_id'];
+    protected $fillable = ['name', 'user_id', 'linkAccount', 'description', 'phone', 'email', 'address', 'category_id', 'favorite', 'status'];
 
     public function user()
     {
@@ -32,6 +32,6 @@ class AccountHolder extends Model
 
     public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(AccountHolderCategory::class, 'category_id');
     }
 }

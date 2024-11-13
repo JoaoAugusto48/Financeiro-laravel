@@ -18,10 +18,13 @@ return new class extends Migration
             $table->decimal("value", 10, 2);
             $table->string("kindTransaction");
             $table->string("description")->nullable();
+            $table->boolean("favorite")->default(false);
             $table->unsignedBigInteger("relatedHolder_id")->nullable();
+            $table->unsignedBigInteger("transactionCategory_id");
             $table->timestamps();
 
             $table->foreign("account_id")->references("id")->on("accounts");
+            $table->foreign("transactionCategory_id")->references("id")->on("transaction_categories");
             $table->foreign("relatedHolder_id")->references("id")->on("account_holders");
         });
     }
