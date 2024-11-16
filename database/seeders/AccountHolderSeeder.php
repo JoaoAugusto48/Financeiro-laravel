@@ -16,51 +16,46 @@ class AccountHolderSeeder extends Seeder
     public function run(): void
     {
         DB::table('account_holders')->insert(
-            array([
-                'id' => 1,
-                'name' => 'João Augusto',
-                'type' => AccountHolderTypeEnum::INDIVIDUAL->name,
-                'description' => 'Sou eu',
-                'phone' => '(18) 99818 0912',
-                'email' => 'jpaiaobonifacio@gmail.com',
-                'address' => 'Rosalina Candida Franco, 67 - Palmital',
-                'account_holder_category_id' => 1,
-                'favorite' => false,
-                'linkAccount' => true,
-                'user_id' => 1,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-            ],
-            [
-                'id' => 2,
-                'name' => 'José Renato',
-                'type' => AccountHolderTypeEnum::INDIVIDUAL->name,
-                'description' => 'Sou eu',
-                'phone' => '(18) 99818 1232',
-                'email' => 'usuareio@example.com',
-                'address' => 'Rua das Margaridas, 123 - Palmital',
-                'account_holder_category_id' => 1,
-                'favorite' => false,
-                'linkAccount' => false,
-                'user_id' => 1,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-            ],
-            [
-                'id' => 3,
-                'name' => 'Supermercado Palmital',
-                'type' => AccountHolderTypeEnum::COMPANY->name,
-                'description' => 'Sou eu',
-                'phone' => '(18) 99818 1232',
-                'email' => 'usuareio@example.com',
-                'address' => 'Rua das Margaridas, 142 - Palmital',
-                'account_holder_category_id' => 1,
-                'favorite' => false,
-                'linkAccount' => false,
-                'user_id' => 1,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-            ],
-        ));
+            array(
+                [
+                    'id' => 1,
+                    'name' => 'João Augusto',
+                    'description' => 'Sou eu',
+                    'phone1' => '(18) 99818-0912',
+                    'phone2' => '',
+                    'email' => 'teste@gmail.com',
+                    'address_street' => 'Rosalina Candida Franco',
+                    'address_number' => '67',
+                    'address_city' => 'Palmital',
+                    'address_country' => 'Brasil',
+                    'address_complement' => '',
+                    'address_postal_code' => '19973-174',
+                    'status' => true,
+                    'favorite' => false,
+                    'user_id' => 1,
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                ],
+                [
+                    'id' => 2,
+                    'name' => 'Gabriela',
+                    'description' => 'Sou eu',
+                    'phone1' => '(18) 99919-0912',
+                    'phone2' => '',
+                    'email' => 'teste@gmail.com',
+                    'address_street' => 'Rosalina Candida Franco',
+                    'address_number' => '67',
+                    'address_city' => 'Palmital',
+                    'address_country' => 'Brasil',
+                    'address_complement' => '',
+                    'address_postal_code' => '19973-174',
+                    'status' => true,
+                    'favorite' => false,
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    'user_id' => 1,
+                ],
+            )
+        );
     }
 }

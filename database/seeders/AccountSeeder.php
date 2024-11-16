@@ -17,14 +17,15 @@ class AccountSeeder extends Seeder
         DB::table('accounts')->insert(
             array([
                 'id' => 1,
-                'bank_id' => 2,
-                'accountHolder_id' => 1,
-                'accountNumber' => '1519',
+                'accountNumber' => '151',
                 'balance' => 0,
                 'description' => 'Conta criada para cuidar das minhas próprias transações bancarias',
                 'favorite' => false,
+                'accountHolder_id' => 1,
+                'bank_id' => 1,
                 'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                'user_id' => 1,
             ])
         );
     }

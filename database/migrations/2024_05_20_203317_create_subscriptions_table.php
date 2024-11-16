@@ -11,21 +11,24 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('allowances', function (Blueprint $table) {
+        Schema::create('subscriptions', function (Blueprint $table) {
             $table->bigIncrements("id");
             $table->string("title");
-            $table->unsignedBigInteger("account_id");
             $table->decimal("value", 10, 2);
-            $table->string("kindTransaction");
             $table->string("description")->nullable();
+            $table->string("transaction_type");
             $table->boolean("favorite")->default(false);
-            $table->unsignedBigInteger("relatedHolder_id")->nullable();
-            $table->unsignedBigInteger("transactionCategory_id");
+            
+            $table->unsignedBigInteger("account_id");
+            $table->unsignedBigInteger("external_account_id")->nullable();
+            $table->unsignedBigInteger("transaction_category_id");
+            $table->unsignedBigInteger("user_id");
             $table->timestamps();
 
             $table->foreign("account_id")->references("id")->on("accounts");
-            $table->foreign("transactionCategory_id")->references("id")->on("transaction_categories");
-            $table->foreign("relatedHolder_id")->references("id")->on("account_holders");
+            $table->foreign("external_account_id")->references("id")->on("external_accounts");
+            $table->foreign("transaction_category_id")->references("id")->on("transaction_categories");
+            $table->foreign("user_id")->references("id")->on("users");
         });
     }
 
@@ -34,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('allowances');
+        Schema::dropIfExists('subscriptions');
     }
 };

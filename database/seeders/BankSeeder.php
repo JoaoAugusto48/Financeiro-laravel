@@ -15,46 +15,38 @@ class BankSeeder extends Seeder
     public function run(): void
     {
         DB::table('banks')->insert(
-            array([
-                'id' => 1,
-                'number' => '000',
-                'name' => 'Dinheiro',
-                'abbreviation' => 'DIN',
-                'deleteable' => false,
-                'favorite' => false,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-            ],
-            [
-                'id' => 2,
-                'number' => '001',
-                'name' => 'Banco do Brasil',
-                'abbreviation' => 'BB',
-                'deleteable' => false,
-                'favorite' => false,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-            ],
-            [
-                'id' => 3,
-                'number' => '002',
-                'name' => 'Caixa Federal',
-                'abbreviation' => 'CX',
-                'deleteable' => false,
-                'favorite' => false,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-            ],
-            [
-                'id' => 4,
-                'number' => '003',
-                'name' => 'Nubank',
-                'abbreviation' => 'NU',
-                'deleteable' => false,
-                'favorite' => false,
-                'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
-                'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
-            ])
+            array(
+                [
+                    'id' => 1,
+                    'number' => '001',
+                    'name' => 'Banco do Brasil',
+                    'deleteable' => false,
+                    'favorite' => false,
+                    'is_active' => true,
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 2,
+                    'number' => '002',
+                    'name' => 'Caixa Federal',
+                    'deleteable' => false,
+                    'favorite' => false,
+                    'is_active' => true,
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                ],
+                [
+                    'id' => 3,
+                    'number' => '003',
+                    'name' => 'Nubank',
+                    'deleteable' => false,
+                    'favorite' => true,
+                    'is_active' => true,
+                    'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
+                    'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
+                ]
+            )
         );
     }
 }

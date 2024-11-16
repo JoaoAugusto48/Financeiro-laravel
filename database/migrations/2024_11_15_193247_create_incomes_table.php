@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('banks', function (Blueprint $table) {
-            $table->bigIncrements("id");
-            $table->string("number", 3);
-            $table->string("name");
-            $table->string("abbreviation");
-            $table->boolean("deleteable");
-            $table->boolean("favorite")->default(false);
+        Schema::create('incomes', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('month');
+            $table->integer('year');
+            $table->decimal('total_amount', 10,2);
+            $table->unsignedBigInteger("user_id");
             $table->timestamps();
+
+            $table->foreign("user_id")->references("id")->on("users");
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('banks');
+        Schema::dropIfExists('incomes');
     }
 };
