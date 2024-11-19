@@ -21,7 +21,7 @@ class InvestmentPlanSeeder extends Seeder
                     'id' => 1,
                     'month' => MonthEnum::NOVEMBER->name,
                     'year' => 2024,
-                    'planned_amount' => 120,
+                    'plannedAmount' => 120,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'user_id' => 1,

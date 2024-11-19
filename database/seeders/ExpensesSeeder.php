@@ -21,7 +21,7 @@ class ExpensesSeeder extends Seeder
                     'id' => 1,
                     'month' => MonthEnum::NOVEMBER->name,
                     'year' => 2024,
-                    'total_amount' => 120,
+                    'totalAmount' => 120,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'user_id' => 1,

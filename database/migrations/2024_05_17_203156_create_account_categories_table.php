@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->boolean('status')->default(true);  // Categoria ativa por padrão
             $table->boolean('favorite')->default(false);
+            
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->bigIncrements("id");
             $table->string("number", 3);
             $table->string("name", 100);
-            $table->boolean("deleteable");
-            $table->boolean("is_active")->default(true);
+            $table->boolean("deleteable")->default(true);
+            $table->boolean("isActive")->default(true);
             $table->boolean("favorite")->default(false);
             $table->timestamps();
         });

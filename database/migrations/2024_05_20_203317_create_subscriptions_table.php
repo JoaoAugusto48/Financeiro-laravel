@@ -16,18 +16,18 @@ return new class extends Migration
             $table->string("title");
             $table->decimal("value", 10, 2);
             $table->string("description")->nullable();
-            $table->string("transaction_type");
+            $table->string("transactionType");
             $table->boolean("favorite")->default(false);
             
             $table->unsignedBigInteger("account_id");
-            $table->unsignedBigInteger("external_account_id")->nullable();
-            $table->unsignedBigInteger("transaction_category_id");
+            $table->unsignedBigInteger("externalAccount_id")->nullable();
+            $table->unsignedBigInteger("transactionCategory_id");
             $table->unsignedBigInteger("user_id");
             $table->timestamps();
 
             $table->foreign("account_id")->references("id")->on("accounts");
-            $table->foreign("external_account_id")->references("id")->on("external_accounts");
-            $table->foreign("transaction_category_id")->references("id")->on("transaction_categories");
+            $table->foreign("externalAccount_id")->references("id")->on("external_accounts");
+            $table->foreign("transactionCategory_id")->references("id")->on("transaction_categories");
             $table->foreign("user_id")->references("id")->on("users");
         });
     }

@@ -18,14 +18,15 @@ return new class extends Migration
             $table->string('phone1', 25)->nullable(); 
             $table->string('phone2', 25)->nullable(); 
             $table->string('email')->nullable();
-            $table->string('address_street', 255)->nullable();
-            $table->string('address_number', 8)->nullable();
-            $table->string('address_city', 80)->nullable();
-            $table->string('address_country', 50)->nullable();
-            $table->string('address_complement', 50)->nullable();
-            $table->string('address_postal_code', 20)->nullable();
+            $table->string('addressStreet', 255)->nullable();
+            $table->string('addressNumber', 8)->nullable();
+            $table->string('addressCity', 80)->nullable();
+            $table->string('addressCountry', 50)->nullable();
+            $table->string('addressComplement', 50)->nullable();
+            $table->string('addressPostalCode', 20)->nullable();
             $table->boolean('status')->default(true); // Status do titular - default(true)
             $table->boolean('favorite')->default(false);
+            
             $table->unsignedBigInteger("user_id");
             $table->timestamps();
 
@@ -39,17 +40,17 @@ return new class extends Migration
             $table->string('phone1', 25)->nullable(); 
             $table->string('phone2', 25)->nullable(); 
             $table->string('email')->nullable();
-            $table->string('address_street', 255)->nullable();
-            $table->string('address_number', 8)->nullable();
-            $table->string('address_city', 80)->nullable();
-            $table->string('address_country', 50)->nullable();
-            $table->string('address_complement', 50)->nullable();
-            $table->string('address_postal_code', 20)->nullable();
+            $table->string('addressStreet', 255)->nullable();
+            $table->string('addressNumber', 8)->nullable();
+            $table->string('addressCity', 80)->nullable();
+            $table->string('addressCountry', 50)->nullable();
+            $table->string('addressComplement', 50)->nullable();
+            $table->string('addressPostalCode', 20)->nullable();
             $table->boolean('status')->default(true); 
             $table->boolean('favorite')->default(false);
-            $table->unsignedBigInteger('account_category_id')->nullable(); 
+            $table->unsignedBigInteger('accountCategory_id')->nullable(); 
             
-            $table->foreign('account_category_id')->references('id')->on('account_categories');
+            $table->foreign('accountCategory_id')->references('id')->on('account_categories');
             
             $table->unsignedBigInteger("user_id");
             $table->timestamps();

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('month');
             $table->integer('year');
-            $table->decimal('total_amount', 10,2);
+            $table->decimal('totalAmount', 10,2);
             $table->unsignedBigInteger("user_id");
             $table->timestamps();
 

@@ -9,7 +9,13 @@ use Illuminate\Database\Eloquent\Model;
 class Bank extends Model
 {
     use HasFactory;
-    protected $fillable = ['number', 'name', 'abbreviation', 'favorite', 'deleteable'];
+    protected $fillable = ['number', 'name', 'isActive', 'favorite', 'deleteable'];
+
+    protected $attributes = [
+        'isActive' => true,
+        'favorite' => false,
+        'deleteable' => true,
+    ];
     
     public function account()
     {

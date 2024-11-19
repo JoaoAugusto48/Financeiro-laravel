@@ -18,11 +18,11 @@ return new class extends Migration
             $table->boolean('status')->default(true);  
             $table->boolean("favorite")->default(false);
            
-            $table->unsignedBigInteger('account_category_id')->nullable();
+            $table->unsignedBigInteger('accountCategory_id')->nullable();
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
             
-            $table->foreign('account_category_id')->references('id')->on('account_categories');
+            $table->foreign('accountCategory_id')->references('id')->on('account_categories');
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

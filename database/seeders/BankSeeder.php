@@ -22,7 +22,7 @@ class BankSeeder extends Seeder
                     'name' => 'Banco do Brasil',
                     'deleteable' => false,
                     'favorite' => false,
-                    'is_active' => true,
+                    'isActive' => true,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
                 ],
@@ -32,7 +32,7 @@ class BankSeeder extends Seeder
                     'name' => 'Caixa Federal',
                     'deleteable' => false,
                     'favorite' => false,
-                    'is_active' => true,
+                    'isActive' => true,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
                 ],
@@ -42,7 +42,7 @@ class BankSeeder extends Seeder
                     'name' => 'Nubank',
                     'deleteable' => false,
                     'favorite' => true,
-                    'is_active' => true,
+                    'isActive' => true,
                     'created_at' => Carbon::now()->format('Y-m-d H:i:s'),
                     'updated_at' => Carbon::now()->format('Y-m-d H:i:s')
                 ]
