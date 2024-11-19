@@ -8,5 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class TransactionCategory extends Model
 {
     use HasFactory;
-    protected $fillable = ['name', 'description', 'status', 'favorite'];
+    protected $fillable = [
+        'name', 
+        'description', 
+        'status', 
+        'favorite',
+        'accountCategory_id',
+    ];
+
+    protected $attributes = [
+        'status' => true,
+        'favorite' => false,
+    ];
 }

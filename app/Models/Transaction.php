@@ -9,7 +9,16 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
     use HasFactory;
-    protected $fillable = ['value', 'kindTransaction', 'description', 'dateTransaction', 'account_id', 'relatedHolder_id'];
+    protected $fillable = [
+        'title', 
+        'value', 
+        'description', 
+        'transactionType', 
+        'dateTransaction',
+        'account_id',
+        'externalAccount_id', 
+        'transactionCategory_id', 
+    ];
 
     public function account()
     {

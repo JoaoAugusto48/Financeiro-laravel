@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("accountNumber");
             $table->decimal("balance", 12, 2);
             $table->text('description')->nullable();
+            $table->boolean('status')->default(false);
             $table->boolean('favorite')->default(false);
 
             $table->unsignedBigInteger("bank_id");

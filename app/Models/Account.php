@@ -8,17 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Account extends Model
 {
     use HasFactory;
-    protected $fillable = ['accountNumber', 'bank_id', 'accountHolder_id', 'favorite'];
+    protected $fillable = [
+        'accountNumber', 
+        'description', 
+        'favorite',
+        'bank_id', 
+        'accountHolder_id', 
+        'user_id', 
+    ];
 
-    public function bank()
-    {
-        return $this->belongsTo(Bank::class, 'bank_id');
-    }
+    protected $attributes = [
+        'status' => true,
+        'favorite' => false,
+    ];
 
-    public function accountHolder()
-    {
-        return $this->belongsTo(AccountHolder::class, 'accountHolder_id');
-    }
+    protected $balance;
 
     public function deposit(float $value): void
     {
@@ -28,5 +32,15 @@ class Account extends Model
     public function withdraw(float $value): void
     {
         $this->balance -= $value;
+    }
+
+    public function bank()
+    {
+        return $this->belongsTo(Bank::class, 'bank_id');
+    }
+
+    public function accountHolder()
+    {
+        return $this->belongsTo(AccountHolder::class, 'accountHolder_id');
     }
 }

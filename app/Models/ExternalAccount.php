@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class AccountHolder extends Model
+class ExternalAccount extends Model
 {
     use HasFactory;
     protected $fillable = [
@@ -30,23 +30,8 @@ class AccountHolder extends Model
         'favorite' => false,
     ];
 
-    public function user()
+    public function transaction()
     {
-        return $this->belongsTo(User::class, 'user_id');
-    }
-
-    public function accounts()
-    {
-        return $this->hasMany(Account::class, 'accountHolder_id');
-    }
-    
-    public function transactions()
-    {
-        return $this->hasMany(Transaction::class, 'relatedHolder_id');
-    }
-
-    public function allowances()
-    {
-        return $this->hasMany(Allowance::class, 'relatedHolder_id');
+        return $this->hasMany(Transaction::class, 'externalAccount_id');
     }
 }

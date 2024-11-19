@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Model;
 class Bank extends Model
 {
     use HasFactory;
-    protected $fillable = ['number', 'name', 'isActive', 'favorite', 'deleteable'];
+    protected $fillable = [
+        'number', 'name', 'isActive', 'favorite', 'deleteable'
+    ];
 
     protected $attributes = [
         'isActive' => true,

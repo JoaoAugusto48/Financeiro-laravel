@@ -5,18 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Allowance extends Model
+class Allowance extends ExternalAccount
 {
     use HasFactory;
-    protected $fillable = ['title', 'value', 'kindTransaction', 'description', 'favorite', 'relatedHolder_id', 'account_id'];
-
-    public function account()
-    {
-        return $this->belongsTo(Account::class, 'account_id');
-    }
-
-    public function relatedHolder()
-    {
-        return $this->belongsTo(AccountHolder::class, 'relatedHolder_id');
-    }
 }

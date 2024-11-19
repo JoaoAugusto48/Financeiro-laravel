@@ -8,7 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 class Subscription extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'value', 'kindTransaction', 'description', 'favorite', 'relatedHolder_id', 'account_id'];
+    protected $fillable = [
+        'title', 
+        'value', 
+        'description', 
+        'transactionType', 
+        'favorite', 
+        'account_id',
+        'externalAccount_id', 
+        'transactionCategory_id', 
+    ];
+
+    protected $attributes = [
+        'status' => true,
+        'favorite' => false,
+    ];
 
     public function account()
     {
