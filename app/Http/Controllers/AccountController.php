@@ -6,8 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\AccountFormRequest;
 use App\Models\Account;
 use App\Models\AccountHolder;
-use App\Models\Allowance;
 use App\Models\Bank;
+use App\Models\Subscription;
 use App\Models\Transaction;
 use App\Services\Messages\AccountMessageService;
 use App\Services\MessageService;
@@ -23,7 +23,7 @@ class AccountController extends Controller
         $accounts = Account::paginate(20);
         $accountBalances = Account::sum('balance');
 
-        return view('accounts.index')
+        return view('auth.accounts.index')
                 ->with('accounts', $accounts)
                 ->with('accountBalances', $accountBalances)
                 ->with('messages', session(MessageService::$mensagem));
@@ -36,7 +36,7 @@ class AccountController extends Controller
     {
         $accountHolders = AccountHolder::orderBy('name')->get();
         $banks = Bank::orderBy('name')->get();
-        return view('accounts.create')
+        return view('auth.accounts.create')
                 ->with('accountHolders', $accountHolders)
                 ->with('banks', $banks);
     }
@@ -63,7 +63,7 @@ class AccountController extends Controller
         } catch (\Throwable $th) {
             MessageService::error($th->getMessage());
         }
-        return to_route('accounts.index');
+        return to_route('auth.accounts.index');
     }
 
     /**
@@ -73,7 +73,7 @@ class AccountController extends Controller
     {
         $transactions = Transaction::where('account_id', $account->id)->get();
 
-        return view('accounts.show')
+        return view('auth.accounts.show')
                     ->with('account', $account)
                     ->with('transactions', $transactions);
     }
@@ -85,7 +85,7 @@ class AccountController extends Controller
     {
         $accountHolders = AccountHolder::orderBy('name')->get();
         $banks = Bank::orderBy('name')->get();
-        return view('accounts.edit')
+        return view('auth.accounts.edit')
                 ->with('account', $account)
                 ->with('accountHolders', $accountHolders)
                 ->with('banks', $banks);
@@ -105,7 +105,7 @@ class AccountController extends Controller
         } catch (\Throwable $th) {
             MessageService::error($th->getMessage());
         }
-        return to_route('accounts.index');
+        return to_route('auth.accounts.index');
     }
 
     /**
@@ -114,9 +114,9 @@ class AccountController extends Controller
     public function destroy(Account $account, Request $request)
     {
         try {
-            $allowance = Allowance::where('account_id', $account->id)->first(); 
+            $subscription = Subscription::where('account_id', $account->id)->first(); 
             $transaction = Transaction::where('account_id', $account->id)->first();
-            if(!is_null($allowance) || !is_null($transaction)){
+            if(!is_null($subscription) || !is_null($transaction)){
                 throw new \Exception();
             }
             
@@ -128,6 +128,6 @@ class AccountController extends Controller
         } catch (\Throwable $th) {
             MessageService::error($th->getMessage());
         }
-        return to_route('accounts.index');
+        return to_route('auth.accounts.index');
     }
 }

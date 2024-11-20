@@ -23,12 +23,18 @@ class ExternalAccount extends Model
         'status',
         'favorite', 
         'user_id', 
+        'accountCategory_id'
     ];
 
     protected $attributes = [
         'status' => true,
         'favorite' => false,
     ];
+
+    public function accountCategory()
+    {
+        return $this->belongsTo(AccountCategory::class, 'accountCategory_id');
+    }
 
     public function transaction()
     {

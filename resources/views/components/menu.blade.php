@@ -61,9 +61,9 @@
                         </x-menus.dropdowns.dropdown-title>
                     </li>
                     <li class="nav-item dropdown">
-                        <x-menus.dropdowns.dropdown-title :url="route('allowances.index')">
+                        <x-menus.dropdowns.dropdown-title :url="route('subscriptions.index')">
                             <i class="bi bi-calendar-event"></i>
-                            Allowances
+                            Subscriptions
                         </x-menus.dropdowns.dropdown-title>
                     </li>
                     <li class="nav-item dropdown">

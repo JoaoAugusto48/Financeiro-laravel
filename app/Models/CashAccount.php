@@ -8,11 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class CashAccount extends Model
 {
     use HasFactory;
+    protected $amount;
     protected $fillable = [
         'description', 'user_id', 'account_id'
     ];
-
-    protected $amount;
 
     public function deposit(float $value): void
     {
@@ -22,6 +21,11 @@ class CashAccount extends Model
     public function withdraw(float $value): void
     {
         $this->amount -= $value;
+    }
+
+    public function account()
+    {
+        return $this->hasOne(Account::class, 'account_id');
     }
 
 }

@@ -6,6 +6,7 @@ use App\Models\AccountCategory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreAccountCategoryRequest;
 use App\Http\Requests\UpdateAccountCategoryRequest;
+use Illuminate\Http\Request;
 
 class AccountCategoryController extends Controller
 {
@@ -28,7 +29,7 @@ class AccountCategoryController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAccountCategoryRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -52,7 +53,7 @@ class AccountCategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAccountCategoryRequest $request, AccountCategory $accountCategory)
+    public function update(Request $request, AccountCategory $accountCategory)
     {
         //
     }

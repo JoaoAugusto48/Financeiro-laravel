@@ -39,14 +39,4 @@ class AccountHolder extends Model
     {
         return $this->hasMany(Account::class, 'accountHolder_id');
     }
-    
-    public function transactions()
-    {
-        return $this->hasMany(Transaction::class, 'relatedHolder_id');
-    }
-
-    public function allowances()
-    {
-        return $this->hasMany(Allowance::class, 'relatedHolder_id');
-    }
 }

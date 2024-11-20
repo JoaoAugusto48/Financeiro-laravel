@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Account extends Model
 {
     use HasFactory;
+    protected $balance;
     protected $fillable = [
         'accountNumber', 
         'description', 
@@ -21,8 +22,6 @@ class Account extends Model
         'status' => true,
         'favorite' => false,
     ];
-
-    protected $balance;
 
     public function deposit(float $value): void
     {

@@ -25,9 +25,9 @@ class Transaction extends Model
         return $this->belongsTo(Account::class, 'account_id');
     }
 
-    public function relatedHolder()
+    public function externalAccount()
     {
-        return $this->belongsTo(AccountHolder::class, 'relatedHolder_id');
+        return $this->belongsTo(AccountHolder::class, 'externalAccount_id');
     }
 
     public function transactionCategory()

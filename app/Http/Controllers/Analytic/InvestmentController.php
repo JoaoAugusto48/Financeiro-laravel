@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Analytic;
 
-use App\Models\Analytic\Income;
+use App\Models\Analytic\Investment;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class IncomeController extends Controller
+class InvestmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class IncomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Income $income)
+    public function show(Investment $investment)
     {
         //
     }
@@ -43,7 +43,7 @@ class IncomeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Income $income)
+    public function edit(Investment $investment)
     {
         //
     }
@@ -51,7 +51,7 @@ class IncomeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Income $income)
+    public function update(Request $request, Investment $investment)
     {
         //
     }
@@ -59,7 +59,7 @@ class IncomeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Income $income)
+    public function destroy(Investment $investment)
     {
         //
     }

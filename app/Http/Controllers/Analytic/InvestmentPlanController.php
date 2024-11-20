@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Analytic;
 
-use App\Models\Expense;
+use App\Models\Analytic\InvestmentPlan;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ExpenseController extends Controller
+class InvestmentPlanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class ExpenseController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Expense $expense)
+    public function show(InvestmentPlan $investmentPlan)
     {
         //
     }
@@ -43,7 +43,7 @@ class ExpenseController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Expense $expense)
+    public function edit(InvestmentPlan $investmentPlan)
     {
         //
     }
@@ -51,7 +51,7 @@ class ExpenseController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Expense $expense)
+    public function update(Request $request, InvestmentPlan $investmentPlan)
     {
         //
     }
@@ -59,7 +59,7 @@ class ExpenseController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Expense $expense)
+    public function destroy(InvestmentPlan $investmentPlan)
     {
         //
     }
