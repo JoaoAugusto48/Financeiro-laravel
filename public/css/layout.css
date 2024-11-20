@@ -1,0 +1,105 @@
+body {
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#menu-lateral {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 200px;
+    background-color: #343a40;
+    /* color: white; */
+    padding: 20px 10px;
+    transition: width 0.3s, transform 0.3s;
+    overflow: hidden;
+    z-index: 1050; /* Mantém o menu sobreposto */
+}
+
+#menu-lateral.minimizado {
+    width: 60px;
+}
+
+#menu-lateral a {
+    /* color: white; */
+    /* text-decoration: none; */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+#menu-lateral span.hidden {
+    white-space: nowrap;
+    overflow: hidden;
+    transition: opacity 0.3s;
+}
+
+#menu-lateral.minimizado span.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+#menu-topo {
+    margin-left: 200px; /* Largura do menu lateral */
+    /* background-color: #007bff; */
+    /* color: white; */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+    transition: margin-left 0.3s;
+    z-index: 1040; /* Mantém o topo sobreposto */
+}
+
+#menu-topo.menu-minimizado {
+    margin-left: 60px;
+}
+
+#conteudo {
+    padding-left: 210px;
+    padding-top: 60px;
+    transition: padding-left 0.3s;
+}
+
+#conteudo.menu-minimizado {
+    padding-left: 70px;
+}
+
+#sidebar-direita {
+    width: 250px;
+    transition: all 0.3s;
+}
+
+@media (max-width: 991.98px) {
+    #menu-lateral {
+        transform: translateX(-100%);
+        width: 200px;
+    }
+
+    #menu-lateral.minimizado {
+        transform: translateX(0);
+    }
+
+    #menu-topo {
+        margin-left: 0;
+    }
+
+    #conteudo {
+        padding-left: 0;
+    }
+
+    #sidebar-direita {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+#toggle-btn {
+    cursor: pointer;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
