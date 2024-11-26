@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AccountCategoryController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\AccountHolderController;
 use App\Http\Controllers\BankController;
@@ -17,14 +18,14 @@ Route::get('/', function () {
 
 Route::resources([
     'accounts' => AccountController::class,
-    'account/categories' => AccountController::class,
-    'account/holders' => AccountHolderController::class,
+    'account-categories' => AccountCategoryController::class,
+    'account-holders' => AccountHolderController::class,
     'banks' => BankController::class,
-    'cash/account' => CashAccountController::class,
+    'cash-accounts' => CashAccountController::class,
     'categories' => CategoryController::class,
     'subscriptions' => SubscriptionController::class,
     'transactions' => TransactionController::class,
-    'transaction/categories' => TransactionCategoryController::class,
+    'transaction-categories' => TransactionCategoryController::class,
 ]);
 
 Route::prefix('banks')->group(function () {

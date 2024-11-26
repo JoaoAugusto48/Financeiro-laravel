@@ -4,7 +4,7 @@
 
     <div class="row mb-2">
         <div class="col">
-            <x-action.button.create :url="route('holders.create')"/>
+            <x-action.button.create :url="route('account-holders.create')"/>
         </div>
     </div>
 

@@ -22,7 +22,7 @@ class AccountHolderController extends Controller
     {
         $accountHolders = AccountHolder::paginate(20);
 
-        return view('holders.index')
+        return view('auth.account-holders.index')
                 ->with('accountHolders', $accountHolders)
                 ->with('messages', session(MessageService::$mensagem));
     }
@@ -32,7 +32,7 @@ class AccountHolderController extends Controller
      */
     public function create()
     {
-        return view('holders.create');
+        return view('auth.account-holder.create');
     }
 
     /**
@@ -53,7 +53,7 @@ class AccountHolderController extends Controller
             MessageService::error($th->getMessage());
         }
 
-        return to_route('holders.index');
+        return to_route('auth.account-holder.index');
     }
 
     /**
@@ -65,7 +65,7 @@ class AccountHolderController extends Controller
         $allowances = Allowance::where('relatedHolder_id', '=', $holder->id)->get();
         $transactions = Transaction::where('relatedHolder_id', '=', $holder->id)->get();
         
-        return view('holders.show')
+        return view('auth.account-holder.show')
                 ->with('accountHolder', $holder)
                 ->with('accounts', $accounts)
                 ->with('allowances', $allowances)
@@ -77,7 +77,7 @@ class AccountHolderController extends Controller
      */
     public function edit(AccountHolder $holder)
     {
-        return view('holders.edit')->with('accountHolder', $holder);
+        return view('auth.account-holder.edit')->with('accountHolder', $holder);
     }
 
     /**
@@ -96,7 +96,7 @@ class AccountHolderController extends Controller
             MessageService::error($th->getMessage());
         }
 
-        return to_route('holders.index');
+        return to_route('auth.account-holder.index');
     }
 
     /**
@@ -120,6 +120,6 @@ class AccountHolderController extends Controller
         } catch (\Throwable $th) {
             MessageService::error($th->getMessage());
         }
-        return to_route('holders.index');
+        return to_route('account-holder.index');
     }
 }

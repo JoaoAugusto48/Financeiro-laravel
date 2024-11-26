@@ -10,7 +10,7 @@
         <x-cards.index title="{{ __('messages.objects.banks') }}" href="{{ route('banks.index') }}">
             {{ __('messages.page_index.card_text', ['object' => __('messages.objects.banks')]) }}
         </x-cards.index>
-        <x-cards.index title="{{ __('messages.objects.account_holders') }}" href="{{ route('holders.index') }}">
+        <x-cards.index title="{{ __('messages.objects.account_holders') }}" href="{{ route('account-holders.index') }}">
             {{ __('messages.page_index.card_text', ['object' => __('messages.objects.account_holders')]) }}
         </x-cards.index>
         <x-cards.index title="{{ __('messages.objects.transactions') }}" href="{{ route('transactions.index') }}">
